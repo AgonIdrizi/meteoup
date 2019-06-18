@@ -5,9 +5,9 @@ class MainContent extends Component {
     render() {
         return (
             <main className={classes.MainContent}>
-                <header>sd</header>
-                <section>sdfsdfsdfsdf</section>
-                <section>sdfsdf</section>
+                <header>Header</header>
+                <section>7 day forecast</section>
+                <section>selected day forecast</section>
             </main>
         );
     }

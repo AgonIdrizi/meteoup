@@ -1,6 +1,12 @@
+@import '../../variables.module.scss';
 .SideMenu {
     position: fixed;
     height: 100%;
-    width: 200px;
+    width: $side-menu-width;
     background-color: orange;
+}
+
+.SideMenu header {
+    background-color: orange;
+    border-bottom: 1px solid grey;
 }

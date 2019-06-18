@@ -3,10 +3,11 @@
     position: fixed;
     height: 100%;
     width: $side-menu-width;
-    background-color: orange;
+    border-left:1px solid grey;
 }
 
 .SideMenu header {
-    background-color: orange;
+    background-color: white;
     border-bottom: 1px solid grey;
+    height: 150px;
 }

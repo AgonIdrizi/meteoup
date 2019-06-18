@@ -1,0 +1,28 @@
+.mainHeader {
+    height: 150px;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    background-image: linear-gradient(135deg,#103f78,#0f8eb4 );
+    background-size: cover;
+    color: #fff;
+}
+.headerInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    margin: 20px;
+   h1{
+       color:white;
+       font-size: 2.6rem;
+       margin-top: .2em;
+       margin-bottom: 0px;
+       font-weight: 600;
+   }
+}
+.headerImage {
+    margin-left: auto;
+    margin-right: 20px;
+
+}

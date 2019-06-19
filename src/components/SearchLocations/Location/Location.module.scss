@@ -1,0 +1,22 @@
+.Location {
+    display:grid;
+    grid-template-columns: 175px 25px;
+    grid-auto-rows: 75px;
+}
+
+.LocationImageInfo {
+    margin: 5px 5px;
+}
+
+.LocationImageInfo p{
+    display: inline;
+    margin-left:4px;
+}
+.LocationImageInfo span {
+    display: block;
+    margin-top:10px;
+}
+
+.Location:hover {
+    background-color:#e7e7e7;
+}

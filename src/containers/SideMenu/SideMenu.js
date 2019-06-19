@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SearchInput from '../UI/SearchInput/SearchInput'
-import MainMenu  from '../MainMenu/MainMenu';
-import Logo from '../UI/Logo/Logo'
-import CloseSpan from '../UI/CloseSpan/CloseSpan'
-import SearchAndFavourite from '../../containers/SearchAndFavourite/SearchAndFavourite'
+import SearchInput from '../../components/UI/SearchInput/SearchInput'
+import MainMenu  from '../../components/MainMenu/MainMenu';
+import Logo from '../../components/UI/Logo/Logo'
+import CloseSpan from '../../components/UI/CloseSpan/CloseSpan'
+import SearchAndFavourite from './SearchAndFavourite/SearchAndFavourite'
 import classes from './SideMenu.module.scss'
 
 class SideMenu extends Component {
@@ -18,13 +18,15 @@ class SideMenu extends Component {
                             <Logo />
         let displaySearchAndFavourites = this.props.inputSelected ?
                                             <SearchAndFavourite /> : null
+        let displayMainMenu = this.props.inputSelected ? 
+                                            null : <MainMenu />
         return(
             <React.Fragment>
             <div style={ style } className={classes.SideMenu}>
             {displayLogo}
             <SearchInput click={this.props.clicked} />
             {displaySearchAndFavourites}
-            <MainMenu />
+            {displayMainMenu}
             </div>
             </React.Fragment>
         );

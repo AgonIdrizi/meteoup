@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './WeatherBuilder.module.scss';
-import SideMenu from '../../components/SideMenu/SideMenu'
+import SideMenu from '../SideMenu/SideMenu'
 import MainContent from '../../components/MainContent/MainContent';
 class WeatherBuilder extends Component {
     state = {

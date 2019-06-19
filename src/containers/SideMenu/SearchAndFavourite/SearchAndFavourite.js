@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import SearchHistory from '../../components/SideMenu/SearchHistory/SearchHistory'
-import Favourites from '../../components/SideMenu/Favourites/Favourites'
+import SearchLocations from '../../../components/SearchLocations/SearchLocations'
+import Favourites from '../../../components/Favourites/Favourites'
 import classes from './SearchAndFavourite.module.scss';
 
 class SearchAndFavourite extends Component {
     render() {
         return (
             <div className={classes.SearchAndFavourite}>
-                <SearchHistory />
+                <SearchLocations />
                 <Favourites />
             </div>
         );

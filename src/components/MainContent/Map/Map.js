@@ -1,16 +1,29 @@
 import React, { Component} from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
 import classes from './Map.module.scss';
+
+import Pin from '../../UI/Pin/Pin'
+
+const navStyle = {
+  position: 'absolute',
+  top: 36,
+  left: 0,
+  padding: '10px'
+};
 
 class Map extends Component  {
     
     state = {
         viewport: {
-          latitude: 41.98333,
-          longitude: 21.43333,
-          zoom: 8
+         zoom: 8
+        },
+        mapStyle: {
+          version: 8,
+          
         }
+        
       };
+      
 
       onViewportChange = viewport => { 
         const {width, height, ...etc} = viewport
@@ -18,19 +31,25 @@ class Map extends Component  {
       } 
 
     render(){
-        const { 
-            viewport,
-          } = this.state
+      
+      let markers = (<Marker longitude={21.43333} latitude={41.98333}>
+                      <Pin size={20}></Pin>
+                    </Marker>)
+
       return (
-        <div className={classes.Map}>
-            
+        <div  id='Map' className={classes.Map}>
             <ReactMapGL
-            width='100%'
-            height='100%'
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            {...viewport}
-             onViewportChange={(viewport) => this.onViewportChange({viewport})}
-      />
+            {...this.state.mapStyle}
+            width= '100%'
+            height= '100%'
+            latitude={41.98333}
+            longitude={21.43333}
+            {...this.state.viewport}
+            onViewportChange={(viewport) => this.setState({viewport})}
+            >
+              {markers}
+            </ReactMapGL>
         </div>
       );
     }

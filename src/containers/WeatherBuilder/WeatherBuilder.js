@@ -51,6 +51,7 @@ class WeatherBuilder extends Component {
                 searchQuery={this.state.searchQuery} />
                 <MainContent
                 inputSelected={this.state.searchInputSelected}
+                searchQuery={this.state.searchQuery}
                 />
             </div>
         );

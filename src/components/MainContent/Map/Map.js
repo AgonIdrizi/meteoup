@@ -35,7 +35,11 @@ class Map extends Component  {
       let markers = (<Marker longitude={21.43333} latitude={41.98333}>
                       <Pin size={20}></Pin>
                     </Marker>)
-
+      let displayMarkersOfSearch = this.props.data.map(elem => {
+          return <Marker longitude={elem.longitude} latitude={elem.latitude}>
+                  <Pin size={20}></Pin>
+                </Marker>
+      })
       return (
         <div  id='Map' className={classes.Map}>
             <ReactMapGL
@@ -48,7 +52,8 @@ class Map extends Component  {
             {...this.state.viewport}
             onViewportChange={(viewport) => this.setState({viewport})}
             >
-              {markers}
+              
+              {displayMarkersOfSearch}
             </ReactMapGL>
         </div>
       );

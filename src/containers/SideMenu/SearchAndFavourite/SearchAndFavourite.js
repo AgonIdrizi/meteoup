@@ -5,9 +5,11 @@ import classes from './SearchAndFavourite.module.scss';
 
 class SearchAndFavourite extends Component {
     render() {
+        const data = (this.props.searchQuery.length == 0) ? this.props.lastVisited : this.props.searchQuery
+        const search = (this.props.searchQuery.length == 0) ? 'false' : 'true'
         return (
             <div className={classes.SearchAndFavourite}>
-                <SearchLocations />
+                <SearchLocations data={data} search={search} />
                 <Favourites />
             </div>
         );

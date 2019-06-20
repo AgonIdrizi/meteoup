@@ -11,20 +11,31 @@ class SideMenu extends Component {
     componentDidMount(){
         console.log(this.props)
     }
+
+
+
+
+
+
     render() {
         const style = this.props.inputSelected ? {width: '400px'} : {width: '200px'}
         let displayLogo = this.props.inputSelected ? 
                             <CloseSpan clickedX={this.props.clickRemoveSearch} /> : 
                             <Logo />
         let displaySearchAndFavourites = this.props.inputSelected ?
-                                            <SearchAndFavourite /> : null
+                                            <SearchAndFavourite 
+                                            lastVisited={this.props.lastVisited}
+                                            searchQuery={this.props.searchQuery}/> : null
         let displayMainMenu = this.props.inputSelected ? 
                                             null : <MainMenu />
         return(
             <React.Fragment>
             <div style={ style } className={classes.SideMenu}>
             {displayLogo}
-            <SearchInput click={this.props.clicked} />
+            <SearchInput 
+            click={this.props.clicked}
+            searchHandler={this.props.searchHandler}
+                 />
             {displaySearchAndFavourites}
             {displayMainMenu}
             </div>

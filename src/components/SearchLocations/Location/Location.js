@@ -8,14 +8,14 @@ const propTypes = {
 };
 
 
-const location = () => {
+const location = (props) => {
     return (
         <div className={classes.Location}>
             <div className={classes.LocationImageInfo}>
                 <img src='https://www.meteoblue.com/website/images/flags/mk.svg' style={{height: '15px', width: '15px'}} />
-                <p >Tetovo</p>
+                <p >{props.place}</p>
                
-              <span>1314m, 42,132 N 20. 842</span>
+              <span>1314m, {props.longitude} N {props.latitude}</span>
               
             </div>
             <div>

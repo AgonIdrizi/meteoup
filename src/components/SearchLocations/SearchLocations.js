@@ -3,15 +3,15 @@ import Location from './Location/Location'
 import classes from './SearchLocations.module.scss';
 
 const searchLocations = (props) => {
-    return(
+    
+  return(
       <React.Fragment>
         <div className={classes.searchLocations}>
         <div className={classes.VisitedLocations} >
-          <h4>Last Visited</h4>
-          <a src="">Delete</a>
+          <h4>{(props.search == "true") ? 'Search' :'Last Visited'}</h4>
+          <a src="">{(props.search == "true") ? '' :'Delete'}</a>
         </div>
-            <Location />
-            <Location />  
+            {props.data.map(elem => <Location key={elem.id} place={elem.place} longitude={elem.longitude} latitude={elem.latitude} />)} 
         </div>
       </React.Fragment>
     )

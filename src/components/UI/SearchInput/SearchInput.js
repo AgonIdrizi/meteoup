@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from 'antd';
 
 
 
 
-const search = (props) => {
+const Search = (props) => {
+    const [value, setValue] = useState(
+        ''
+      );
+       
     const Search = Input.Search;
+
+    const handleSubmit = (e) =>{
+        console.log(value)
+         props.searchHandler(value)
+     }
+
     return(
-        <Search placeholder="Search Location" onClick={props.click}  onSearch={value => console.log(value)} />
+        <Search placeholder="Search Location"  value={value} onClick={props.click} onSearch={handleSubmit}  onChange={event => setValue(event.target.value)} />
     )
 }
 
-export default search
+export default Search
   
   

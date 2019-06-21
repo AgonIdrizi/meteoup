@@ -9,7 +9,10 @@ class SearchAndFavourite extends Component {
         const search = (this.props.searchQuery.length == 0) ? 'false' : 'true'
         return (
             <div className={classes.SearchAndFavourite}>
-                <SearchLocations data={data} search={search} />
+                <SearchLocations 
+                data={data} 
+                search={search}
+                onSelectLocation={this.props.onSelectLocation} />
                 <Favourites />
             </div>
         );

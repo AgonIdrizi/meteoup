@@ -12,6 +12,7 @@ class WeatherBuilder extends Component {
         searchQuery: [
             
         ],
+        longitudeLatitudeSelected: [21.43333,41.98333],
         searchInputSelected: false
     }
 
@@ -37,6 +38,11 @@ class WeatherBuilder extends Component {
         this.setState({searchQuery: [], searchInputSelected: false})
     }
 
+    onSelectLocation = (long, lang) => {
+        
+        this.setState({longitudeLatitudeSelected: [long, lang]})
+    }
+
     
     
     render() {
@@ -48,10 +54,12 @@ class WeatherBuilder extends Component {
                 clicked={this.onOpenMenuHandler}
                 clickRemoveSearch={this.onRemoveSearchHandler}
                 lastVisited={this.state.lastVisited}
-                searchQuery={this.state.searchQuery} />
+                searchQuery={this.state.searchQuery}
+                SelectLocation={this.onSelectLocation} />
                 <MainContent
                 inputSelected={this.state.searchInputSelected}
                 searchQuery={this.state.searchQuery}
+                longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
                 />
             </div>
         );

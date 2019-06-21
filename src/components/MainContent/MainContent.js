@@ -6,7 +6,9 @@ import classes from './MainContent.module.scss'
 class MainContent extends Component {
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
-        let display = this.props.inputSelected ? <Map data={this.props.searchQuery} /> :
+        let display = this.props.inputSelected ? <Map 
+                                                data={this.props.searchQuery}
+                                                longitudeLatitudeSelected={this.props.longitudeLatitudeSelected} /> :
                                                 <React.Fragment >
                                                     <Header />
                                                     <section>7 day forecast</section>

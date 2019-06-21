@@ -18,8 +18,10 @@ const location = (props) => {
               <span>1314m, {props.longitude} N {props.latitude}</span>
               
             </div>
-            <div>
-                <span>-></span>
+            <div >
+                <a onClick={e => props.onSelectLocation(props.longitude, props.latitude)}>
+                  <span >-></span>
+                </a>
             </div>
             
         </div>

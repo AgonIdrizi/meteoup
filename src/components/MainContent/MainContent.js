@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header/Header'
 import Map from './Map/Map'
+import SevenDaysForecast from './SevenDayForecast/SevenDayForecast'
 import classes from './MainContent.module.scss'
 
 class MainContent extends Component {
@@ -11,7 +12,7 @@ class MainContent extends Component {
                                                 longitudeLatitudeSelected={this.props.longitudeLatitudeSelected} /> :
                                                 <React.Fragment >
                                                     <Header />
-                                                    <section>7 day forecast</section>
+                                                    <SevenDaysForecast />
                                                     <section>selected day forecast</section>
                                                 </React.Fragment>
         return (

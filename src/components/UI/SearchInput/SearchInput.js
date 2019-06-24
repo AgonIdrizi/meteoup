@@ -13,7 +13,9 @@ const Search = (props) => {
 
     const handleSubmit = (e) =>{
         console.log(value)
+        
          props.searchHandler(value)
+         //setValue('')
      }
 
     return(

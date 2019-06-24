@@ -17,26 +17,29 @@ class Map extends Component  {
     state = {
         viewport: {
          
+          longitude: 21.43333,
+          latitude:42,
          center: [this.props.longitudeLatitudeSelected[0], this.props.longitudeLatitudeSelected[1]],
          zoom: 8,
         },
         longitude: this.props.longitudeLatitudeSelected[0],
          latitude: this.props.longitudeLatitudeSelected[1],
         mapStyle: {
-          version: 8,
+          style:"mapbox://styles/mapbox/streets-v9",
+          version: 9,
               sources: {
                 points: {
-            type: 'geojson',
-            data: {
-                type: 'FeatureCollection',
-                features: [
-                    {type: 'Feature', geometry: {type: 'Point', coordinates: [-122.45, 37.78]}}
-                ]
-            }
-        }
-        },
-    layers: [
-        {
+                  type: 'geojson',
+                  data: {
+                      type: 'FeatureCollection',
+                      features: [
+                          {type: 'Feature', geometry: {type: 'Point', coordinates: [21.43333, 41.98333]}}
+                      ]
+                  }
+              } 
+            },
+          layers: [
+          {
             id: 'my-layer',
             type: 'circle',
             source: 'points',
@@ -44,31 +47,27 @@ class Map extends Component  {
                 'circle-color': '#f00',
                 'circle-radius': 4
             }
-        }
-    ]
-        }
+          }
+          ]
+        },
+        selectedLocation: this.props.longitudeLatitudeSelected.length > 0 ? true :false
       };
       
 
       onViewportChange = viewport => { 
-        const {width, height, ...etc} = viewport
-        this.setState({viewport: etc})
+        const {width,height, ...etc} = viewport
+        this.setState({viewport: etc, selectedLocation:false}) 
       } 
 
-      componentDidUpdate(prevProps) {
-        console.log('componentdidUpdate')
-        if(prevProps.value !== this.props.value) {
-          this.setState({viewport:{
-            longitude: this.props.longitudeLatitudeSelected[0],
-            latitude: this.props.longitudeLatitudeSelected[1],
-            center: [this.props.longitudeLatitudeSelected[0], this.props.longitudeLatitudeSelected[1]],
-            zoom: 8
-          }})
-        }
-      }
+      
 
-      onLocationSelectCenterMap = () => {
+      onLocationSelectCenterMap = (viewport) => {
+        
+         // const {longitude,latidude, ...etc} = viewport
+        //this.setState({viewport: {longitude: this.props.longitudeLatitudeSelected[0], latitude:this.props.longitudeLatitudeSelected[1] }  })
         return {longitude: this.props.longitudeLatitudeSelected[0], latitude: this.props.longitudeLatitudeSelected[1], zoom: 8 }
+        
+        
       }
       
 
@@ -84,7 +83,8 @@ class Map extends Component  {
     render(){
 
     
-      let viewstate = this.onLocationSelectCenterMap();
+      let viewstate =  this.onLocationSelectCenterMap() 
+      let viewport = this.state.viewport
       let markerDefault = (<Marker longitude={this.props.longitudeLatitudeSelected[0]} latitude={this.props.longitudeLatitudeSelected[1]}>
                       <Pin size={20}></Pin>
                     </Marker>)
@@ -97,13 +97,20 @@ class Map extends Component  {
         <div  id='Map' className={classes.Map}>
             <ReactMapGL
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            {...this.state.mapStyle}
+            //style="mapbox://styles/mapbox/streets-v9"
+            mapStyle = "mapbox://styles/mapbox/streets-v9"
             width= '100%'
             height= '100%'
-           
+            longitude= {this.props.longitudeLatitudeSelected[0]}
+            latitude={this.props.longitudeLatitudeSelected[1]}
+            {...viewport}
             {...viewstate}
+            getCursor={(cursor) => {
+              console.log(cursor.isDragging)
+            }}
             onClick={e => console.log(e.lngLat)}
-            transitionDuration={2000}
+            //onViewportChange={this.onViewportChange}
+            transitionDuration={100}
             transitionInterpolator={new FlyToInterpolator(viewstate.longitude, viewstate.latitude)}
             >
               

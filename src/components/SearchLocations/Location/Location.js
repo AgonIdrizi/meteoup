@@ -10,7 +10,10 @@ const propTypes = {
 
 const location = (props) => {
     return (
-        <div className={classes.Location}>
+        <div  className={classes.Location} 
+              onMouseOver={e => props.onSelectLocation(props.longitude, props.latitude,e)}
+              //here we close the opening sidemenu and update selectedLocation
+              onClick={e => props.onSelectLocation(props.longitude, props.latitude,e)} >
             <div className={classes.LocationImageInfo}>
                 <img src='https://www.meteoblue.com/website/images/flags/mk.svg' style={{height: '15px', width: '15px'}} />
                 <p >{props.place}</p>
@@ -19,7 +22,7 @@ const location = (props) => {
               
             </div>
             <div >
-                <a onClick={e => props.onSelectLocation(props.longitude, props.latitude)}>
+                <a >
                   <span >-></span>
                 </a>
             </div>

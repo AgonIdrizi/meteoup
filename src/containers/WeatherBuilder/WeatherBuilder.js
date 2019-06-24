@@ -38,8 +38,11 @@ class WeatherBuilder extends Component {
         this.setState({searchQuery: [], searchInputSelected: false})
     }
 
-    onSelectLocation = (long, lang) => {
-        
+    onSelectLocation = (long, lang, e) => {
+        console.log(e.type)
+        if (e.type == 'click'){
+           return this.setState({longitudeLatitudeSelected: [long, lang], searchInputSelected: false})
+        }
         this.setState({longitudeLatitudeSelected: [long, lang]})
     }
 

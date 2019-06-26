@@ -6,13 +6,21 @@
     background-image: linear-gradient(135deg,#103f78,#0f8eb4 );
     background-size: cover;
     color: #fff;
-}
+} 
 .headerInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width:100%;
     margin: 20px;
+    
+   
+        
+    text-align: 'left';
+
+        
+    
+   
    h1{
        color:white;
        font-size: 2.6rem;
@@ -20,9 +28,16 @@
        margin-bottom: 0px;
        font-weight: 600;
    }
+   
 }
 .headerImage {
     margin-left: auto;
     margin-right: 20px;
+    div:first-child {
+        span{
+            font-weight: 700;
+            font-size: 2.6em
+        }
+    }
 
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from './Image/Image'
+import Degrees from './Degrees/Degrees'
 import PropTypes from 'prop-types';
 import classes from './OneDayForecast.module.scss';
 
@@ -11,7 +13,6 @@ const propTypes = {
 const oneDayForecast = (props) => {
 
     
-    
     return (
         <div style={props.style} onClick={e => props.clicked(e, props.id)} className={classes.OneDayForecast}>
            <div className='Date'>
@@ -22,23 +23,16 @@ const oneDayForecast = (props) => {
                   <span>6/24</span>
               </div>
            </div>
-           <div className="Image">
-               <div title="Showers">
-                  <img alt="Showers, thunderstorms likely" src="https://www.meteoblue.com/website/images/picto/08_iday.svg" height="50px" />
-               </div>
-           </div>
-           <div className="Degrees">
-               <div className="DayTemp"> <span>27</span></div>
-               <div className="NightTemp"><span>18</span></div>
-           </div>
+           <Image condition={props.data.day.condition} />
+           <Degrees tempInfo={props.data.day} />
            <div className="WindRainSunInfo">
                <div className="Wind">
                    <span>..</span>
-                   <span>15 km/h</span>
+                   <span>{props.data.day.maxwind_kph} km/h</span>
                </div>
                <div className="Rain">
                    <span>...</span>
-                   <span>0-10 mm</span>
+                   <span>{props.data.day.totalprecip_mm} mm</span>
                </div>
                <div>
                    <span>..</span>

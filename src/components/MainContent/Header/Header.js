@@ -8,17 +8,20 @@ const header = (props) => {
       <header className={classes.mainHeader}>
         <div className={classes.headerInfo}>
             <div>
-                <h1 >Weather in Tetovo</h1>
-                <span>"Tetovo, North Macedonia
-                    <span>42.010 N 20.089 E,</span>
-                    <span>466 m asl</span>
+                <h1 >Weather in {props.location.name} </h1>
+                <span>{`${props.location.name}, ${props.location.country}, `}
+                    <span >{`${props.location.lat} N ${props.location.lon} E`}</span>
                 </span>
             </div>
              <div className={classes.headerImage}>
-                <div title="Showers, thunderstorms">
-                    <img alt="Showers, thunderstorms" src="https://www.meteoblue.com/website/images/picto/07_iday.svg" style={{height: '54px'}}/>
+                <div title={props.current.condition.text}>
+                    <img alt={props.current.condition.text} src={props.current.condition.icon} style={{height: '54px'}}/>
+                    <span>{`${props.current.temp_c} °C`}</span>
                 </div>
-                <span>26 C</span>
+                <div>
+                    <span>{props.current.last_updated}</span>
+                </div>
+                
             </div>
         </div>
       </header>

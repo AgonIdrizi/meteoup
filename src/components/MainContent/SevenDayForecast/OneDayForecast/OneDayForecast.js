@@ -8,9 +8,12 @@ const propTypes = {
 };
 
 
-const oneDayForecast = () => {
+const oneDayForecast = (props) => {
+
+    
+    
     return (
-        <div style={{display: 'flex'}} className={classes.OneDayForecast}>
+        <div style={props.style} onClick={e => props.clicked(e, props.id)} className={classes.OneDayForecast}>
            <div className='Date'>
               <div>
                   <span>Mon</span>

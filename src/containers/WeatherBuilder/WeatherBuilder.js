@@ -13,6 +13,8 @@ class WeatherBuilder extends Component {
             
         ],
         longitudeLatitudeSelected: [21.43333,41.98333],
+        locationStringFromInput: 'skopje',
+        forecastData: null,
         searchInputSelected: false
     }
 
@@ -26,20 +28,25 @@ class WeatherBuilder extends Component {
             axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/"+value+".json?access_token=" + process.env.REACT_APP_MAPBOX_TOKEN + "&autocomplete=true")
                     .then(response => {
                         console.log(response.data)
+
                         let newSearchQuery=response.data.features.map(elem => {
                             return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
                         })
-                        this.setState({searchQuery: newSearchQuery})
+                        this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
                     })
         }
     }
+
+    
+
+
 
     onRemoveSearchHandler = () =>{
         this.setState({searchQuery: [], searchInputSelected: false})
     }
 
     onSelectLocation = (long, lang, e) => {
-        console.log(e.type)
+        console.log(long, lang)
         if (e.type == 'click'){
            return this.setState({longitudeLatitudeSelected: [long, lang], searchInputSelected: false})
         }
@@ -63,6 +70,7 @@ class WeatherBuilder extends Component {
                 inputSelected={this.state.searchInputSelected}
                 searchQuery={this.state.searchQuery}
                 longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
+                locationStringFromInput={this.state.locationStringFromInput}
                 />
             </div>
         );

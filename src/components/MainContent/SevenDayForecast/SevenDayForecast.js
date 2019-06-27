@@ -26,8 +26,8 @@ const SevenDayForecast = (props) => {
     width: '100%'
   }
   const display = props.forecast.forecastday.map((elem,index) => {
-    console.log(elem)
-    return <OneDayForecast key={index} id={index} data={elem} style={ props.lastSelectedDay == index ? styleOfSelected :defaultStyle } clicked={props.clicked} />
+    
+    return <OneDayForecast key={elem.date_epoch} id={index} data={elem} style={ props.lastSelectedDay == index ? styleOfSelected :defaultStyle } clicked={props.clicked} />
   })
     return (
         <div className={classes.SevenDayForecast}>

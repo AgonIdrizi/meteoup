@@ -267,35 +267,64 @@ class MainContent extends Component {
                     }
                 }
             ]
-        }
+        },
+        isLoading: false
     }
 
     componentDidMount() {
-        axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=tetovo&days=7')
+        this.setState({isLoading: true})
+        axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.props.longitudeLatitudeSelected[1]}`+','+`${this.props.longitudeLatitudeSelected[0]}` + '&days=7')
         .then(response => {
-            console.log(response.data)
-            this.setState({current: response.data.current, location: response.data.location})
+            
+            this.setState({current: response.data.current,forecast: response.data.forecast, location: response.data.location})
+            this.setState({isLoading: false})
         })
+        
+        console.log('componentDidMount')
     }
-    clickOneDayForecastHandler = (e, key) => {
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.longitudeLatitudeSelected != prevProps.longitudeLatitudeSelected) {
+            axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.props.longitudeLatitudeSelected[1]}`+','+`${this.props.longitudeLatitudeSelected[0]}` + '&days=7')
+            .then(response => {
+                console.log(response.data)
+                
+                this.setState({current: response.data.current,forecast: response.data.forecast, location: response.data.location})
+                
+            })
+           console.log('componentDidUpdate')
+        }
+      }
+
+
+    clickOneDayForecastHandler = (e, id) => {
         e.preventDefault()
-        this.setState({lastSelectedDay: key})
+        this.setState({lastSelectedDay: id})
         console.log(e.currentTarget)
         
     }
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
+        
+        let loadingData = this.state.isLoading ? <p>Loading data</p> :  <React.Fragment >
+                                                                            <SevenDaysForecast 
+                                                                                lastSelectedDay={this.state.lastSelectedDay}
+                                                                                clicked={this.clickOneDayForecastHandler}
+                                                                                forecast={this.state.forecast} />
+                                                                            <section>{this.state.lastSelectedDay}</section>
+                                                                        </React.Fragment>
+        let forecastData =<React.Fragment >
+                                <Header  current={this.state.current} 
+                                        location={this.state.location} /> 
+                            
+                            </React.Fragment>
+
         let display = this.props.inputSelected ? <Map 
                                                 data={this.props.searchQuery}
                                                 longitudeLatitudeSelected={this.props.longitudeLatitudeSelected} /> :
-                                                <React.Fragment >
-                                                    <Header current={this.state.current} 
-                                                            location={this.state.location}/>
-                                                    <SevenDaysForecast 
-                                                    lastSelectedDay={this.state.lastSelectedDay}
-                                                    clicked={this.clickOneDayForecastHandler}
-                                                    forecast={this.state.forecast} />
-                                                    <section>{this.state.lastSelectedDay}</section>
+                                                <React.Fragment>
+                                                  {forecastData}
+                                                  {loadingData}
                                                 </React.Fragment>
         return (
             <main style={style}  className={classes.MainContent}>

@@ -2,6 +2,7 @@ import React from 'react';
 import Image from './Image/Image'
 import Degrees from './Degrees/Degrees'
 import PropTypes from 'prop-types';
+import moment from 'moment'
 import classes from './OneDayForecast.module.scss';
 
 
@@ -17,10 +18,10 @@ const oneDayForecast = (props) => {
         <div style={props.style} onClick={e => props.clicked(e, props.id)} className={classes.OneDayForecast}>
            <div className='Date'>
               <div>
-                  <span>Mon</span>
+                  <span>{moment(props.data.date).format('ddd')}</span>
               </div>
               <div>
-                  <span>6/24</span>
+                  <span>{moment(props.data.date).format('M/D')}</span>
               </div>
            </div>
            <Image condition={props.data.day.condition} />

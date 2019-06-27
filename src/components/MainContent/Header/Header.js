@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from "./Header.module.scss";
-
+import moment from 'moment'
 
 const header = (props) => {
     return(
@@ -8,8 +8,8 @@ const header = (props) => {
       <header className={classes.mainHeader}>
         <div className={classes.headerInfo}>
             <div>
-                <h1 >Weather in {props.location.name} </h1>
-                <span>{`${props.location.name}, ${props.location.country}, `}
+                <h1 >Weather in {props.location.region} </h1>
+                <span>{`${props.location.region}, ${props.location.country}, `}
                     <span >{`${props.location.lat} N ${props.location.lon} E`}</span>
                 </span>
             </div>
@@ -19,7 +19,7 @@ const header = (props) => {
                     <span>{`${props.current.temp_c} °C`}</span>
                 </div>
                 <div>
-                    <span>{props.current.last_updated}</span>
+                    <span>Last Updated {moment(props.current.last_updated).fromNow()}</span>
                 </div>
                 
             </div>

@@ -283,7 +283,7 @@ class MainContent extends Component {
         console.log('componentDidMount')
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentWillReceiveProps(prevProps, nextProps) {
         if (this.props.longitudeLatitudeSelected != prevProps.longitudeLatitudeSelected) {
             axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.props.longitudeLatitudeSelected[1]}`+','+`${this.props.longitudeLatitudeSelected[0]}` + '&days=7')
             .then(response => {
@@ -292,8 +292,12 @@ class MainContent extends Component {
                 this.setState({current: response.data.current,forecast: response.data.forecast, location: response.data.location})
                 
             })
-           console.log('componentDidUpdate')
+           console.log('componentwillReceiveProps')
         }
+      }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidMount')
       }
 
 

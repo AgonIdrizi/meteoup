@@ -1,0 +1,6 @@
+.WeatherDataInDetail {
+    display: grid;
+    grid-template-columns: 30% 8.75% 8.75% 8.75% 8.75% 8.75% 8.75% 8.75% 8.75%;
+    grid-template-rows: 50px 70px;
+    grid-auto-rows: 40px;
+}

@@ -25,7 +25,7 @@ class WeatherBuilder extends Component {
         if(value != ''){
             axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/"+value+".json?access_token=" + process.env.REACT_APP_MAPBOX_TOKEN + "&autocomplete=true")
                     .then(response => {
-                        
+                        console.log(response.data)
                         let newSearchQuery=response.data.features.map(elem => {
                             return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
                         })

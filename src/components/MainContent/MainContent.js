@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from './Header/Header'
 import Map from './Map/Map'
 import SevenDaysForecast from './SevenDayForecast/SevenDayForecast'
+import WeatherDataInDetail from './WeatherDataInDetail/WeatherDataInDetail'
+import Slider from './Slider/Slider'
 import classes from './MainContent.module.scss'
 import axios from 'axios';
 
@@ -297,7 +299,7 @@ class MainContent extends Component {
       }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('componentDidMount')
+        console.log('componentDidUpdate')
       }
 
 
@@ -307,6 +309,11 @@ class MainContent extends Component {
         console.log(e.currentTarget)
         
     }
+
+    changeSlideHandler = () => {
+        console.log('hhh')
+      this.setState({lastSelectedDay: 2})
+    }
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
         
@@ -315,7 +322,10 @@ class MainContent extends Component {
                                                                                 lastSelectedDay={this.state.lastSelectedDay}
                                                                                 clicked={this.clickOneDayForecastHandler}
                                                                                 forecast={this.state.forecast} />
-                                                                            <section>{this.state.lastSelectedDay}</section>
+                                                                                <div>
+                                                                                    <Slider changeSlide={this.changeSlideHandler} /> 
+                                                                                </div>
+                                                                            
                                                                         </React.Fragment>
         let forecastData =<React.Fragment >
                                 <Header  current={this.state.current} 

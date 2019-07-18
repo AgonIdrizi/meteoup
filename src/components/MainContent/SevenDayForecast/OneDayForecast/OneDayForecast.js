@@ -4,7 +4,8 @@ import Degrees from './Degrees/Degrees'
 import PropTypes from 'prop-types';
 import moment from 'moment'
 import classes from './OneDayForecast.module.scss';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faWind, faCloudRain } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
     
@@ -28,11 +29,11 @@ const oneDayForecast = (props) => {
            <Degrees tempInfo={props.data.day} />
            <div className="WindRainSunInfo">
                <div className="Wind">
-                   <span>..</span>
+                   <span><FontAwesomeIcon  icon={faWind} /></span>
                    <span>{props.data.day.maxwind_kph} km/h</span>
                </div>
                <div className="Rain">
-                   <span>...</span>
+                   <span><FontAwesomeIcon style={{color: '#036f90'}} icon={faCloudRain} /></span>
                    <span>{props.data.day.totalprecip_mm} mm</span>
                </div>
                <div>

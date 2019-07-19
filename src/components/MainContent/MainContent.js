@@ -3,6 +3,7 @@ import Header from './Header/Header'
 import Map from './Map/Map'
 import SevenDaysForecast from './SevenDayForecast/SevenDayForecast'
 import WeatherDataInDetail from './WeatherDataInDetail/WeatherDataInDetail'
+import WeatherBitWidget from './WeatherBitWidget/WeatherBitWidget'
 import Slider from './Slider/Slider'
 import classes from './MainContent.module.scss'
 import axios from 'axios';
@@ -310,9 +311,8 @@ class MainContent extends Component {
         
     }
 
-    changeSlideHandler = () => {
-        console.log('hhh')
-      this.setState({lastSelectedDay: 2})
+    changeSlideHandler = (index) => {
+      this.setState({lastSelectedDay: index})
     }
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
@@ -323,9 +323,11 @@ class MainContent extends Component {
                                                                                 clicked={this.clickOneDayForecastHandler}
                                                                                 forecast={this.state.forecast} />
                                                                                 <div>
-                                                                                    <Slider changeSlide={this.changeSlideHandler} /> 
+                                                                                    <Slider 
+                                                                                    changeSlide={this.changeSlideHandler}
+                                                                                    selectedDay = {this.state.lastSelectedDay} /> 
                                                                                 </div>
-                                                                            
+                                                                                <WeatherBitWidget />
                                                                         </React.Fragment>
         let forecastData =<React.Fragment >
                                 <Header  current={this.state.current} 

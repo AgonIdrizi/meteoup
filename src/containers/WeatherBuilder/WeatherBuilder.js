@@ -20,11 +20,11 @@ class WeatherBuilder extends Component {
     }
 
     onOpenMenuHandler = () =>{
-        this.setState({searchInputSelected: true})
+        this.setState({searchInputSelected: true, loginDataSelected: false})
     }
     onSearchHandler = (value)=>{
         if(value != ''){
-            axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/"+value+".json?access_token=" + process.env.REACT_APP_MAPBOX_TOKEN + "&autocomplete=true")
+            axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/" + value + ".json?access_token=" + process.env.REACT_APP_MAPBOX_TOKEN + "&autocomplete=true")
                     .then(response => {
                         console.log(response.data)
                         let newSearchQuery=response.data.features.map(elem => {

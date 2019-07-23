@@ -15,7 +15,8 @@ class WeatherBuilder extends Component {
         longitudeLatitudeSelected: [21.43333,41.98333],
         locationStringFromInput: 'skopje',
         forecastData: null,
-        searchInputSelected: false
+        searchInputSelected: false,
+        loginDataSelected: false
     }
 
     onOpenMenuHandler = () =>{
@@ -50,6 +51,11 @@ class WeatherBuilder extends Component {
         this.setState({longitudeLatitudeSelected: [long, lang]})
     }
 
+    handleLoginClick = e => {
+        console.log('click ', e);
+        this.setState({loginDataSelected: !this.state.loginDataSelected})
+      };
+
     
     
     render() {
@@ -62,12 +68,15 @@ class WeatherBuilder extends Component {
                 clickRemoveSearch={this.onRemoveSearchHandler}
                 lastVisited={this.state.lastVisited}
                 searchQuery={this.state.searchQuery}
-                SelectLocation={this.onSelectLocation} />
+                SelectLocation={this.onSelectLocation}
+                handleLoginClick={this.handleLoginClick}
+                 />
                 <MainContent
                 inputSelected={this.state.searchInputSelected}
                 searchQuery={this.state.searchQuery}
                 longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
                 locationStringFromInput={this.state.locationStringFromInput}
+                loginDataSelected={this.state.loginDataSelected}
                 />
             </div>
         );

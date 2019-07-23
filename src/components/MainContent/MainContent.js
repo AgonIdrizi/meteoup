@@ -5,6 +5,7 @@ import SevenDaysForecast from './SevenDayForecast/SevenDayForecast'
 import WeatherDataInDetail from './WeatherDataInDetail/WeatherDataInDetail'
 import WeatherBitWidget from './WeatherBitWidget/WeatherBitWidget'
 import Slider from './Slider/Slider'
+import LoginRegisterData from '../../containers/LoginRegisterData/LoginRegisterData'
 import classes from './MainContent.module.scss'
 import axios from 'axios';
 
@@ -271,7 +272,8 @@ class MainContent extends Component {
                 }
             ]
         },
-        isLoading: false
+        isLoading: false,
+        loginDataSelected: false
     }
 
     componentDidMount() {
@@ -314,6 +316,8 @@ class MainContent extends Component {
     changeSlideHandler = (index) => {
       this.setState({lastSelectedDay: index})
     }
+
+    
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
         
@@ -334,6 +338,7 @@ class MainContent extends Component {
                                         location={this.state.location} /> 
                             
                             </React.Fragment>
+        let loginRegisterData = this.props.loginDataSelected ? <LoginRegisterData /> : null
 
         let display = this.props.inputSelected ? <Map 
                                                 data={this.props.searchQuery}
@@ -344,6 +349,7 @@ class MainContent extends Component {
                                                 </React.Fragment>
         return (
             <main style={style}  className={classes.MainContent}>
+               {loginRegisterData}
                {display}
             </main>
         );

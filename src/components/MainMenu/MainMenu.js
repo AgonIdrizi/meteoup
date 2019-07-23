@@ -15,6 +15,7 @@ class MainMenu extends Component {
                     <Menu.Item ><Icon type="calendar" />14 days forecast</Menu.Item>
                     <Menu.Item ><Icon type="mail" />Ag</Menu.Item>
                     <Menu.Item ><Icon type="mail" />Ag</Menu.Item>
+                    <Menu.Item onClick={this.props.loginClicked} ><Icon type="user"  />Login/Register</Menu.Item>
                 </Menu>
                 
             </div>

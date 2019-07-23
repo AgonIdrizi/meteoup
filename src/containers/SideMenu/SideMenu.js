@@ -8,10 +8,16 @@ import classes from './SideMenu.module.scss'
 
 class SideMenu extends Component {
     
+    state ={
+        loginDataSelected: false
+    }
+
+
     componentDidMount(){
         console.log(this.props)
     }
 
+    
 
 
 
@@ -28,7 +34,8 @@ class SideMenu extends Component {
                                             searchQuery={this.props.searchQuery}
                                             onSelectLocation={this.props.SelectLocation}/> : null
         let displayMainMenu = this.props.inputSelected ? 
-                                            null : <MainMenu />
+                                            null : <MainMenu 
+                                                    loginClicked={this.props.handleLoginClick} />
         return(
             <React.Fragment>
             <div style={ style } className={classes.SideMenu}>

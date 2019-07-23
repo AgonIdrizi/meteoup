@@ -91,7 +91,7 @@ class Login extends Component  {
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
         updatedFormElement.touched = true;
         updatedLoginForm[inputIdentifier] =updatedFormElement;
-        console.log(updatedFormElement)
+        
         let formIsValid = true;
         for (let inputIdentifier in updatedLoginForm) { //check if all inputs are valid in the form
             formIsValid = updatedLoginForm[inputIdentifier].valid && formIsValid;
@@ -109,7 +109,7 @@ class Login extends Component  {
         }
 
         let form = (
-            <form autofill="off" autocomplete="off"  onSubmit={this.loginHandler}>
+            <form   onSubmit={this.loginHandler}>
                 {formElementsArray.map(formElement => (
                     <Input 
                         key={formElement.id}
@@ -122,7 +122,7 @@ class Login extends Component  {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <button btntype="Success" disabled={!this.state.formIsValid}>ORDER</button>
+                <button btntype="Success" disabled={!this.state.formIsValid}>Login</button>
             </form>
         );
         if ( this.state.loading ) {

@@ -5,6 +5,9 @@
     z-Index:2; 
     width: 200px; 
     background-color: #eae9e9;
+    box-shadow: 0 0 10px rgba(35,31,32,.15);
+    transition: left .16s ease-in-out,right .16s ease-in-out,box-shadow .16s linear;
+    box-sizing: border-box;
 }
 
 .SelectComponent {

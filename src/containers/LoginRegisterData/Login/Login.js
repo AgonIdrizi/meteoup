@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Input from '../../../components/UI/Input/Input'
+
 import classes from './Login.module.scss';
 
 class Login extends Component  {
@@ -8,9 +10,10 @@ class Login extends Component  {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Your Email'
+                    placeholder: 'Your Email',
+                    autocomplete:"nope"
                 },
-                value='',
+                value:'',
                 validation: {
                     required: true,
                     isEmail: true
@@ -21,10 +24,10 @@ class Login extends Component  {
             password: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'email',
+                    type: 'password',
                     placeholder: 'Your password'
                 },
-                value='',
+                value:'',
                 validation: {
                     required: true,
                     isPassword: true,
@@ -72,6 +75,8 @@ class Login extends Component  {
             const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
             isValid = pattern.test(value) && isValid
         }
+
+        return isValid;
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -86,7 +91,7 @@ class Login extends Component  {
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
         updatedFormElement.touched = true;
         updatedLoginForm[inputIdentifier] =updatedFormElement;
-
+        console.log(updatedFormElement)
         let formIsValid = true;
         for (let inputIdentifier in updatedLoginForm) { //check if all inputs are valid in the form
             formIsValid = updatedLoginForm[inputIdentifier].valid && formIsValid;
@@ -104,7 +109,7 @@ class Login extends Component  {
         }
 
         let form = (
-            <form onSubmit={this.loginHandler}>
+            <form autofill="off" autocomplete="off"  onSubmit={this.loginHandler}>
                 {formElementsArray.map(formElement => (
                     <Input 
                         key={formElement.id}
@@ -117,11 +122,11 @@ class Login extends Component  {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <button btnType="Success" disabled={!this.state.formIsValid}>ORDER</button>
+                <button btntype="Success" disabled={!this.state.formIsValid}>ORDER</button>
             </form>
         );
         if ( this.state.loading ) {
-            form = <Spinner />;
+            form = <p>Loading...</p>;
         }
 
       return (

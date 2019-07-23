@@ -7,7 +7,7 @@ const input = (props) => {
     const inputClasses = [classes.inputElement];
 
     if (props.invalid && props.shouldValidate && props.touched) {
-        input.classess.push(classes.Invalid)
+        inputClasses.push(classes.Invalid)
     }
 
     switch ( props.elementType) {
@@ -15,13 +15,16 @@ const input = (props) => {
             inputElement = <input
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
+                autocomplete="new-password"
                 value={props.value}
                 onChange={props.changed} />;
+                
             break;
         case ( 'textarea' ):
             inputElement = <textarea 
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
+                autocomplete="new-password"
                 value={props.value}
                 onChange={props.changed}/>;
             break;

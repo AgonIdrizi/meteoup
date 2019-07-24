@@ -14,7 +14,6 @@ const propTypes = {
 
 const oneDayForecast = (props) => {
 
-    
     return (
         <div style={props.style} onClick={e => props.clicked(e, props.id)} className={classes.OneDayForecast}>
            <div className='Date'>

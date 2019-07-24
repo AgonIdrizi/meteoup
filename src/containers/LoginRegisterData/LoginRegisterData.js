@@ -30,12 +30,11 @@ class LoginRegisterData extends Component {
         console.log(selectedComponent)
         return (
             <div   className={classes.LoginRegisterData}>
-                ff
+                {selectedComponent}
                 <div className={classes.SelectComponent}>
                     <a onClick={e => this.handleComponentSelectionClick(e,'Login')}><span  classes={classes.Span}>Login</span></a>
                     <a onClick={ e => this.handleComponentSelectionClick(e, 'Register')}><span  classes={classes.Span}>Register</span></a>
                 </div>
-                {selectedComponent}
             </div>
         );
     }

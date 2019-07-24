@@ -12,21 +12,35 @@
 
 .InputElement {
     outline: none;
-    border: 1px solid #ccc;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
     background-color: white;
     font: inherit;
     padding: 6px 10px;
     display: block;
     width: 100%;
     box-sizing: border-box;
+    transition: all 0.3s;
 }
 
-.InputElement:focus {
-    outline: none;
-    background-color: #ccc;
+
+.InputElement:hover {
+    border-color: #40a9ff;
+    border-right-width: 1px !important;
 }
+
+.InputElement::selection {
+    color: #fff;
+    background: #1890ff;
+}
+
+
 
 .Invalid {
     border: 1px solid red;
     background-color: #FDA49A;
+}
+
+.InputFocus {
+    border: 1px solid black;
 }

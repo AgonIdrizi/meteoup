@@ -155,7 +155,6 @@ class Register extends Component {
         }
         return (
           <div className={classes.Register}>
-            Register
             {form}
           </div>
         );

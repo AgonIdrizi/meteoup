@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input'
 import { Button } from 'antd';
+
 import classes from './Login.module.scss';
 
 class Login extends Component  {
@@ -131,7 +132,6 @@ class Login extends Component  {
 
       return (
         <div className={classes.Login}>
-            Login data
             {form}
         </div>
       );

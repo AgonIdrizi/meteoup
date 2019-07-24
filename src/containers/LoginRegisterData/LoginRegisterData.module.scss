@@ -1,4 +1,6 @@
 .LoginRegisterData {
+   display: flex;
+    flex-direction: column-reverse;
     height: 100%; 
     position: fixed;
     top: 0; 
@@ -8,22 +10,23 @@
     box-shadow: 0 0 10px rgba(35,31,32,.15);
     transition: left .16s ease-in-out,right .16s ease-in-out,box-shadow .16s linear;
     box-sizing: border-box;
+    margin-bottom: 30px;
 }
 
-.example-enter {
+:global(.example-enter) {
   opacity: 0.01;
 }
 
-.example-enter-active {
+:global(.example-enter-active) {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
 
-.example-leave {
+:global(.example-leave) {
   opacity: 1;
 }
 
-.example-leave-active {
+:global(.example-leave-active) {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
@@ -35,15 +38,13 @@
  justify-content: space-evenly;
 }
 
+
 .SelectComponent {
-    
-   
-}
-span {
+
     
     &:before {
         width:100%;
-        content: "";
+        content: "123";
         position: absolute;
         bottom: 0;
         height: 2px;

@@ -1,14 +1,19 @@
 import React from 'react'
-
+import { Input } from 'antd';
+import { Select } from 'antd';
 import classes from './Input.module.scss'
+
+const { TextArea } = Input;
+const { Option } = Select;
 
 const input = (props) => {
     let inputElement = null;
-    const inputClasses = [classes.inputElement];
+    const inputClasses = [classes.InputElement];
 
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid)
     }
+    console.log(inputClasses)
 
     switch ( props.elementType) {
         case ( 'input'):
@@ -17,11 +22,12 @@ const input = (props) => {
                 {...props.elementConfig}
                 autocomplete="new-password"
                 value={props.value}
-                onChange={props.changed} />;
+                onChange={props.changed}/>
                 
             break;
         case ( 'textarea' ):
-            inputElement = <textarea 
+            inputElement = <TextArea
+                rows={4}
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 autocomplete="new-password"
@@ -30,16 +36,16 @@ const input = (props) => {
             break;
         case ( 'select' ):
             inputElement = (
-                <select
+                <Select
                     className={inputClasses.join(' ')}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
-                        <option key={option.value} value ={option.value}>
+                        <Option key={option.value} value ={option.value}>
                             {option.displayValue}
-                        </option>
+                        </Option>
                     ))}
-                </select>
+                </Select>
             );
             break;
         default:

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input'
-
+import { Button } from 'antd';
 import classes from './Login.module.scss';
 
 class Login extends Component  {
@@ -122,7 +122,7 @@ class Login extends Component  {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <button btntype="Success" disabled={!this.state.formIsValid}>Login</button>
+                <Button disabled={!this.state.formIsValid}>Login</Button>
             </form>
         );
         if ( this.state.loading ) {

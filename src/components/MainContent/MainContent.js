@@ -338,7 +338,8 @@ class MainContent extends Component {
                                         location={this.state.location} /> 
                             
                             </React.Fragment>
-        let loginRegisterData = this.props.loginDataSelected ? <LoginRegisterData /> : null
+        let loginRegisterData = this.props.loginDataSelected ? <LoginRegisterData loginDataSelected={this.props.loginDataSelected} />
+                                                                 : null
 
         let display = this.props.inputSelected ? <Map 
                                                 data={this.props.searchQuery}

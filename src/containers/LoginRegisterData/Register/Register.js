@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input'
-
+import { Button } from 'antd';
 import classes from './Register.module.scss';
 
 class Register extends Component {
@@ -46,7 +46,7 @@ class Register extends Component {
                 value:'',
                 validation: {
                     required: true,
-                    isPassword: true,
+                    isPasswordConfirmation: true,
                     minLength: 4,
                     maxLength: 20,
                 },
@@ -92,6 +92,10 @@ class Register extends Component {
             isValid = pattern.test(value) && isValid
         }
 
+        if (rules.isPasswordConfirmation) {
+            isValid = value == this.state.registerForm.password.value
+        }
+
         return isValid;
     }
 
@@ -110,9 +114,13 @@ class Register extends Component {
         updatedRegisterForm[inputIdentifier] =updatedFormElement;
         
         let formIsValid = true;
+        
+       
         for (let inputIdentifier in updatedRegisterForm) { //check if all inputs are valid in the form
             formIsValid = updatedRegisterForm[inputIdentifier].valid && formIsValid;
+            
         }
+        
         this.setState({ registerForm: updatedRegisterForm, formIsValid: formIsValid});
     }
     
@@ -139,7 +147,7 @@ class Register extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <button btntype="Success" disabled={!this.state.formIsValid}>Register</button>
+                <Button disabled={!this.state.formIsValid}>Register</Button>
             </form>
         );
         if ( this.state.loading ) {

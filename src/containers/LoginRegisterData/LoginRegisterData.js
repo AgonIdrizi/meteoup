@@ -3,6 +3,7 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 
 import classes from './LoginRegisterData.module.scss'
+import { CSSTransition , TransitionGroup } from 'react-transition-group';
 
 class LoginRegisterData extends Component {
     state= {
@@ -17,11 +18,18 @@ class LoginRegisterData extends Component {
          }
         
     }
+
+    componentWillMount(){
+        console.log('LoginRegisterData is unmountiung')
+    }
+
     render() {
+        let loginClasses = this.props.visible ? classes.slideIn : classes.slideOut
+        
         let selectedComponent = this.state.selectedComponent == "Login" ? <Login /> : <Register />
         console.log(selectedComponent)
         return (
-            <div className={classes.LoginRegisterData}>
+            <div   className={classes.LoginRegisterData}>
                 ff
                 <div className={classes.SelectComponent}>
                     <a onClick={e => this.handleComponentSelectionClick(e,'Login')}><span  classes={classes.Span}>Login</span></a>

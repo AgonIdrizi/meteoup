@@ -134,7 +134,7 @@ class Register extends Component {
         }
 
         let form = (
-            <form   onSubmit={this.registerHandler}>
+            <form   >
                 {formElementsArray.map(formElement => (
                     <Input 
                         key={formElement.id}
@@ -147,7 +147,8 @@ class Register extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <Button disabled={!this.state.formIsValid}>Register</Button>
+                <Button disabled={!this.state.formIsValid} 
+                        onClick={e => this.props.signUpHandler(e, this.state.registerForm)}>Register</Button>
             </form>
         );
         if ( this.state.loading ) {

@@ -28,19 +28,18 @@ class App extends Component {
 
   loginHandler = (event, loginForm) => {
     event.preventDefault();
-    console.log(loginForm)
+   
     const formData = {};
     for( let formElementIdentifier in loginForm) {
         formData[formElementIdentifier] = loginForm[formElementIdentifier].value
-    } console.log({...formData})
+    } 
     fire.auth().signInWithEmailAndPassword(formData.email, formData.password).then(user => {
-        console.log(user)
+        
         this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true})
     }).catch(error => {
         console.log(error)
     })
-    //send data to backend
-    console.log(formData)
+    
   }
 
   logoutHandler = () =>{
@@ -48,8 +47,19 @@ class App extends Component {
     this.setState({user: null, loggedIn: false})
   }
 
-  signUpHandler = (event) => {
-
+  signUpHandler = (event, signUpForm) => {
+    event.preventDefault()
+    console.log(signUpForm)
+    const formData = {};
+    for( let formElementIdentifier in signUpForm) {
+        formData[formElementIdentifier] = signUpForm[formElementIdentifier].value
+    } 
+    fire.auth().createUserWithEmailAndPassword(formData.email, formData.password).then(user => {
+      console.log(user)
+      this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true})
+    }).catch(error => {
+      console.log(error)
+    })
   }
   
   render (){
@@ -59,6 +69,7 @@ class App extends Component {
         user={ this.state.user ? true : false}
         loginHandler={this.loginHandler}
         logoutHandler={this.logoutHandler}
+        signUpHandler={this.signUpHandler}
         loggedIn={this.state.loggedIn} />
       </div>
     );

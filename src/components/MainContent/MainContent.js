@@ -343,7 +343,8 @@ class MainContent extends Component {
                                                                     loginHandler={this.props.loginHandler}
                                                                     logoutHandler={this.props.logoutHandler}
                                                                     loggedIn={this.props.loggedIn}
-                                                                    logOutDataSelected={this.props.logOutDataSelected}/>
+                                                                    logOutDataSelected={this.props.logOutDataSelected}
+                                                                    signUpHandler={this.props.signUpHandler}/>
                                                                  : null
 
         let display = this.props.inputSelected ? <Map 

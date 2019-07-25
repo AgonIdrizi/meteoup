@@ -26,7 +26,7 @@ class LoginRegisterData extends Component {
     render() {
         let loginClasses = this.props.visible ? classes.slideIn : classes.slideOut
         
-        let selectedComponent = this.state.selectedComponent == "Login" ? <Login loginHandler={this.props.loginHandler} /> : <Register />
+        let selectedComponent = this.state.selectedComponent == "Login" ? <Login loginHandler={this.props.loginHandler} /> : <Register signUpHandler={this.props.signUpHandler} />
         let clickHandlerDiv = (
                             <div className={classes.SelectComponent}>
                                 <a onClick={e => this.handleComponentSelectionClick(e,'Login')}><span  classes={classes.Span}>Login</span></a>

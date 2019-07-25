@@ -90,6 +90,7 @@ class WeatherBuilder extends Component {
                 logoutHandler={this.props.logoutHandler}
                 loggedIn={this.props.loggedIn}
                 logOutDataSelected={this.state.logOutDataSelected}
+                signUpHandler={this.props.signUpHandler}
                 />
             </div>
         );

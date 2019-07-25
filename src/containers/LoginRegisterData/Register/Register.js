@@ -63,7 +63,7 @@ class Register extends Component {
         this.setState({loading: true})
         const formData = {};
         for( let formElementIdentifier in this.state.registerForm) {
-            formData[formElementIdentifier] = this.state.formData[formElementIdentifier].value
+            formData[formElementIdentifier] = this.state.registerForm[formElementIdentifier].value
         }
         //send data to backend
     }

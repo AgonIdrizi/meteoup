@@ -26,7 +26,7 @@ class LoginRegisterData extends Component {
     render() {
         let loginClasses = this.props.visible ? classes.slideIn : classes.slideOut
         
-        let selectedComponent = this.state.selectedComponent == "Login" ? <Login /> : <Register />
+        let selectedComponent = this.state.selectedComponent == "Login" ? <Login loginHandler={this.props.loginHandler} /> : <Register />
         console.log(selectedComponent)
         return (
             <div   className={classes.LoginRegisterData}>

@@ -70,6 +70,7 @@ class WeatherBuilder extends Component {
                 searchQuery={this.state.searchQuery}
                 SelectLocation={this.onSelectLocation}
                 handleLoginClick={this.handleLoginClick}
+                
                  />
                 <MainContent
                 inputSelected={this.state.searchInputSelected}
@@ -77,6 +78,7 @@ class WeatherBuilder extends Component {
                 longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
                 locationStringFromInput={this.state.locationStringFromInput}
                 loginDataSelected={this.state.loginDataSelected}
+                loginHandler={this.props.loginHandler}
                 />
             </div>
         );

@@ -44,7 +44,7 @@ class Login extends Component  {
         loading: false
     }
 
-    loginHandler = (event) => {
+    loginHandler = (event, loginForm) => {
         event.preventDefault();
         this.setState({loading: true})
         const formData = {};
@@ -119,7 +119,7 @@ class Login extends Component  {
         }
 
         let form = (
-            <form   onSubmit={this.loginHandler}>
+            <form  >
                 {formElementsArray.map(formElement => (
                     <Input 
                         key={formElement.id}
@@ -132,7 +132,7 @@ class Login extends Component  {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <Button disabled={!this.state.formIsValid} onClick={this.loginHandler}>Login</Button>
+                <Button disabled={!this.state.formIsValid} onClick={e => this.props.loginHandler(e, this.state.loginForm)}>Login</Button>
             </form>
         );
         if ( this.state.loading ) {

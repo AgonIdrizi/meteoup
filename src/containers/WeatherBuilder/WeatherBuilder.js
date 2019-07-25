@@ -16,7 +16,8 @@ class WeatherBuilder extends Component {
         locationStringFromInput: 'skopje',
         forecastData: null,
         searchInputSelected: false,
-        loginDataSelected: false
+        loginDataSelected: false,
+        logOutDataSelected: false
     }
 
     onOpenMenuHandler = () =>{
@@ -56,6 +57,11 @@ class WeatherBuilder extends Component {
         this.setState({loginDataSelected: !this.state.loginDataSelected})
       };
 
+      handleLogOutClick = e => {
+        console.log('click ', e);
+        this.setState({logOutDataSelected: !this.state.logOutDataSelected})
+      };
+
     
     
     render() {
@@ -70,6 +76,8 @@ class WeatherBuilder extends Component {
                 searchQuery={this.state.searchQuery}
                 SelectLocation={this.onSelectLocation}
                 handleLoginClick={this.handleLoginClick}
+                loggedIn={this.props.loggedIn}
+                handleLogOutClick={this.handleLogOutClick}
                 
                  />
                 <MainContent
@@ -79,6 +87,9 @@ class WeatherBuilder extends Component {
                 locationStringFromInput={this.state.locationStringFromInput}
                 loginDataSelected={this.state.loginDataSelected}
                 loginHandler={this.props.loginHandler}
+                logoutHandler={this.props.logoutHandler}
+                loggedIn={this.props.loggedIn}
+                logOutDataSelected={this.state.logOutDataSelected}
                 />
             </div>
         );

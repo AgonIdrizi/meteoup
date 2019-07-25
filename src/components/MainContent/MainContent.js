@@ -338,7 +338,12 @@ class MainContent extends Component {
                                         location={this.state.location} /> 
                             
                             </React.Fragment>
-        let loginRegisterData = this.props.loginDataSelected ? <LoginRegisterData loginDataSelected={this.props.loginDataSelected} />
+        let loginRegisterData = (this.props.loginDataSelected || this.props.logOutDataSelected)  ? <LoginRegisterData 
+                                                                    loginDataSelected={this.props.loginDataSelected}
+                                                                    loginHandler={this.props.loginHandler}
+                                                                    logoutHandler={this.props.logoutHandler}
+                                                                    loggedIn={this.props.loggedIn}
+                                                                    logOutDataSelected={this.props.logOutDataSelected}/>
                                                                  : null
 
         let display = this.props.inputSelected ? <Map 

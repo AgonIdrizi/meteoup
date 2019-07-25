@@ -7,6 +7,8 @@ class MainMenu extends Component {
         console.log('click ', e);
       };
     render(){
+        let displayLoginLogOut = this.props.loggedIn ? <Menu.Item onClick={this.props.logoutClicked} ><Icon type="user"  />Logout</Menu.Item> 
+                                                       : <Menu.Item onClick={this.props.loginClicked} ><Icon type="user"  />Login/Register</Menu.Item>
         return (
             <div>
                 
@@ -15,7 +17,7 @@ class MainMenu extends Component {
                     <Menu.Item ><Icon type="calendar" />14 days forecast</Menu.Item>
                     <Menu.Item ><Icon type="mail" />Ag</Menu.Item>
                     <Menu.Item ><Icon type="mail" />Ag</Menu.Item>
-                    <Menu.Item onClick={this.props.loginClicked} ><Icon type="user"  />Login/Register</Menu.Item>
+                    {displayLoginLogOut}
                 </Menu>
                 
             </div>

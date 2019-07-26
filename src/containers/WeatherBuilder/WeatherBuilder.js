@@ -52,15 +52,12 @@ class WeatherBuilder extends Component {
         this.setState({longitudeLatitudeSelected: [long, lang]})
     }
 
-    handleLoginClick = e => {
+    handleLoginLogOutClick = e => {
         console.log('click ', e);
         this.setState({loginDataSelected: !this.state.loginDataSelected})
       };
 
-      handleLogOutClick = e => {
-        console.log('click ', e);
-        this.setState({logOutDataSelected: !this.state.logOutDataSelected})
-      };
+      
 
     
     
@@ -75,7 +72,7 @@ class WeatherBuilder extends Component {
                 lastVisited={this.state.lastVisited}
                 searchQuery={this.state.searchQuery}
                 SelectLocation={this.onSelectLocation}
-                handleLoginClick={this.handleLoginClick}
+                handleLoginLogOutClick={this.handleLoginLogOutClick}
                 loggedIn={this.props.loggedIn}
                 handleLogOutClick={this.handleLogOutClick}
                 
@@ -89,7 +86,6 @@ class WeatherBuilder extends Component {
                 loginHandler={this.props.loginHandler}
                 logoutHandler={this.props.logoutHandler}
                 loggedIn={this.props.loggedIn}
-                logOutDataSelected={this.state.logOutDataSelected}
                 signUpHandler={this.props.signUpHandler}
                 />
             </div>

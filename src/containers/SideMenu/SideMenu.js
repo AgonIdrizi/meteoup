@@ -35,9 +35,9 @@ class SideMenu extends Component {
                                             onSelectLocation={this.props.SelectLocation}/> : null
         let displayMainMenu = this.props.inputSelected ? 
                                             null : <MainMenu 
-                                                    loginClicked={this.props.handleLoginClick}
+                                                    loginLogoutClicked={this.props.handleLoginLogOutClick}
                                                     loggedIn={this.props.loggedIn}
-                                                    logoutClicked={this.props.handleLogOutClick} />
+                                                     />
         return(
             <React.Fragment>
             <div style={ style } className={classes.SideMenu}>

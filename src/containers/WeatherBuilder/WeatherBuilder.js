@@ -27,7 +27,6 @@ class WeatherBuilder extends Component {
         if(value != ''){
             axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/" + value + ".json?access_token=" + process.env.REACT_APP_MAPBOX_TOKEN + "&autocomplete=true")
                     .then(response => {
-                        console.log(response.data)
                         let newSearchQuery=response.data.features.map(elem => {
                             return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
                         })
@@ -53,7 +52,6 @@ class WeatherBuilder extends Component {
     }
 
     handleLoginLogOutClick = e => {
-        console.log('click ', e);
         this.setState({loginDataSelected: !this.state.loginDataSelected})
       };
 
@@ -87,6 +85,7 @@ class WeatherBuilder extends Component {
                 logoutHandler={this.props.logoutHandler}
                 loggedIn={this.props.loggedIn}
                 signUpHandler={this.props.signUpHandler}
+                loginRegisterErrorMessage={this.props.loginRegisterErrorMessage}
                 />
             </div>
         );

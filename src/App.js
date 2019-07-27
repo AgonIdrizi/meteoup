@@ -7,7 +7,8 @@ class App extends Component {
   
   state={
     user:{},
-    loggedIn: false
+    loggedIn: false,
+    loginRegisterErrorMessage: null
   }
 
   componentDidMount() {
@@ -17,7 +18,6 @@ class App extends Component {
 
   authListener(){
     fire.auth().onAuthStateChanged(user => {
-      console.log(user);
       if(user) {
         this.setState({ user: user, loggedIn: true});
       } else {
@@ -37,7 +37,7 @@ class App extends Component {
         
         this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true})
     }).catch(error => {
-        console.log(error)
+        this.setState({loginRegisterErrorMessage: error.message})
     })
     
   }
@@ -49,16 +49,14 @@ class App extends Component {
 
   signUpHandler = (event, signUpForm) => {
     event.preventDefault()
-    console.log(signUpForm)
     const formData = {};
     for( let formElementIdentifier in signUpForm) {
         formData[formElementIdentifier] = signUpForm[formElementIdentifier].value
     } 
     fire.auth().createUserWithEmailAndPassword(formData.email, formData.password).then(user => {
-      console.log(user)
       this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true})
     }).catch(error => {
-      console.log(error)
+      this.setState({loginRegisterErrorMessage: error.message})
     })
   }
   
@@ -70,7 +68,8 @@ class App extends Component {
         loginHandler={this.loginHandler}
         logoutHandler={this.logoutHandler}
         signUpHandler={this.signUpHandler}
-        loggedIn={this.state.loggedIn} />
+        loggedIn={this.state.loggedIn}
+        loginRegisterErrorMessage={this.state.loginRegisterErrorMessage} />
       </div>
     );
   }

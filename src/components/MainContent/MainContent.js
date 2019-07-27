@@ -284,7 +284,6 @@ class MainContent extends Component {
             this.setState({isLoading: false})
         })
         
-        console.log('componentDidMount')
     }
 
     componentWillReceiveProps(prevProps, nextProps) {
@@ -296,7 +295,6 @@ class MainContent extends Component {
                 this.setState({current: response.data.current,forecast: response.data.forecast, location: response.data.location})
                 
             })
-           console.log('componentwillReceiveProps')
         }
       }
 
@@ -308,7 +306,6 @@ class MainContent extends Component {
     clickOneDayForecastHandler = (e, id) => {
         e.preventDefault()
         this.setState({lastSelectedDay: id})
-        console.log(e.currentTarget)
         
     }
 
@@ -343,7 +340,8 @@ class MainContent extends Component {
                                                                     logoutHandler={this.props.logoutHandler}
                                                                     loggedIn={this.props.loggedIn}
                                                                     logOutDataSelected={this.props.logOutDataSelected}
-                                                                    signUpHandler={this.props.signUpHandler}/>
+                                                                    signUpHandler={this.props.signUpHandler}
+                                                                    loginRegisterErrorMessage={this.props.loginRegisterErrorMessage}/>
                                                                  : null
 
         let display = this.props.inputSelected ? <Map 

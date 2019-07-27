@@ -43,6 +43,7 @@ class LoginRegisterData extends Component {
             <div   className={classes.LoginRegisterData}>
                 {selectedComponent}
                 {clickHandlerDiv}
+                <p className={classes.Error}>{this.props.loginRegisterErrorMessage}</p>
             </div>
         );
     }

@@ -46,7 +46,18 @@ const oneDayForecast = (props) => {
 };
 
 
-oneDayForecast.propTypes = propTypes;
+oneDayForecast.propTypes = {
+    id: PropTypes.number,
+    style: PropTypes.object,
+    data: PropTypes.shape({
+        date: PropTypes.string.isRequired,
+        day: PropTypes.shape({
+            condition: PropTypes.object.isRequired,
+            maxwind_kph: PropTypes.number.isRequired,
+            totalprecip_mm: PropTypes.number.isRequired
+        })
+    })
+};
 
 
 export default oneDayForecast;

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import OneDayForecast from './OneDayForecast/OneDayForecast';
 import PropTypes from 'prop-types';
 import classes from './SevenDayForecast.module.scss';
-import { whileStatement } from '@babel/types';
 
 
 const propTypes = {

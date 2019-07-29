@@ -17,7 +17,6 @@ class WeatherBuilder extends Component {
         forecastData: null,
         searchInputSelected: false,
         loginDataSelected: false,
-        logOutDataSelected: false
     }
 
     onOpenMenuHandler = () =>{
@@ -71,7 +70,6 @@ class WeatherBuilder extends Component {
                 searchQuery={this.state.searchQuery}
                 SelectLocation={this.onSelectLocation}
                 handleLoginLogOutClick={this.handleLoginLogOutClick}
-                loggedIn={this.props.loggedIn}
                 handleLogOutClick={this.handleLogOutClick}
                 
                  />
@@ -81,11 +79,6 @@ class WeatherBuilder extends Component {
                 longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
                 locationStringFromInput={this.state.locationStringFromInput}
                 loginDataSelected={this.state.loginDataSelected}
-                loginHandler={this.props.loginHandler}
-                logoutHandler={this.props.logoutHandler}
-                loggedIn={this.props.loggedIn}
-                signUpHandler={this.props.signUpHandler}
-                loginRegisterErrorMessage={this.props.loginRegisterErrorMessage}
                 />
             </div>
         );

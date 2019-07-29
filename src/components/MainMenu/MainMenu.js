@@ -3,9 +3,6 @@ import { Menu,Item, Icon } from 'antd';
 
 class MainMenu extends Component {
     
-    handleClick = e => {
-        console.log('click ', e);
-      };
     render(){
         let displayLoginLogOut = this.props.loggedIn ? <Menu.Item onClick={this.props.loginLogoutClicked} ><Icon type="user"  />Logout</Menu.Item> 
                                                        : <Menu.Item onClick={this.props.loginLogoutClicked} ><Icon type="user"  />Login/Register</Menu.Item>

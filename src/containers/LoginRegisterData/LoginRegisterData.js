@@ -11,12 +11,16 @@ class LoginRegisterData extends Component {
     }
     handleComponentSelectionClick = (e, value) => {
         e.preventDefault()
-        console.log('hande selection click',value)
         
          if(this.state.selectedComponent != value){
             this.setState({selectedComponent: value})
+            this.props.clearErrorMessageHandler()
          }
         
+    }
+
+    componentDidMount(){
+        console.log('ComponentDidMount props', this.props)
     }
 
     componentWillMount(){

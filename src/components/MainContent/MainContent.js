@@ -5,7 +5,7 @@ import SevenDaysForecast from './SevenDayForecast/SevenDayForecast'
 import WeatherDataInDetail from './WeatherDataInDetail/WeatherDataInDetail'
 import WeatherBitWidget from './WeatherBitWidget/WeatherBitWidget'
 import Slider from './Slider/Slider'
-import LoginRegisterData from '../../containers/LoginRegisterData/LoginRegisterData'
+import LoginRegisterData from '../../containers/LoginRegisterData/index'
 import classes from './MainContent.module.scss'
 import axios from 'axios';
 
@@ -286,6 +286,8 @@ class MainContent extends Component {
         
     }
 
+    
+
     componentWillReceiveProps(prevProps, nextProps) {
         if (this.props.longitudeLatitudeSelected != prevProps.longitudeLatitudeSelected) {
             axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.props.longitudeLatitudeSelected[1]}`+','+`${this.props.longitudeLatitudeSelected[0]}` + '&days=7')
@@ -298,9 +300,7 @@ class MainContent extends Component {
         }
       }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log('componentDidUpdate')
-      }
+    
 
 
     clickOneDayForecastHandler = (e, id) => {
@@ -317,32 +317,26 @@ class MainContent extends Component {
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
         
-        let loadingData = this.state.isLoading ? <p>Loading data</p> :  <React.Fragment >
-                                                                            <SevenDaysForecast 
-                                                                                lastSelectedDay={this.state.lastSelectedDay}
-                                                                                clicked={this.clickOneDayForecastHandler}
-                                                                                forecast={this.state.forecast} />
-                                                                                <div>
-                                                                                    <Slider 
-                                                                                    changeSlide={this.changeSlideHandler}
-                                                                                    selectedDay = {this.state.lastSelectedDay} /> 
-                                                                                </div>
-                                                                                <WeatherBitWidget />
-                                                                        </React.Fragment>
+        let loadingData = this.state.isLoading ? <p>Loading data</p> : 
+                                                 <React.Fragment >
+                                                    <SevenDaysForecast 
+                                                        lastSelectedDay={this.state.lastSelectedDay}
+                                                        clicked={this.clickOneDayForecastHandler}
+                                                        forecast={this.state.forecast} />
+                                                        <div>
+                                                            <Slider 
+                                                                changeSlide={this.changeSlideHandler}
+                                                                selectedDay = {this.state.lastSelectedDay} /> 
+                                                        </div>
+                                                        <WeatherBitWidget />
+                                                </React.Fragment>
         let forecastData =<React.Fragment >
                                 <Header  current={this.state.current} 
                                         location={this.state.location} /> 
                             
                             </React.Fragment>
-        let loginRegisterData = this.props.loginDataSelected   ? <LoginRegisterData 
-                                                                    loginDataSelected={this.props.loginDataSelected}
-                                                                    loginHandler={this.props.loginHandler}
-                                                                    logoutHandler={this.props.logoutHandler}
-                                                                    loggedIn={this.props.loggedIn}
-                                                                    logOutDataSelected={this.props.logOutDataSelected}
-                                                                    signUpHandler={this.props.signUpHandler}
-                                                                    loginRegisterErrorMessage={this.props.loginRegisterErrorMessage}/>
-                                                                 : null
+        let loginRegisterData = this.props.loginDataSelected   ? <LoginRegisterData /> : null
+                                                                 
 
         let display = this.props.inputSelected ? <Map 
                                                 data={this.props.searchQuery}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchLocations from '../../../components/SearchLocations/SearchLocations'
-import Favourites from '../../../components/Favourites/Favourites'
+import Favourites from '../../../components/Favourites/index'
 import classes from './SearchAndFavourite.module.scss';
 
 class SearchAndFavourite extends Component {

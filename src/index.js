@@ -5,7 +5,23 @@ import App from './App';
 import './fontawesome';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {LoginRegisterProvider, LoginRegisterContext} from './contexts/LoginRegisterContext';
+
+ReactDOM.render(<LoginRegisterProvider>
+                  <LoginRegisterContext.Consumer> 
+                    {({authListener, user, loggedIn, loginHandler, logoutHandler, loginRegisterErrorMessage, clearErrorMessageHandler }) => 
+                    <App 
+                      user={user} 
+                      loggedIn={loggedIn} 
+                      loginHandler={loginHandler} 
+                      logoutHandler={logoutHandler} 
+                      loginRegisterErrorMessage={loginRegisterErrorMessage} 
+                      authListener={authListener}
+                      clearErrorMessageHandler={clearErrorMessageHandler}/> 
+                    }  
+                  </LoginRegisterContext.Consumer>
+                </LoginRegisterProvider>,
+     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

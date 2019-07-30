@@ -3,7 +3,7 @@ import SearchInput from '../../components/UI/SearchInput/SearchInput'
 import MainMenu  from '../../components/MainMenu/index';
 import Logo from '../../components/UI/Logo/Logo'
 import CloseSpan from '../../components/UI/CloseSpan/CloseSpan'
-import SearchAndFavourite from './SearchAndFavourite/SearchAndFavourite'
+import SearchAndFavourite from './SearchAndFavourite/index'
 import classes from './SideMenu.module.scss'
 
 class SideMenu extends Component {

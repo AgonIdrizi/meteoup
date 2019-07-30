@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchLocations from '../../../components/SearchLocations/SearchLocations'
-import Favourites from '../../../components/Favourites/index'
+import Favourites from '../../../components/Favourites/Favourites'
 import classes from './SearchAndFavourite.module.scss';
 
 class SearchAndFavourite extends Component {
@@ -12,8 +12,10 @@ class SearchAndFavourite extends Component {
                 <SearchLocations 
                 data={data} 
                 search={search}
-                onSelectLocation={this.props.onSelectLocation} />
-                <Favourites />
+                onSelectLocation={this.props.onSelectLocation}
+                loggedIn={this.props.loggedIn}
+                user={this.props.user} />
+                <Favourites user={this.props.user} loggedIn={this.props.loggedIn}/>
             </div>
         );
     }

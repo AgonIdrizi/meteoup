@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchInput from '../../components/UI/SearchInput/SearchInput'
-import MainMenu  from '../../components/MainMenu/MainMenu';
+import MainMenu  from '../../components/MainMenu/index';
 import Logo from '../../components/UI/Logo/Logo'
 import CloseSpan from '../../components/UI/CloseSpan/CloseSpan'
 import SearchAndFavourite from './SearchAndFavourite/SearchAndFavourite'
@@ -36,18 +36,16 @@ class SideMenu extends Component {
         let displayMainMenu = this.props.inputSelected ? 
                                             null : <MainMenu 
                                                     loginLogoutClicked={this.props.handleLoginLogOutClick}
-                                                    loggedIn={this.props.loggedIn}
-                                                     />
+                                                    />
         return(
             <React.Fragment>
             <div style={ style } className={classes.SideMenu}>
-            {displayLogo}
-            <SearchInput 
-            click={this.props.clicked}
-            searchHandler={this.props.searchHandler}
-                 />
-            {displaySearchAndFavourites}
-            {displayMainMenu}
+              {displayLogo}
+              <SearchInput 
+                click={this.props.clicked}
+                searchHandler={this.props.searchHandler}/>
+              {displaySearchAndFavourites}
+              {displayMainMenu}
             </div>
             </React.Fragment>
         );

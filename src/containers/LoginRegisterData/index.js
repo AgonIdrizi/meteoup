@@ -5,7 +5,7 @@ import { LoginRegisterContext } from '../../contexts/LoginRegisterContext'
 
 export default props => (
   <LoginRegisterContext.Consumer>
-    {({loginHandler, logoutHandler, signUpHandler, loggedIn, loginRegisterErrorMessage, clearErrorMessageHandler}) => 
+    {({loginHandler, logoutHandler, signUpHandler, loggedIn, loginRegisterErrorMessage, clearErrorMessageHandler, isLoading}) => 
         <LoginRegisterData 
           {...props}
           loginHandler={loginHandler} 
@@ -13,6 +13,7 @@ export default props => (
           signUpHandler={signUpHandler} 
           loggedIn={loggedIn} 
           loginRegisterErrorMessage={loginRegisterErrorMessage}
-          clearErrorMessageHandler={clearErrorMessageHandler} />}
+          clearErrorMessageHandler={clearErrorMessageHandler}
+          isLoading={isLoading} />}
   </LoginRegisterContext.Consumer>
 );

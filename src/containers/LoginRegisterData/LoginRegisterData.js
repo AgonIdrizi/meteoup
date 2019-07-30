@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Login from './Login/Login'
 import Register from './Register/Register'
 import Logout from './Logout/Logout'
+import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './LoginRegisterData.module.scss'
 import { CSSTransition , TransitionGroup } from 'react-transition-group';
 
@@ -42,7 +43,9 @@ class LoginRegisterData extends Component {
             selectedComponent = <Logout logoutHandler={this.props.logoutHandler} />
             clickHandlerDiv = null
         }
-        console.log(selectedComponent)
+        if(this.props.isLoading) {
+            selectedComponent = <Spinner />
+        }
         return (
             <div   className={classes.LoginRegisterData}>
                 {selectedComponent}

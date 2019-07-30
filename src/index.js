@@ -9,16 +9,7 @@ import {LoginRegisterProvider, LoginRegisterContext} from './contexts/LoginRegis
 
 ReactDOM.render(<LoginRegisterProvider>
                   <LoginRegisterContext.Consumer> 
-                    {({authListener, user, loggedIn, loginHandler, logoutHandler, loginRegisterErrorMessage, clearErrorMessageHandler }) => 
-                    <App 
-                      user={user} 
-                      loggedIn={loggedIn} 
-                      loginHandler={loginHandler} 
-                      logoutHandler={logoutHandler} 
-                      loginRegisterErrorMessage={loginRegisterErrorMessage} 
-                      authListener={authListener}
-                      clearErrorMessageHandler={clearErrorMessageHandler}/> 
-                    }  
+                    {({authListener, user}) => <App user={user} authListener={authListener} /> }  
                   </LoginRegisterContext.Consumer>
                 </LoginRegisterProvider>,
      document.getElementById('root'));

@@ -6,7 +6,8 @@ export class LoginRegisterProvider extends React.Component {
   state={
     user:{},
     loggedIn: false,
-    loginRegisterErrorMessage: null
+    loginRegisterErrorMessage: null,
+    isLoading: false
     }
   
     authListener = () =>{
@@ -21,16 +22,16 @@ export class LoginRegisterProvider extends React.Component {
     
       loginHandler = (event, loginForm) => {
         event.preventDefault();
-       
+        this.setState({isLoading: true})
         const formData = {};
         for( let formElementIdentifier in loginForm) {
             formData[formElementIdentifier] = loginForm[formElementIdentifier].value
         } 
         fire.auth().signInWithEmailAndPassword(formData.email, formData.password).then(user => {
             
-            this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true, loginRegisterErrorMessage:null})
+            this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true, loginRegisterErrorMessage: null, isLoading: false})
         }).catch(error => {
-            this.setState({loginRegisterErrorMessage: error.message})
+            this.setState({loginRegisterErrorMessage: error.message, isLoading: false})
         })
         
       }
@@ -42,14 +43,15 @@ export class LoginRegisterProvider extends React.Component {
     
       signUpHandler = (event, signUpForm) => {
         event.preventDefault()
+        this.setState({isLoading: true})
         const formData = {};
         for( let formElementIdentifier in signUpForm) {
             formData[formElementIdentifier] = signUpForm[formElementIdentifier].value
         } 
         fire.auth().createUserWithEmailAndPassword(formData.email, formData.password).then(user => {
-          this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true, loginRegisterErrorMessage:null})
+          this.setState({user: {email: user.email, uid: user.uid}, loggedIn: true, loginRegisterErrorMessage:null, isLoading: false})
         }).catch(error => {
-          this.setState({loginRegisterErrorMessage: error.message})
+          this.setState({loginRegisterErrorMessage: error.message, isLoading: false})
         })
       }
 

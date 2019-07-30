@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Location.module.scss';
 import Axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -10,8 +10,12 @@ const propTypes = {
 };
 
 
-const location = (props) => {
-    
+const Location = (props) => {
+  const [styleFavIcon, setStyleFavIcon] = useState({
+    color: 'blue'
+});
+
+
   const addToFavouritesHandler = (e) => {
     e.preventDefault()
     console.log(e.target)
@@ -19,14 +23,19 @@ const location = (props) => {
       locationName: props.place,
       longitude: props.longitude,
       latitude: props.latitude,
-      user_uuid: props.user.uid
+      uid: props.user.uid
     }
+    styleFavIcon.color == 'blue' ? setStyleFavIcon({color: 'yellow'}) : setStyleFavIcon({color: 'blue'})
+         
     Axios.post('https://meteoup-110f8.firebaseio.com/favourites.json', favouritePlace)
       .then(response => console.log(response))
-      .catch(error => console.log(error))
+      .catch(error => {
+        setStyleFavIcon({color: 'blue'})
+        console.log(error)
+      });
   }
   const favIcon = props.loggedIn ? (<a href="#" onClick= {(e) => addToFavouritesHandler(e)}>
-                                      <span ><FontAwesomeIcon  icon={faStar} /></span>
+                                      <span  ><FontAwesomeIcon style={styleFavIcon} icon={faStar} /></span>
                                     </a>) :
                                     null
         console.log(favIcon)
@@ -55,5 +64,5 @@ const location = (props) => {
 
 
 
-export default location;
+export default Location;
 

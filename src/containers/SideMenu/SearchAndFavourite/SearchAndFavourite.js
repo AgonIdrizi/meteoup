@@ -15,7 +15,7 @@ class SearchAndFavourite extends Component {
                 onSelectLocation={this.props.onSelectLocation}
                 loggedIn={this.props.loggedIn}
                 user={this.props.user} />
-                <Favourites user={this.props.user} loggedIn={this.props.loggedIn}/>
+                <Favourites user={this.props.user} onSelectLocation={this.props.onSelectLocation} loggedIn={this.props.loggedIn}/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Location.module.scss';
 import Axios from 'axios';
+import firebase from '../../../config/fire'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,26 +16,55 @@ const Location = (props) => {
     color: 'blue'
 });
 
+  const favouritePlace = {
+    locationName: props.place,
+    longitude: props.longitude,
+    latitude: props.latitude,
+    uid: props.user.uid
+  }
 
   const addToFavouritesHandler = (e) => {
     e.preventDefault()
-    console.log(e.target)
-    const favouritePlace = {
-      locationName: props.place,
-      longitude: props.longitude,
-      latitude: props.latitude,
-      uid: props.user.uid
-    }
-    styleFavIcon.color == 'blue' ? setStyleFavIcon({color: 'yellow'}) : setStyleFavIcon({color: 'blue'})
-         
-    Axios.post('https://meteoup-110f8.firebaseio.com/favourites.json', favouritePlace)
-      .then(response => console.log(response))
-      .catch(error => {
-        setStyleFavIcon({color: 'blue'})
-        console.log(error)
-      });
+
+    styleFavIcon.color == 'blue' ? setStyleFavIcon({color: 'yellow'}) : setStyleFavIcon({color: 'blue'})   
+
+    const ref = firebase.database().ref('favourites')
+    const refAfavourite = ref.orderByChild('locationName').equalTo(favouritePlace.locationName)
+      refAfavourite.once('value', snapshot => {
+        if(snapshot.hasChildren()) {
+          //do nothing
+        } else {
+          //push data to firebase
+          snapshot.ref.push(favouritePlace)
+          .then(res => {
+            console.log(res)
+            props.onAddFavourite()
+          } )
+          .catch(err => console.log(err))
+        }
+      })
   }
-  const favIcon = props.loggedIn ? (<a href="#" onClick= {(e) => addToFavouritesHandler(e)}>
+
+  const removeFromFavouritesHandler = (e) => {
+    const ref = firebase.database().ref('favourites')
+    const refAfavourite = ref.orderByChild('locationName').equalTo(favouritePlace.locationName)
+    var key = '';
+
+    refAfavourite.once('value', snapshot => {
+      console.log(snapshot.val())
+      key = Object.keys(snapshot.val()).join('')
+      console.log(typeof(key))
+      //refAfavourite.update('favourites')
+      console.log(key)
+      //firebase.database().ref('favourites/' + key).remove()
+    })
+      firebase.database().ref('favourites/'+ key).set(null)
+    //props.onRemoveFavourite()
+  }
+
+  const addRemoveFavHandlers = styleFavIcon.color == 'blue' ? (e) => addToFavouritesHandler(e) : e => removeFromFavouritesHandler(e)
+
+  const favIcon = props.loggedIn ? (<a href="#" onClick= {addRemoveFavHandlers}>
                                       <span  ><FontAwesomeIcon style={styleFavIcon} icon={faStar} /></span>
                                     </a>) :
                                     null

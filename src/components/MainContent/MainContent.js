@@ -6,6 +6,7 @@ import WeatherDataInDetail from './WeatherDataInDetail/WeatherDataInDetail'
 import WeatherBitWidget from './WeatherBitWidget/WeatherBitWidget'
 import Slider from './Slider/Slider'
 import LoginRegisterData from '../../containers/LoginRegisterData/index'
+import Spinner from '../UI/Spinner/Spinner'
 import classes from './MainContent.module.scss'
 import axios from 'axios';
 
@@ -317,7 +318,7 @@ class MainContent extends Component {
     render() {
         const style = this.props.inputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
         
-        let loadingData = this.state.isLoading ? <p>Loading data</p> : 
+        let loadingData = this.state.isLoading ? <Spinner large="large" /> : 
                                                  <React.Fragment >
                                                     <SevenDaysForecast 
                                                         lastSelectedDay={this.state.lastSelectedDay}

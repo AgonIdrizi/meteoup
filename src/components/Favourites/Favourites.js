@@ -8,16 +8,23 @@ const Favourites =(props) =>  {
     const [data, setData] = useState([]);
 
     useEffect( () => {
-        var db = firebase.database();
-        var ref = db.ref('favourites').orderByChild('uid').equalTo(props.user.uid)
-        ref.once('value', snapshot => {
-            let snapdata = snapshot.val()
-            let compdata = Object.keys(snapdata).map(igkey => {
+        if(props.loggedIn) {
+          var db = firebase.database();
+          var ref = db.ref('favourites').orderByChild('uid').equalTo(props.user.uid)
+          ref.once('value', snapshot => {
+            if(snapshot.exists()) {
+              let snapdata = snapshot.val()
+              let compdata = Object.keys(snapdata).map(igkey => {
+               // console.log(snapdata[igkey].locationName)
+                //if(snapdata[igkey].locationName == data)
                 return {favId: igkey, ...snapdata[igkey] }
-            })
-            setData(compdata)
-        })
-    },[])
+              });
+              console.log(compdata)
+              setData(compdata)
+            }
+          });
+        }
+    },[props.favourites])
 
   
     

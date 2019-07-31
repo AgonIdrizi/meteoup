@@ -4,6 +4,19 @@ import Favourites from '../../../components/Favourites/Favourites'
 import classes from './SearchAndFavourite.module.scss';
 
 class SearchAndFavourite extends Component {
+    
+    state = {
+        favourites: 0
+    }
+    
+    onAddFavourite = () => {
+        this.setState({favourites: this.state.favourites+1})
+    }
+
+    onRemoveFavourite = () => {
+        this.setState({favourites: this.state.favourites-1})
+    }
+    
     render() {
         const data = (this.props.searchQuery.length == 0) ? this.props.lastVisited : this.props.searchQuery
         const search = (this.props.searchQuery.length == 0) ? 'false' : 'true'
@@ -13,9 +26,11 @@ class SearchAndFavourite extends Component {
                 data={data} 
                 search={search}
                 onSelectLocation={this.props.onSelectLocation}
+                onAddFavourite={this.onAddFavourite}
+                onRemoveFavourite={this.onRemoveFavourite}
                 loggedIn={this.props.loggedIn}
                 user={this.props.user} />
-                <Favourites user={this.props.user} onSelectLocation={this.props.onSelectLocation} loggedIn={this.props.loggedIn}/>
+                <Favourites user={this.props.user} onSelectLocation={this.props.onSelectLocation} favourites={this.state.favourites} loggedIn={this.props.loggedIn}/>
             </div>
         );
     }

@@ -15,60 +15,39 @@ const Location = (props) => {
   const [styleFavIcon, setStyleFavIcon] = useState({
     color: 'blue'
 });
-
-  const favouritePlace = {
-    locationName: props.place,
-    longitude: props.longitude,
-    latitude: props.latitude,
-    uid: props.user.uid
+  
+  if(props.user != null) {
+    const favouritePlace = {
+      locationName: props.place,
+      longitude: props.longitude,
+      latitude: props.latitude,
+      uid: props.user.uid
+    }
+  }
+  
+  const add = (e) => {
+    props.addToFavouritesHandler(e, props.place, props.longitude, props.latitude)
+    setStyleFavIcon({color: 'yellow'})
+  }
+  
+  const remove = (e) => {
+   props.removeFromFavouritesHandler(e, props.place)
+    setStyleFavIcon({color: 'blue'})
   }
 
-  const addToFavouritesHandler = (e) => {
-    e.preventDefault()
+ 
+  let addRemoveFavHandlers = styleFavIcon.color == 'blue' ? (e) => add(e) : e => remove(e)
 
-    styleFavIcon.color == 'blue' ? setStyleFavIcon({color: 'yellow'}) : setStyleFavIcon({color: 'blue'})   
-
-    const ref = firebase.database().ref('favourites')
-    const refAfavourite = ref.orderByChild('locationName').equalTo(favouritePlace.locationName)
-      refAfavourite.once('value', snapshot => {
-        if(snapshot.hasChildren()) {
-          //do nothing
-        } else {
-          //push data to firebase
-          snapshot.ref.push(favouritePlace)
-          .then(res => {
-            console.log(res)
-            props.onAddFavourite()
-          } )
-          .catch(err => console.log(err))
-        }
-      })
-  }
-
-  const removeFromFavouritesHandler = (e) => {
-    const ref = firebase.database().ref('favourites')
-    const refAfavourite = ref.orderByChild('locationName').equalTo(favouritePlace.locationName)
-    var key = '';
-
-    refAfavourite.once('value', snapshot => {
-      console.log(snapshot.val())
-      key = Object.keys(snapshot.val()).join('')
-      console.log(typeof(key))
-      //refAfavourite.update('favourites')
-      console.log(key)
-      //firebase.database().ref('favourites/' + key).remove()
-    })
-      firebase.database().ref('favourites/'+ key).set(null)
-    //props.onRemoveFavourite()
-  }
-
-  const addRemoveFavHandlers = styleFavIcon.color == 'blue' ? (e) => addToFavouritesHandler(e) : e => removeFromFavouritesHandler(e)
-
-  const favIcon = props.loggedIn ? (<a href="#" onClick= {addRemoveFavHandlers}>
-                                      <span  ><FontAwesomeIcon style={styleFavIcon} icon={faStar} /></span>
-                                    </a>) :
-                                    null
-        console.log(favIcon)
+  // let favIcon = props.loggedIn ? (<a href="#" onClick= {addRemoveFavHandlers}>
+  //                                     <span  ><FontAwesomeIcon style={styleFavIcon} icon={faStar} /></span>
+  //                                   </a>) :
+  //                                   null
+  const favIcon = (props.loggedIn && props.favourite ) ? (<a href="#" onClick= {(e) => remove(e)}>
+                                                    <span  ><FontAwesomeIcon style={{color: 'yellow'}} icon={faStar} /></span>
+                                                     </a>) : (props.loggedIn) ?
+                                                                           (<a href="#" onClick= {addRemoveFavHandlers}>
+                                                                           <span  ><FontAwesomeIcon style={styleFavIcon} icon={faStar} /></span>
+                                                                          </a>) : null
   return (
         <div  className={classes.Location} >
             <div className={classes.LocationImageInfo}

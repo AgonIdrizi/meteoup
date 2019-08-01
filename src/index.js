@@ -6,11 +6,15 @@ import './fontawesome';
 import * as serviceWorker from './serviceWorker';
 
 import {LoginRegisterProvider, LoginRegisterContext} from './contexts/LoginRegisterContext';
-
+import { FavouritesProvider } from './contexts/FavouritesContext'
 ReactDOM.render(<LoginRegisterProvider>
-                  <LoginRegisterContext.Consumer> 
-                    {({authListener, user}) => <App user={user} authListener={authListener} /> }  
-                  </LoginRegisterContext.Consumer>
+                  <FavouritesProvider>
+                    <LoginRegisterContext.Consumer> 
+                      {({authListener, user, loggedIn}) => 
+                           <App user={user} loggedIn={loggedIn} authListener={authListener} />
+                      }  
+                    </LoginRegisterContext.Consumer>
+                  </FavouritesProvider>
                 </LoginRegisterProvider>,
      document.getElementById('root'));
 

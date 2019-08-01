@@ -32,7 +32,9 @@ class SideMenu extends Component {
                                             <SearchAndFavourite 
                                             lastVisited={this.props.lastVisited}
                                             searchQuery={this.props.searchQuery}
-                                            onSelectLocation={this.props.SelectLocation}/> : null
+                                            onSelectLocation={this.props.SelectLocation}
+                                            />
+                                             : null
         let displayMainMenu = this.props.inputSelected ? 
                                             null : <MainMenu 
                                                     loginLogoutClicked={this.props.handleLoginLogOutClick}

@@ -4,27 +4,9 @@ import axios from 'axios'
 import firebase from '../../config/fire'
 import classes from './Favourites.module.scss';
 
-const Favourites =(props) =>  {
-    const [data, setData] = useState([]);
+const favourites =(props) =>  {
+   
 
-    useEffect( () => {
-        if(props.loggedIn) {
-          var db = firebase.database();
-          var ref = db.ref('favourites').orderByChild('uid').equalTo(props.user.uid)
-          ref.once('value', snapshot => {
-            if(snapshot.exists()) {
-              let snapdata = snapshot.val()
-              let compdata = Object.keys(snapdata).map(igkey => {
-               // console.log(snapdata[igkey].locationName)
-                //if(snapdata[igkey].locationName == data)
-                return {favId: igkey, ...snapdata[igkey] }
-              });
-              console.log(compdata)
-              setData(compdata)
-            }
-          });
-        }
-    },[props.favourites])
 
   
     
@@ -34,11 +16,20 @@ const Favourites =(props) =>  {
             <h4>Favourites</h4>
                 {loginStatus}
             <div className={classes.FavouriteLocations} >
-                {data.map(elem => <Location key={elem.favId} place={elem.locationName} user={props.user} loggedIn={props.loggedIn} longitude={elem.longitude} latitude={elem.latitude} onSelectLocation={props.onSelectLocation} />)}
+                {props.favData.map(elem => <Location 
+                                            key={elem.favId} 
+                                            place={elem.locationName} 
+                                            favourite={true} 
+                                            user={props.user}
+                                            loggedIn={props.loggedIn} 
+                                            longitude={elem.longitude} 
+                                            latitude={elem.latitude} 
+                                            onSelectLocation={props.onSelectLocation}
+                                            removeFromFavouritesHandler={props.removeFromFavouritesHandler} />)}
             </div>
         </div>
     );
     
 }
 
-export default Favourites;
+export default favourites;

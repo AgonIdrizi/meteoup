@@ -1,10 +1,12 @@
 import React from 'react';
 import Favourites from './Favourites';
-import { LoginRegisterContext } from '../../contexts/LoginRegisterContext'
-
+import { LoginRegisterContext } from '../../contexts/LoginRegisterContext';
+import { FavouritesContext } from '../../contexts/FavouritesContext';
 
 export default props => (
-    <LoginRegisterContext.Consumer>
-        {({loggedIn}) => <Favourites {...props} loggedIn={loggedIn} />}
-    </LoginRegisterContext.Consumer>
+    
+        <FavouritesContext.Consumer>
+          {({favData}) => <Favourites {...props} favData={favData} />}
+        </FavouritesContext.Consumer>
+   
 );

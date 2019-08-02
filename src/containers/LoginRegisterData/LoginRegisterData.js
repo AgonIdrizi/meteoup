@@ -6,6 +6,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './LoginRegisterData.module.scss'
 import { CSSTransition , TransitionGroup } from 'react-transition-group';
 
+
 class LoginRegisterData extends Component {
     state= {
         selectedComponent:"Login"
@@ -29,7 +30,7 @@ class LoginRegisterData extends Component {
     render() {
         let loginClasses = this.props.visible ? classes.slideIn : classes.slideOut
         
-        let selectedComponent = this.state.selectedComponent == "Login" ? <Login loginHandler={this.props.loginHandler} /> : <Register signUpHandler={this.props.signUpHandler} />
+        let selectedComponent = this.state.selectedComponent == "Login" ? <Login loginHandler={this.props.loginHandler} />: <Register signUpHandler={this.props.signUpHandler} />
         let clickHandlerDiv = (
                             <div className={classes.SelectComponent}>
                                 <a onClick={e => this.handleComponentSelectionClick(e,'Login')}><span  classes={classes.Span}>Login</span></a>

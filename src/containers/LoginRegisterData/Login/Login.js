@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input'
 import { Button } from 'antd';
-
 import classes from './Login.module.scss';
 import fire from '../../../config/fire';
 
@@ -91,7 +90,7 @@ class Login extends Component  {
         }
         this.setState({ loginForm: updatedLoginForm, formIsValid: formIsValid});
     }
-
+    
     render(){
         const formElementsArray = [];
         for (let key in this.state.loginForm) {
@@ -100,7 +99,6 @@ class Login extends Component  {
                 config: this.state.loginForm[key]
             })
         }
-
         let form = (
             <form  >
                 {formElementsArray.map(formElement => (

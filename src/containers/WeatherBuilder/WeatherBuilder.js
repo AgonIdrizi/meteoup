@@ -3,7 +3,9 @@ import classes from './WeatherBuilder.module.scss';
 import SideMenu from '../SideMenu/SideMenu'
 import MainContent from '../../components/MainContent/MainContent';
 import axios from 'axios'
+import withErrorHandling from '../../hoc/withErrorHandling/withErrorHandling'
 import { getApixuData }  from '../../services/apixuApi'
+
 class WeatherBuilder extends Component {
     state = {
         lastVisited:[
@@ -31,7 +33,7 @@ class WeatherBuilder extends Component {
                         return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
                     })
                 this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
-                }).catch(err => console.log("erro", err))
+                }).catch(err => console.log( err))
         }
     }
 
@@ -86,4 +88,4 @@ class WeatherBuilder extends Component {
     }
 }
 
-export default WeatherBuilder;
+export default withErrorHandling(WeatherBuilder, axios);

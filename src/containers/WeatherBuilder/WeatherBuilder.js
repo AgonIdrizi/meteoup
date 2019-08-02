@@ -3,6 +3,7 @@ import classes from './WeatherBuilder.module.scss';
 import SideMenu from '../SideMenu/SideMenu'
 import MainContent from '../../components/MainContent/MainContent';
 import axios from 'axios'
+import { getApixuData }  from '../../services/apixuApi'
 class WeatherBuilder extends Component {
     state = {
         lastVisited:[
@@ -24,13 +25,13 @@ class WeatherBuilder extends Component {
     }
     onSearchHandler = (value)=>{
         if(value != ''){
-            axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/" + value + ".json?access_token=" + process.env.REACT_APP_MAPBOX_TOKEN + "&autocomplete=true")
-                    .then(response => {
-                        let newSearchQuery=response.data.features.map(elem => {
-                            return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
-                        })
-                        this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
+            getApixuData(value)
+                .then(response => {
+                    let newSearchQuery=response.data.features.map(elem => {
+                        return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
                     })
+                this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
+                }).catch(err => console.log("erro", err))
         }
     }
 

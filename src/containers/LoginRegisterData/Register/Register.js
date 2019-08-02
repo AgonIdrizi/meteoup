@@ -58,16 +58,6 @@ class Register extends Component {
         loading: false
     }
 
-    registerHandler = (event) => {
-        event.preventDefault();
-        this.setState({loading: true})
-        const formData = {};
-        for( let formElementIdentifier in this.state.registerForm) {
-            formData[formElementIdentifier] = this.state.registerForm[formElementIdentifier].value
-        }
-        //send data to backend
-    }
-
     checkValidity (value, rules) {
         let isValid = true;
 

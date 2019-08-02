@@ -44,23 +44,6 @@ class Login extends Component  {
         loading: false
     }
 
-    // loginHandler = (event, loginForm) => {
-    //     event.preventDefault();
-    //     this.setState({loading: true})
-    //     const formData = {};
-    //     for( let formElementIdentifier in this.state.loginForm) {
-    //         formData[formElementIdentifier] = this.state.loginForm[formElementIdentifier].value
-    //     }
-    //     console.log({...formData})
-    //     fire.auth().signInWithEmailAndPassword(formData['email'], formData['password']).then(u => {
-    //         console.log({...formData})
-    //         this.setState({loading: false})
-    //     }).catch(error => {
-    //         console.log(error)
-    //     })
-    //     //send data to backend
-    //     console.log(formData)
-    // }
 
     checkValidity (value, rules) {
         let isValid = true;

@@ -4,6 +4,7 @@ import MainMenu  from '../../components/MainMenu/index';
 import Logo from '../../components/UI/Logo/Logo'
 import CloseSpan from '../../components/UI/CloseSpan/CloseSpan'
 import SearchAndFavourite from './SearchAndFavourite/index'
+import { withRouter } from 'react-router-dom';
 import classes from './SideMenu.module.scss'
 
 class SideMenu extends Component {
@@ -26,7 +27,7 @@ class SideMenu extends Component {
     render() {
         const style = this.props.inputSelected ? {width: '400px'} : {width: '200px'}
         let displayLogo = this.props.inputSelected ? 
-                            <CloseSpan clickedX={this.props.clickRemoveSearch} /> : 
+                            <CloseSpan clickedX={() => this.props.clickRemoveSearch(this.props.history)} /> : 
                             <Logo />
         let displaySearchAndFavourites = this.props.inputSelected ?
                                             <SearchAndFavourite 
@@ -54,4 +55,4 @@ class SideMenu extends Component {
     }
 }
 
-export default SideMenu;
+export default withRouter(SideMenu);

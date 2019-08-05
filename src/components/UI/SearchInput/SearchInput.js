@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from 'antd';
-
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -13,16 +13,16 @@ const Search = (props) => {
 
     const handleSubmit = (e) =>{
         console.log(value)
-        
+        console.log(props.history)
          props.searchHandler(value)
          //setValue('')
      }
 
     return(
-        <Search placeholder="Search Location"  value={value} onClick={props.click} onSearch={handleSubmit}  onChange={event => setValue(event.target.value)} />
+        <Search placeholder="Search Location"  value={value} onClick={() => props.click(props.history)} onSearch={handleSubmit}  onChange={event => setValue(event.target.value)} />
     )
 }
 
-export default Search
+export default withRouter(Search)
   
   

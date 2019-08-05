@@ -3,6 +3,7 @@
     position: fixed;
     height: 100%;
     width: $side-menu-width;
+    z-index: 2;
     border-left:1px solid grey;
 }
 

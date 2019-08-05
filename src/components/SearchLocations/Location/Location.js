@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './Location.module.scss';
+import { withRouter } from 'react-router-dom';
 import Axios from 'axios';
 import firebase from '../../../config/fire'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -54,7 +55,7 @@ const Location = (props) => {
               // on mouse over we just update the location point in the map
               onMouseOver={e => props.onSelectLocation(props.longitude, props.latitude,e)}
               //here we close the opening sidemenu and update selectedLocation
-              onClick={e => props.onSelectLocation(props.longitude, props.latitude,e)}>
+              onClick={e => props.onSelectLocation(props.longitude, props.latitude,e, props.history)}>
                 <img src='https://www.meteoblue.com/website/images/flags/mk.svg' style={{height: '15px', width: '15px'}} />
                 <p >{props.place}</p>
                
@@ -73,5 +74,5 @@ const Location = (props) => {
 
 
 
-export default Location;
+export default withRouter(Location);
 

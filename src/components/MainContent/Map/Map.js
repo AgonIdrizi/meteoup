@@ -81,8 +81,6 @@ class Map extends Component  {
       };*/
 
     render(){
-
-    
       let viewstate =  this.onLocationSelectCenterMap() 
       let viewport = this.state.viewport
       let markerDefault = (<Marker longitude={this.props.longitudeLatitudeSelected[0]} latitude={this.props.longitudeLatitudeSelected[1]}>

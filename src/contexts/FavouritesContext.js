@@ -14,8 +14,6 @@ export const FavouritesProvider =(props) => {
         if(snapshot.exists()) {
           let snapdata = snapshot.val()
           let compdata = Object.keys(snapdata).map(igkey => {
-           // console.log(snapdata[igkey].locationName)
-            //if(snapdata[igkey].locationName == data)
             return {favId: igkey, ...snapdata[igkey] }
           });
           console.log(compdata)
@@ -25,15 +23,13 @@ export const FavouritesProvider =(props) => {
     }
   },[]) 
     
-    
-   
-    return (
-        <FavouritesContext.Provider 
-          value={{
-            favData: favData
-          }}>
-          {props.children}
-        </FavouritesContext.Provider>
-      )
+  return (
+    <FavouritesContext.Provider 
+      value={{
+        favData: favData
+      }}>
+      {props.children}
+    </FavouritesContext.Provider>
+  )
     
 }

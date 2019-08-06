@@ -15,11 +15,15 @@ const Search = (props) => {
         console.log(value)
         console.log(props.history)
          props.searchHandler(value)
-         //setValue('')
+         
      }
 
-    return(
-        <Search placeholder="Search Location"  value={value} onClick={() => props.click(props.history)} onSearch={handleSubmit}  onChange={event => setValue(event.target.value)} />
+    return(<Search 
+             placeholder="Search Location"  
+             value={value} 
+             onClick={() => props.click(props.history)} 
+             onSearch={handleSubmit}  
+             onChange={event => setValue(event.target.value)} />
     )
 }
 

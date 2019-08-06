@@ -7,52 +7,34 @@ import SearchAndFavourite from './SearchAndFavourite/index'
 import { withRouter } from 'react-router-dom';
 import classes from './SideMenu.module.scss'
 
-class SideMenu extends Component {
+const sideMenu =(props) => {
     
-    state ={
-        loginDataSelected: false
-    }
-
-
-    componentDidMount(){
-        console.log(this.props)
-    }
-
-    
-
-
-
-
-
-    render() {
-        const style = this.props.inputSelected ? {width: '400px'} : {width: '200px'}
-        let displayLogo = this.props.inputSelected ? 
-                            <CloseSpan clickedX={() => this.props.clickRemoveSearch(this.props.history)} /> : 
+  const style = props.inputSelected ? {width: '400px'} : {width: '200px'}
+  const displayLogo = props.inputSelected ? 
+                            <CloseSpan clickedX={() => props.clickRemoveSearch(props.history)} /> : 
                             <Logo />
-        let displaySearchAndFavourites = this.props.inputSelected ?
+  const displaySearchAndFavourites = props.inputSelected ?
                                             <SearchAndFavourite 
-                                            lastVisited={this.props.lastVisited}
-                                            searchQuery={this.props.searchQuery}
-                                            onSelectLocation={this.props.SelectLocation}
-                                            />
-                                             : null
-        let displayMainMenu = this.props.inputSelected ? 
-                                            null : <MainMenu 
-                                                    loginLogoutClicked={this.props.handleLoginLogOutClick}
-                                                    />
-        return(
-            <React.Fragment>
-            <div style={ style } className={classes.SideMenu}>
-              {displayLogo}
-              <SearchInput 
-                click={this.props.clicked}
-                searchHandler={this.props.searchHandler}/>
-              {displaySearchAndFavourites}
-              {displayMainMenu}
-            </div>
-            </React.Fragment>
-        );
-    }
+                                              lastVisited={props.lastVisited}
+                                              searchQuery={props.searchQuery}
+                                              onSelectLocation={props.selectLocation}/> : 
+                                            null
+  const displayMainMenu = props.inputSelected ? 
+                                            null : 
+                                            <MainMenu 
+                                            loginLogoutClicked={props.handleLoginLogOutClick}
+                                            handleForecastLinksSelect={props.handleForecastLinksSelect}/>
+  return(
+    <div style={ style } className={classes.SideMenu}>
+      {displayLogo}
+        <SearchInput 
+          click={props.clicked}
+          searchHandler={props.searchHandler}/>
+        {displaySearchAndFavourites}
+        {displayMainMenu}
+    </div>
+  );
+    
 }
 
-export default withRouter(SideMenu);
+export default withRouter(sideMenu);

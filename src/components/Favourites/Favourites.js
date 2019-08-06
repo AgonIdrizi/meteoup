@@ -10,7 +10,7 @@ const favourites =(props) =>  {
 
   
     
-    const loginStatus = props.loggedIn ? (<p>logged in</p>) : (<p>Sign up to save favourites</p>)
+    const loginStatus = props.loggedIn ? null : (<p>Sign up to save favourites</p>)
     return (
         <div className={classes.favourites}>
             <h4>Favourites</h4>

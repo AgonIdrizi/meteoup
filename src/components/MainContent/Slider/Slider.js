@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import AliceCarousel from 'react-alice-carousel'
+import React, { Component } from 'react';
+import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
-import WeatherDataInDetail from '../WeatherDataInDetail/WeatherDataInDetail'
+import WeatherDataInDetail from '../WeatherDataInDetail/WeatherDataInDetail';
+import withHourlyFormatedData from '../../../hoc/withHourlyFormatedData';
+
 
 class Slider extends Component {
   state= {
     currentIndex: this.props.selectedDay,
-      galleryItems: [0,1,2,3,4,5,6].map((i) => (<div key={i}><WeatherDataInDetail /></div>)),
+    galleryItems: [0,1,2,3,4,5,6].map((i) => (<div key={i}><WeatherDataInDetail hourlyForecastData={this.props.hourlyForecastData[i]} /></div>))
   }
-  
+
   onSlideChanged = (e) => {
       this.props.changeSlide(e.item)
   }

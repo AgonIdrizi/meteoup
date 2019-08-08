@@ -8,7 +8,7 @@ const header = (props) => {
       <header className={classes.mainHeader}>
         <div className={classes.headerInfo}>
             <div>
-                <h1 >Weather in {props.location.region} </h1>
+                <h1 data-testid="h1tag" >Weather in {props.location.region} </h1>
                 <span>{`${props.location.region}, ${props.location.country}, `}
                     <span >{`${props.location.lat} N ${props.location.lon} E`}</span>
                 </span>

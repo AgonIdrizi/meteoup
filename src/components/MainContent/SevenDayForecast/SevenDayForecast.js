@@ -29,7 +29,7 @@ const SevenDayForecast = (props) => {
     return <OneDayForecast key={elem.date_epoch} id={index} data={elem} style={ props.lastSelectedDay == index ? styleOfSelected :defaultStyle } clicked={props.clicked} />
   })
     return (
-        <div className={classes.SevenDayForecast}>
+        <div data-testid='sevenDayForecast' className={classes.SevenDayForecast}>
           {display}
         </div>
     );

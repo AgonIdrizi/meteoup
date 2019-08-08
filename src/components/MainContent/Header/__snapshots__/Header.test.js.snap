@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<DocumentFragment>
+  <header
+    class="mainHeader"
+  >
+    <div
+      class="headerInfo"
+    >
+      <div>
+        <h1
+          data-testid="h1tag"
+        >
+          Weather in Tetovo 
+        </h1>
+        <span>
+          Tetovo, Macedonia, 
+          <span>
+            42.01 N 20.97 E
+          </span>
+        </span>
+      </div>
+      <div
+        class="headerImage"
+      >
+        <div
+          title="Partly cloudy"
+        >
+          <img
+            alt="Partly cloudy"
+            src="//cdn.apixu.com/weather/64x64/day/116.png"
+            style="height: 54px;"
+          />
+          <span>
+            31 °C
+          </span>
+        </div>
+        <div>
+          <span>
+            Last Updated a month ago
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;

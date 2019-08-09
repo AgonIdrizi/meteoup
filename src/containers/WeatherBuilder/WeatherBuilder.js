@@ -11,7 +11,7 @@ import Header from './../../components/MainContent/Header/Header'
 import Map from './../../components/MainContent/Map/Map'
 import SevenDaysForecast from './../../components/MainContent/SevenDayForecast/SevenDayForecast'
 import WeatherDataInDetail from './../../components/MainContent/WeatherDataInDetail/WeatherDataInDetail'
-import WeatherBitWidget from './../../components/MainContent/WeatherBitWidget/WeatherBitWidget'
+import OpenWeatherMap from './../../components/MainContent/OpenWeatherMap/OpenWeatherMap'
 import Slider from '../../components/MainContent/Slider/Slider'
 import LoginRegisterData from '../../containers/LoginRegisterData/index'
 import Spinner from '../../components/UI/Spinner/Spinner'
@@ -44,41 +44,30 @@ class WeatherBuilder extends Component {
 
     
     componentDidMount() {
-        this.setState({isLoading: true})
-        // axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7')
-        // .then(response => {
-            
-        //     this.setState({current: response.data.current,forecast: response.data.forecast, location: response.data.location, isLoading: false})
-        // })
-        Promise.all([
-          axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7'),
-          axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.longitudeLatitudeSelected[1]}&lon=${this.state.longitudeLatitudeSelected[0]}&units=metric&appid=a09d1c56233d10c3e4db1dd590968ea6`)
-        ])
-        .then(([apixuResponse, openWeatherResponse]) => {
+      this.setState({isLoading: true})
+      Promise.all([
+        axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7'),
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.longitudeLatitudeSelected[1]}&lon=${this.state.longitudeLatitudeSelected[0]}&units=metric&appid=a09d1c56233d10c3e4db1dd590968ea6`)
+      ])
+      .then(([apixuResponse, openWeatherResponse]) => {
             console.log(formatOpenWeatherData(openWeatherResponse.data))
             this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location,hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data), isLoading: false})  
-        })
-        .catch(error => error)
+      })
+      .catch(error => error)
     }
 
     
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.longitudeLatitudeSelected != this.state.longitudeLatitudeSelected) {
-            // axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7')
-            // .then(response => {
-            //     console.log(response.data)
-            //     this.setState({current: response.data.current,forecast: response.data.forecast, location: response.data.location})
-                
-            // })
-            Promise.all([
-                axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7'),
-                axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.longitudeLatitudeSelected[1]}&lon=${this.state.longitudeLatitudeSelected[0]}&appid=a09d1c56233d10c3e4db1dd590968ea6`)
-              ])
-              .then(([apixuResponse, openWeatherResponse]) => {
-                  this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location, hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data)})  
-              })
-              .catch(error => error) 
-        }
+      if(prevState.longitudeLatitudeSelected != this.state.longitudeLatitudeSelected) {
+        Promise.all([
+          axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7'),
+          axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.longitudeLatitudeSelected[1]}&lon=${this.state.longitudeLatitudeSelected[0]}&appid=a09d1c56233d10c3e4db1dd590968ea6`)
+        ])
+        .then(([apixuResponse, openWeatherResponse]) => {
+          this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location, hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data)})  
+        })
+        .catch(error => error) 
+      }
     }
   
 
@@ -147,7 +136,8 @@ class WeatherBuilder extends Component {
                                                                 selectedDay = {this.state.lastSelectedDay}
                                                                 hourlyForecastData={this.state.hourlyForecastData} /> 
                                                         </div>
-                                                        <WeatherBitWidget />
+                                                        <OpenWeatherMap data={this.state.searchQuery}
+                                                              longitudeLatitudeSelected={this.state.longitudeLatitudeSelected} />
                                                 </React.Fragment>
         let header =<React.Fragment >
                                 <Header  current={this.state.current} 

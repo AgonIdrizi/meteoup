@@ -17,7 +17,8 @@ const sideMenu =(props) => {
                                             <SearchAndFavourite 
                                               lastVisited={props.lastVisited}
                                               searchQuery={props.searchQuery}
-                                              onSelectLocation={props.selectLocation}/> : 
+                                              onSelectLocation={props.selectLocation}
+                                              deleteLastVisited={props.deleteLastVisited}/> : 
                                             null
   const displayMainMenu = props.inputSelected ? 
                                             null : 

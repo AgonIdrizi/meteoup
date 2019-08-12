@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchLocations from '../../../components/SearchLocations/SearchLocations'
 import Favourites from '../../../components/Favourites/Favourites'
-import firebase from '../../../config/fire'
+import {database} from '../../../config/fire'
 import classes from './SearchAndFavourite.module.scss';
 
 class SearchAndFavourite extends Component {
@@ -10,37 +10,32 @@ class SearchAndFavourite extends Component {
     }
 
     componentDidMount() {
-        
-        if(this.props.loggedIn) {
-            var db = firebase.database();
-            var ref = db.ref('favourites').orderByChild('uid').equalTo(this.props.user.uid)
-            ref.once('value', snapshot => {
-              if(snapshot.exists()) {
-                let snapdata = snapshot.val()
-                let compdata = Object.keys(snapdata).map(igkey => {
-                  return {favId: igkey, ...snapdata[igkey] }
-                });
-                console.log(compdata)
-                this.setState({favData: compdata})
-              }
-            });
-          }
+      if(this.props.loggedIn) {
+          var ref = database.ref('favourites').orderByChild('uid').equalTo(this.props.user.uid)
+          ref.on('value', snapshot => {
+            if(snapshot.exists()){
+              let snapdata = snapshot.val()
+              let dataWithFirebaseKey = Object.keys(snapdata).map(igkey => {
+                return {favId: igkey, ...snapdata[igkey] }
+              });
+              this.setState({favData: dataWithFirebaseKey})
+            }
+          });
+      }
     }
 
-     addToFavouritesHandler = (e, place, longitude, latitude) => {
-        e.preventDefault()
+    addToFavouritesHandler = (e, place, longitude, latitude) => {
+      e.preventDefault()
     
-    
-        if(this.props.user != null) {
-          const favouritePlace = {
-            locationName: place,
-            longitude: longitude,
-            latitude: latitude,
-            uid: this.props.user.uid
-          }
+      if(this.props.user != null) {
+        const favouritePlace = {
+          locationName: place,
+          longitude: longitude,
+          latitude: latitude,
+          uid: this.props.user.uid
+        }
         
-        const ref = firebase.database().ref('favourites')
-        const refAfavourite = ref.orderByChild('locationName').equalTo(place)
+        const refAfavourite = database.ref('favourites').orderByChild('locationName').equalTo(place)
           refAfavourite.once('value', snapshot => {
             if(snapshot.hasChildren()) {
               //do nothing
@@ -48,36 +43,19 @@ class SearchAndFavourite extends Component {
               //push data to firebase
               snapshot.ref.push(favouritePlace)
               .then(res => {
-                console.log(res)
-               const oldFavData = this.state.favData
-               console.log(favouritePlace)
-                this.setState({favData: [...oldFavData, favouritePlace]})
-                //props.onAddFavourite()
-              } )
+              })
               .catch(err => console.log(err))
             }
           })
-        }
       }
+    }
 
-       removeFromFavouritesHandler = (e, place) => {
-        const ref = firebase.database().ref('favourites')
-       // const refAfavourite = ref.orderByChild('locationName').equalTo(this.props.place)
-        let newFavData = this.state.favData.filter( obj => obj.locationName != place)
-        this.setState({favData: newFavData})
-        console.log('Removed froom favourites')
-       // refAfavourite.once('value', snapshot => {
-         // console.log(snapshot.val())
-         // key = Object.keys(snapshot.val()).join('')
-         // console.log(typeof(key))
-          //refAfavourite.update('favourites')
-         // console.log(key)
-          //firebase.database().ref('favourites/' + key).remove()
-       // })
-          //.database().ref('favourites/'+ key).set(null)
-        //props.onRemoveFavourite()
-      }
-    
+    removeFromFavouritesHandler = (key) => {
+      database.ref('/favourites').child('/'+key).remove()
+      const newFavData = this.state.favData.filter(elem => elem.favId != key)
+      console.log(newFavData)
+      this.setState({favData: newFavData})
+    }
     
     
     render() {
@@ -93,7 +71,8 @@ class SearchAndFavourite extends Component {
                   addToFavouritesHandler={this.addToFavouritesHandler}
                   removeFromFavouritesHandler={this.removeFromFavouritesHandler}
                   user={this.props.user}
-                  loggedIn={this.props.loggedIn} />
+                  loggedIn={this.props.loggedIn}
+                  deleteLastVisited={this.props.deleteLastVisited} />
                 <Favourites 
                   user={this.props.user} 
                   favData={this.state.favData} 

@@ -6,7 +6,7 @@ import MainContent from '../../components/MainContent/MainContent';
 import withErrorHandling from '../../hoc/withErrorHandling/withErrorHandling'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { getApixuData }  from '../../services/apixuApi'
-
+import { getParsedItemsFromLocalStorage } from '../../config/localstorage'
 import Header from './../../components/MainContent/Header/Header'
 import Map from './../../components/MainContent/Map/Map'
 import SevenDaysForecast from './../../components/MainContent/SevenDayForecast/SevenDayForecast'
@@ -22,13 +22,8 @@ import { hourlyForecastData } from '../../data/openWeatherData'
 import { formatOpenWeatherData } from '../../services/formatOpenWeatherData'
 class WeatherBuilder extends Component {
     state = {
-        lastVisited:[
-            {id:0, place:'Tetovo', place_name:'Tetovo, Macedonia', longitude:20.96667, latitude:42},
-            {id:1, place:'Skopje', place_name:'Skopje, Macedonia', longitude:21.43333, latitude:41.98333}
-        ],
-        searchQuery: [
-            
-        ],
+        lastVisited:getParsedItemsFromLocalStorage('visitedLocation'),
+        searchQuery: [],
         longitudeLatitudeSelected: [21.43333,41.98333],
         locationStringFromInput: 'skopje',
         forecastData: null,
@@ -104,18 +99,38 @@ class WeatherBuilder extends Component {
         this.setState({searchQuery: [], searchInputSelected: false})
     }
 
-    onSelectLocation = (long, lang, e, historyProp) => {
-        console.log(historyProp)
-        if (e.type == 'click'){
-            historyProp.push('/')
-           return this.setState({longitudeLatitudeSelected: [long, lang], searchInputSelected: false})
-        }
-        this.setState({longitudeLatitudeSelected: [long, lang]})
+    onSelectLocation = (long, lang,place, e, historyProp) => {
+      console.log(historyProp)
+      if (e.type == 'click'){
+        historyProp.push('/')
+        this.handleSaveDataToLocalStorage(long, lang, place)
+        return this.setState({longitudeLatitudeSelected: [long, lang], lastVisited: getParsedItemsFromLocalStorage('visitedLocation')  , searchInputSelected: false})
+      }
+      this.setState({longitudeLatitudeSelected: [long, lang]})
     }
 
-    handleLoginLogOutClick = e => {
-        this.setState({loginDataSelected: !this.state.loginDataSelected})
-      };
+    handleSaveDataToLocalStorage = (longitude,latitude, place) => {
+      const location ={
+        id: this.state.lastVisited.length != null ? this.state.lastVisited.length + 1 : 1,
+        place: place,
+        latitude,
+        longitude
+      }
+      const data = this.state.lastVisited.find(elem => elem.place == location.place)
+      if( data == undefined) {
+        return localStorage.setItem('visitedLocation', JSON.stringify([...this.state.lastVisited, location ]))
+      }
+    }
+
+    handleDeleteLastVisitedFromLocalStorage = (e) =>{
+      e.preventDefault()
+      localStorage.removeItem('visitedLocation');
+      this.setState({lastVisited: []})
+    }
+
+    handleLoginLogOutClick = (long, lat,place) => {
+      this.setState({loginDataSelected: !this.state.loginDataSelected})
+    };
 
     handleForecastLinksSelect = () => {
       return this.state.loginDataSelected  ? this.setState({loginDataSelected: false}) : null
@@ -164,7 +179,8 @@ class WeatherBuilder extends Component {
                   searchQuery={this.state.searchQuery}
                   selectLocation={this.onSelectLocation}
                   handleLoginLogOutClick={this.handleLoginLogOutClick}
-                  handleForecastLinksSelect={this.handleForecastLinksSelect}/>
+                  handleForecastLinksSelect={this.handleForecastLinksSelect}
+                  deleteLastVisited={this.handleDeleteLastVisitedFromLocalStorage}/>
                  <main style={style}  className={classesm.MainContent}>
                    {loginRegisterData}
                    <Switch>

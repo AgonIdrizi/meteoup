@@ -44,7 +44,7 @@ export default class LeafletMap extends Component {
       <div id="map" style={{width: '70vw', height: '70vh', marginLeft: '8%'}} className={classes.OpenWeatherMap}>
       
       </div>
-      <div><span className={classes.MapInfo}>Temperature Map</span></div>
+      <div className={classes.MapInfo}><span>Temperature Map</span></div>
       </>
     )
   }

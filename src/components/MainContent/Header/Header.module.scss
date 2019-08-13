@@ -33,6 +33,10 @@
 .headerImage {
     margin-left: auto;
     margin-right: 20px;
+    div {
+      display: flex;
+      justify-content: center
+    }
     div:first-child {
         span{
             font-weight: 700;

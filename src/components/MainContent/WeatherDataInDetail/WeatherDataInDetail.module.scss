@@ -23,18 +23,30 @@
 
 .Temperature{
   @include slider-postion;
+  span {
+    margin-right: 5px;
+  }
 }
 
 .windDirection{
-  @include slider-postion; 
+  @include slider-postion;
+  span {
+    margin-right: 5px;
+  }
 }
 
 .WindSpeed{
   @include slider-postion;
+  span {
+    margin-right: 5px;
+  }
 }
 
 .Precipitation{
   @include slider-postion;
+  span {
+    margin-right: 5px;
+  }
 }
 
 .WeatherDataIamge{

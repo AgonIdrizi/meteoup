@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { getApixuData }  from '../../services/apixuApi'
 import { getParsedItemsFromLocalStorage } from '../../config/localstorage'
 import Header from './../../components/MainContent/Header/Header'
+import Footer from './../../components/MainContent/Footer/Footer'
 import Map from './../../components/MainContent/Map/Map'
 import SevenDaysForecast from './../../components/MainContent/SevenDayForecast/SevenDayForecast'
 import WeatherDataInDetail from './../../components/MainContent/WeatherDataInDetail/WeatherDataInDetail'
@@ -153,6 +154,7 @@ class WeatherBuilder extends Component {
                                                         </div>
                                                         <OpenWeatherMap data={this.state.searchQuery}
                                                               longitudeLatitudeSelected={this.state.longitudeLatitudeSelected} />
+                                                        <Footer />
                                                 </React.Fragment>
         let header =<React.Fragment >
                                 <Header  current={this.state.current} 

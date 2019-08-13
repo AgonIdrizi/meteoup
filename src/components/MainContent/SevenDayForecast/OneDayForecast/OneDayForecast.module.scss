@@ -6,6 +6,13 @@
     align-items: center;
     text-align: center;
     background-color: #ebebeb;
-    border: 1px solid grey;
+    border: 1px solid hsla(0,0%,50.2%,.15);
+    border-left: none;
+    cursor: pointer;
     
+}
+
+.DayName {
+    font-size: 1.4rem;
+    font-weight: 700;
 }

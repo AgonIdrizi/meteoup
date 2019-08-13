@@ -16,7 +16,8 @@ const SevenDayForecast = (props) => {
     margin: '-.4em 0 0',
     zIndex: 1,
     width: '105%',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    border: '0px solid lightgrey'
   }
   const defaultStyle ={
     paddingTop: 0,

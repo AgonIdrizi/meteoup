@@ -1,14 +1,15 @@
 import React from 'react';
-import { Menu,Item, Icon } from 'antd';
+import { Menu,Item, Icon, Divider } from 'antd';
 import {NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faWind } from '@fortawesome/free-solid-svg-icons'
+import classes from './MainMenu.module.scss';
 const  MainMenu = (props)=> { 
   const displayLoginLogOut = props.loggedIn ? <Menu.Item onClick={props.loginLogoutClicked} ><NavLink to="/account"><Icon type="user"  />Logout</NavLink></Menu.Item> 
                                             : <Menu.Item onClick={props.loginLogoutClicked} ><NavLink to="/account"><Icon type="user"  />Login/Register</NavLink></Menu.Item>
   return (
-          <div>
-            <Menu theme="rk">
+          <div className={classes.MainMenu}>
+            <Menu style={{backgroundColor: '#eef0f1'}} theme="rk">
               <Menu.Item onClick={props.handleForecastLinksSelect} >
                 <NavLink 
 	                to="7-days-forecast" 
@@ -30,6 +31,7 @@ const  MainMenu = (props)=> {
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item onClick={props.handleForecastLinksSelect}><Icon type="mail" />Ag</Menu.Item>
+                <div className={classes.Divider}></div>
                 {displayLoginLogOut}
             </Menu>    
           </div>

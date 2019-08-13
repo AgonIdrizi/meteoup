@@ -90,14 +90,11 @@ function chooseTempColor(celsius){
 const degrees = (props) => {
     
   
-    console.log(props.tempInfo.maxtemp_c)
-    const dayStyle= {width:'100%', backgroundColor: chooseTempColor(props.tempInfo.maxtemp_c)}
-    const nightStyle = {width: '100%', backgroundColor: chooseTempColor(props.tempInfo.mintemp_c)}
     
+    const style= {width:'100%', backgroundColor: chooseTempColor(props.degree)}
     return (
         <div style={{width: '100%'}} className={classes.Degrees}>
-            <div style={dayStyle} className={classes.DayTemp}> <span>{`${props.tempInfo.maxtemp_c} °C`}</span></div>
-            <div style={nightStyle} className="NightTemp"><span>{`${props.tempInfo.mintemp_c} °C`}</span></div>
+          <div style={style} className={classes.DayTemp}> <span>{`${props.degree} °C`}</span></div>
         </div>
     );
 }

@@ -18,14 +18,15 @@ const oneDayForecast = (props) => {
         <div style={props.style} onClick={e => props.clicked(e, props.id)} className={classes.OneDayForecast}>
            <div className='Date'>
               <div>
-                  <span>{moment(props.data.date).format('ddd')}</span>
+                  <span className={classes.DayName}>{moment(props.data.date).format('ddd')}</span>
               </div>
               <div>
                   <span>{moment(props.data.date).format('M/D')}</span>
               </div>
            </div>
            <Image condition={props.data.day.condition} />
-           <Degrees tempInfo={props.data.day} />
+           <Degrees degree={props.data.day.maxtemp_c} />
+           <Degrees degree={props.data.day.mintemp_c} />
            <div className="WindRainSunInfo">
                <div className="Wind">
                    <span><FontAwesomeIcon  icon={faWind} /></span>

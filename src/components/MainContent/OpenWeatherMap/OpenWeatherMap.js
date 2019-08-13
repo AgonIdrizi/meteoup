@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-
+import classes from './OpenWeatherMap.module.scss'
 import L  from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 
@@ -31,7 +31,7 @@ export default class LeafletMap extends Component {
     L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=a09d1c56233d10c3e4db1dd590968ea6`, {
       detectRetina: true,
       maxZoom: 20,
-      attribution: '&copy; <a href="https://www.openweathermap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.openweathermap.org/copyright">OpenWatherMap</a> contributors',
       maxNativeZoom: 17,
     }).addTo(this.map)
     
@@ -40,9 +40,12 @@ export default class LeafletMap extends Component {
   render() {
     const position = [this.props.longitudeLatitudeSelected[0], this.props.longitudeLatitudeSelected[1]]
     return (
-      <div id="map" style={{width: '70vw', height: '70vh', marginLeft: '8%'}} className="OpenWeatherMap">
+      <>
+      <div id="map" style={{width: '70vw', height: '70vh', marginLeft: '8%'}} className={classes.OpenWeatherMap}>
       
       </div>
+      <div><span className={classes.MapInfo}>Temperature Map</span></div>
+      </>
     )
   }
 }

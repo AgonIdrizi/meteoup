@@ -11,9 +11,9 @@ const LoginRegisterData = (props) => {
   const [selectedComponent, setSelectedCompoent] = useState("Login")
   const  handleComponentSelectionClick = (e, value) => {
     e.preventDefault()
-    if(this.state.selectedComponent != value){
+    if(selectedComponent != value){
         setSelectedCompoent(value)
-        this.props.clearErrorMessageHandler()
+        props.clearErrorMessageHandler()
     }  
   }
 
@@ -36,11 +36,15 @@ const LoginRegisterData = (props) => {
   if(props.isLoading) {
     selectedComp = <Spinner />
   }
-  return (<div   className={classes.LoginRegisterData}>
+  return (
+        <>
+          <div   className={classes.LoginRegisterData}>
+          {clickHandlerDiv}
             {selectedComp}
-            {clickHandlerDiv}
+            
             <p className={classes.Error}>{props.loginRegisterErrorMessage}</p>
           </div>
+          </>
         );
     
 }

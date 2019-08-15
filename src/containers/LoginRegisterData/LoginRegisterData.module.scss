@@ -1,14 +1,14 @@
 .LoginRegisterData {
-   display: flex;
-    flex-direction: column-reverse;
-    height: 100%; 
-    position: fixed;
+  
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 230px;
     top: 0; 
     z-Index:2; 
     width: 200px; 
-    background-color: #eae9e9;
-    box-shadow: 0 0 10px rgba(35,31,32,.15);
-    transition: left .16s ease-in-out,right .16s ease-in-out,box-shadow .16s linear;
+    background-color: #eef0f1;;
+    
     box-sizing: border-box;
     margin-bottom: 30px;
 }
@@ -42,17 +42,7 @@
 .SelectComponent {
 
     
-    &:before {
-        width:100%;
-        content: "123";
-        position: absolute;
-        bottom: 0;
-        height: 2px;
-        width: 0;
-        background-color: #103f78;
-        -webkit-transition: width .2s;
-        transition: width .2s;
-    }
+   
 }
 
 .Error {

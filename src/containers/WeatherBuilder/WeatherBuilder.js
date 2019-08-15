@@ -14,7 +14,7 @@ import SevenDaysForecast from './../../components/MainContent/SevenDayForecast/S
 import WeatherDataInDetail from './../../components/MainContent/WeatherDataInDetail/WeatherDataInDetail'
 import OpenWeatherMap from './../../components/MainContent/OpenWeatherMap/OpenWeatherMap'
 import Slider from '../../components/MainContent/Slider/Slider'
-import LoginRegisterData from '../../containers/LoginRegisterData/index'
+import VerticalDropDown from '../../components/UI/VerticalDropdown/VerticalDropdown'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import classesm from '../../components/MainContent/MainContent.module.scss'
 import axios from 'axios';
@@ -161,7 +161,7 @@ class WeatherBuilder extends Component {
                                         location={this.state.location} /> 
                             
                             </React.Fragment>
-        let loginRegisterData = this.state.loginDataSelected   ? <LoginRegisterData /> : null
+        let loginRegisterData = this.state.loginDataSelected   ? <VerticalDropDown /> : null
                                                                  
 
         let displayForecastData = this.state.searchInputSelected ? null :

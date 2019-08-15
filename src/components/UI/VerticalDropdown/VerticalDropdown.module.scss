@@ -1,0 +1,14 @@
+.VerticalDropDown {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    position: fixed;
+    top: 0; 
+    z-Index:2; 
+    width: 200px; 
+    background-color: #eef0f1;;
+    box-shadow: 0 0 10px rgba(35,31,32,.15);
+    transition: left .16s ease-in-out,right .16s ease-in-out,box-shadow .16s linear;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}

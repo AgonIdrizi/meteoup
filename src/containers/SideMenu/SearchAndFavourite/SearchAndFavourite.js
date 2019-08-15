@@ -29,8 +29,8 @@ const SearchAndFavourite = (props) => {
         ref.off()
       }
     }
-  }, [])
-   
+  }, props.loggedIn)
+  
 
    const addToFavouritesHandler = (e, place, longitude, latitude) => {
     e.preventDefault()
@@ -61,7 +61,6 @@ const SearchAndFavourite = (props) => {
       const newFavData = favData.filter(elem => elem.favId != key)
       setFavData(newFavData) 
     }
-    
     
     
     const data = (props.searchQuery.length == 0) ? props.lastVisited : props.searchQuery

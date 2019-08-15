@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
@@ -13,6 +13,8 @@ const Location = (props) => {
   const [styleFavIcon, setStyleFavIcon] = useState({
     color: 'blue'
 });
+
+ 
   
   const add = (e) => {
     props.addToFavouritesHandler(e, props.place, props.longitude, props.latitude)
@@ -32,11 +34,11 @@ const Location = (props) => {
   let addRemoveFavHandlers = styleFavIcon.color == 'blue' ? (e) => add(e) : e => remove(e)
 
   
-  const favIcon = (props.loggedIn && props.isFavourite ) ? (<a href="#" onClick= {(e) => remove(e)}>
+  const favIcon = (props.loggedIn && props.isFavourite ) ? (<a href="#" onClick= {e => remove(e)}>
                                                               <span  ><FontAwesomeIcon style={{color: 'yellow'}} icon={faStar} /></span>
                                                             </a>) 
                                                           : (props.loggedIn) ?(<a href="#" onClick= {addRemoveFavHandlers}>
-                                                                                <span  ><FontAwesomeIcon style={styleFavIcon} icon={faStar} /></span>
+                                                                                <span  ><FontAwesomeIcon style={{color: 'blue'}} icon={faStar} /></span>
                                                                                </a>) 
                                                                               : null
   return (

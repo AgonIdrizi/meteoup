@@ -1,15 +1,17 @@
-import React from 'react';
+import React , { useEffect } from 'react';
 import Location from './Location/Location'
 import classes from './SearchLocations.module.scss';
 
-const searchLocations = (props) => {
+const SearchLocations = (props) => {
     
   const checkIfFavourite = (place) => {
     const data = props.favData.find(favData => favData.locationName == place) 
     const id = data ? data.favId : null
-
+    console.log('checkIfFavourite is rendering', place, data)
     return {isFavourite: data != undefined ? true : false, id: id }
   }
+
+ 
   
   return(
       <React.Fragment>
@@ -20,7 +22,7 @@ const searchLocations = (props) => {
         </div>
           {props.data.map(elem => 
             <Location 
-              key={elem.id} 
+              key={elem.latitude} 
               place={elem.place}
               user={props.user}  
               loggedIn={props.loggedIn} 
@@ -37,4 +39,4 @@ const searchLocations = (props) => {
         
 }
 
-export default searchLocations;
+export default SearchLocations;

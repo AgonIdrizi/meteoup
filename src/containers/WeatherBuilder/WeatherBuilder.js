@@ -6,6 +6,7 @@ import MainContent from '../../components/MainContent/MainContent';
 import withErrorHandling from '../../hoc/withErrorHandling/withErrorHandling'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { getApixuData }  from '../../services/apixuApi'
+import { getApiData } from '../../services/getApiData'
 import { getParsedItemsFromLocalStorage } from '../../config/localstorage'
 import Header from './../../components/MainContent/Header/Header'
 import Footer from './../../components/MainContent/Footer/Footer'
@@ -41,12 +42,8 @@ class WeatherBuilder extends Component {
     
     componentDidMount() {
       this.setState({isLoading: true})
-      Promise.all([
-        axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7'),
-        axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.longitudeLatitudeSelected[1]}&lon=${this.state.longitudeLatitudeSelected[0]}&units=metric&appid=a09d1c56233d10c3e4db1dd590968ea6`)
-      ])
+      getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0])
       .then(([apixuResponse, openWeatherResponse]) => {
-            console.log(formatOpenWeatherData(openWeatherResponse.data))
             this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location,hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data), isLoading: false})  
       })
       .catch(error => error)
@@ -55,10 +52,7 @@ class WeatherBuilder extends Component {
     
     componentDidUpdate(prevProps, prevState) {
       if(prevState.longitudeLatitudeSelected != this.state.longitudeLatitudeSelected) {
-        Promise.all([
-          axios.get('http://api.apixu.com/v1/forecast.json?key=b5ad4f763c024eb4b14110152191005&q=' + `${this.state.longitudeLatitudeSelected[1]}`+','+`${this.state.longitudeLatitudeSelected[0]}` + '&days=7'),
-          axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.longitudeLatitudeSelected[1]}&lon=${this.state.longitudeLatitudeSelected[0]}&appid=a09d1c56233d10c3e4db1dd590968ea6`)
-        ])
+        getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0])
         .then(([apixuResponse, openWeatherResponse]) => {
           this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location, hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data)})  
         })
@@ -68,9 +62,8 @@ class WeatherBuilder extends Component {
   
 
     clickOneDayForecastHandler = (e, id) => {
-        e.preventDefault()
-        this.setState({lastSelectedDay: id})
-        
+      e.preventDefault()
+      this.setState({lastSelectedDay: id}) 
     }
 
     changeSlideHandler = (index) => {
@@ -84,24 +77,23 @@ class WeatherBuilder extends Component {
       this.setState({searchInputSelected: true, loginDataSelected: false})
     }
     onSearchHandler = (value)=>{
-        if(value != ''){
-            getApixuData(value)
-                .then(response => {
-                    let newSearchQuery=response.data.features.map(elem => {
-                        return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
-                    })
-                this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
-                }).catch(err => console.log( err))
-        }
+      if(value != ''){
+        getApixuData(value)
+          .then(response => {
+            let newSearchQuery=response.data.features.map(elem => {
+            return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
+          })
+          this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
+          }).catch(err => console.log( err))
+      }
     }
 
     onRemoveSearchHandler = (historyProp) =>{
-        historyProp.push('/')
-        this.setState({searchQuery: [], searchInputSelected: false})
+      historyProp.push('/')
+      this.setState({searchQuery: [], searchInputSelected: false})
     }
 
     onSelectLocation = (long, lang,place, e, historyProp) => {
-      console.log(historyProp)
       if (e.type == 'click'){
         historyProp.push('/')
         this.handleSaveDataToLocalStorage(long, lang, place)

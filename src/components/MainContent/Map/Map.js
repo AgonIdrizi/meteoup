@@ -62,23 +62,9 @@ class Map extends Component  {
       
 
       onLocationSelectCenterMap = (viewport) => {
-        
-         // const {longitude,latidude, ...etc} = viewport
-        //this.setState({viewport: {longitude: this.props.longitudeLatitudeSelected[0], latitude:this.props.longitudeLatitudeSelected[1] }  })
         return {longitude: this.props.longitudeLatitudeSelected[0], latitude: this.props.longitudeLatitudeSelected[1], zoom: 8 }
-        
-        
       }
       
-
-      /*_updateViewport = viewport => {
-        this.setState({viewport: {
-          zoom: 8,
-         center: [this.props.longitudeLatitudeSelected[0], this.props.longitudeLatitudeSelected[1]],
-         longitude: this.props.longitudeLatitudeSelected[0],
-         latitude: this.props.longitudeLatitudeSelected[1]
-        }});
-      };*/
 
     render(){
       let viewstate =  this.onLocationSelectCenterMap() 

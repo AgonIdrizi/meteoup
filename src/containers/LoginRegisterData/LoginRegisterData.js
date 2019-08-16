@@ -39,10 +39,9 @@ const LoginRegisterData = (props) => {
   return (
         <>
           <div   className={classes.LoginRegisterData}>
+          <p className={classes.Error}>{props.loginRegisterErrorMessage}</p>
           {clickHandlerDiv}
-            {selectedComp}
-            
-            <p className={classes.Error}>{props.loginRegisterErrorMessage}</p>
+          {selectedComp}
           </div>
           </>
         );

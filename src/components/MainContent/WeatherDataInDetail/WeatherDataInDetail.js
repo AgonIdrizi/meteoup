@@ -104,15 +104,15 @@ class WeatherDataInDetail extends Component  {
           {hours}
         <div className={classes.Images}></div>
           {images}
-        <div className={classes.Temperature}><span><FontAwesomeIcon icon={faThermometerFull} /></span>Temperature</div>
+        <div className={classes.Temperature}><span><FontAwesomeIcon icon={faThermometerFull} /></span><h4>Temperature</h4></div>
           {temp}
-        <div className={classes.Temperature}><span><FontAwesomeIcon icon={faHandPaper} /></span>Felt Temperature</div>
+        <div className={classes.Temperature}><span><FontAwesomeIcon icon={faHandPaper} /></span><h4>Felt Temperature</h4></div>
           {feltTemp}
-        <div className={classes.windDirection}><span><FontAwesomeIcon icon={faWind} /></span>Wind direction</div>
+        <div className={classes.windDirection}><span><FontAwesomeIcon icon={faWind} /></span><h4>Wind direction</h4></div>
           {windDirection}
-        <div className={classes.WindSpeed}><span><FontAwesomeIcon icon={faWind} /></span>Wind speed</div>
+        <div className={classes.WindSpeed}><span><FontAwesomeIcon icon={faWind} /></span><h4>Wind speed</h4></div>
           {windSpeed}
-        <div className={classes.Precipitation}><span><FontAwesomeIcon icon={faTint} /></span>Precipitation probability</div>
+        <div className={classes.Precipitation}><span><FontAwesomeIcon icon={faTint} /></span><h4>Precipitation probability</h4></div>
           {[0,1,2,3,4,5,6,7].map(elem => (<div key={elem}>0%</div>))}
       </div>
     );

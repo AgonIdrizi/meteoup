@@ -99,9 +99,14 @@ class Contact extends Component {
 
         let formIsValid = true;
         for (let inputIdentifier in updatedContactForm) { //check if all inputs are valid in the form
-            formIsValid = updatedContactForm[inputIdentifier] && formIsValid;
+
+            formIsValid = updatedContactForm[inputIdentifier].valid && formIsValid;
         }
         this.setState({ contactForm:  updatedContactForm, formIsValid: formIsValid})
+    }
+
+    buttonClickHandler = (e) => {
+      this.props.handleContactFormSubmit(e,this.state.contactForm.name.value , this.state.contactForm.email.value, this.state.contactForm.message.value)
     }
 
     render(){
@@ -125,7 +130,7 @@ class Contact extends Component {
                          changed={(event) => this.inputChangedHandler(event, formElement.id)}
                        />
                    ))}
-                   <Button type="primary" ghost disabled={!this.state.formIsValid} onClick={e => console.log('sent to firebase')}>Submit</Button>
+                   <Button type="primary" ghost disabled={!this.state.formIsValid} onClick={e => this.buttonClickHandler(e)}>Submit</Button>
                  </form>
       if ( this.state.loading ) {
         form = <p>Loading...</p>;

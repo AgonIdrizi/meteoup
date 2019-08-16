@@ -6,7 +6,7 @@ export const FavouritesProvider =(props) => {
   const [favData, setFavData] = useState([]);
    
   useEffect( () => {
-      console.log('favourite provider props.loggedIn', props.loggedIn)
+      
     if(props.loggedIn) {
       var db = firebase.database();
       var ref = db.ref('favourites').orderByChild('uid').equalTo(props.user.uid)

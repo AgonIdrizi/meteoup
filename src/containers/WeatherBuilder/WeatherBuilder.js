@@ -23,6 +23,7 @@ import axios from 'axios';
 import {location, current, forecast} from '../../data/apixuForecastData'
 import { hourlyForecastData } from '../../data/openWeatherData'
 import { formatOpenWeatherData } from '../../services/formatOpenWeatherData'
+import { database } from '../../config/fire';
 class WeatherBuilder extends Component {
     state = {
         lastVisited:getParsedItemsFromLocalStorage('visitedLocation'),
@@ -129,6 +130,11 @@ class WeatherBuilder extends Component {
     handleForecastLinksSelect = () => {
       return this.state.loginDataSelected  ? this.setState({loginDataSelected: false}) : null
     }
+
+    handleContactFormSubmit = (event, name, email, message) => {
+      event.preventDefault()
+      database.ref('/contact').push({name, email, message})
+    }
     
     render() {
         const style = this.state.searchInputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
@@ -158,7 +164,7 @@ class WeatherBuilder extends Component {
                                                                  
         let displayContactPage = <React.Fragment>
                                    {header}
-                                   <Contact />
+                                   <Contact handleContactFormSubmit={this.handleContactFormSubmit} />
                                    <Footer />
                                  </React.Fragment>
 

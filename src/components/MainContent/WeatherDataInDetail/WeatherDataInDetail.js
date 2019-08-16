@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import classes from './WeatherDataInDetail.module.scss'
+import classes from './WeatherDataInDetail.module.scss';
 import moment from 'moment';
-import Degrees from '../SevenDayForecast/OneDayForecast/Degrees/Degrees'
+import Degrees from '../SevenDayForecast/OneDayForecast/Degrees/Degrees';
 import PropTypes, { objectOf } from 'prop-types';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faThermometerFull, faHandPaper, faTint, faWind } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faThermometerFull, faHandPaper, faTint, faWind } from '@fortawesome/free-solid-svg-icons';
 
 const propTypes = {
     

@@ -30,7 +30,13 @@ const  MainMenu = (props)=> {
 	                  exact><Icon component={() => <FontAwesomeIcon  icon={faWind} />} />Air Quality
                   </NavLink>
                 </Menu.Item>
-                <Menu.Item onClick={props.handleForecastLinksSelect}><Icon type="mail" />Ag</Menu.Item>
+                <Menu.Item onClick={props.handleForecastLinksSelect}>
+                  <NavLink
+                  to="contact"
+                  exact>
+                  <Icon type="mail" />Contact
+                  </NavLink>
+                </Menu.Item>
                 <div className={classes.Divider}></div>
                 {displayLoginLogOut}
             </Menu>    

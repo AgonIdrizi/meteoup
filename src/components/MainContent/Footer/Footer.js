@@ -1,16 +1,21 @@
 import React from 'react';
 import { Button } from 'antd'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {withRouter } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub} from '@fortawesome/free-brands-svg-icons'
 
 import classes from './Footer.module.scss';
 
-const footer = () =>{
-    return (
+const footer = (props) =>{
+    const handleButtonClick = () =>{
+      window.scrollTo(0,0)
+      props.history.push('/contact')
+    }
+  return (
         <>
         <div className={classes.FooterTop}>
           <h4>Questions or comments?</h4>
-          <Button ghost>Contact us</Button>
+          <Button onClick={handleButtonClick} ghost>Contact us</Button>
         </div>
         <div className={classes.FooterBody}>
           <h3>MeteoUp gives you real-time weather data</h3>
@@ -34,4 +39,4 @@ const footer = () =>{
     )
 }
 
-export default footer;
+export default withRouter(footer);

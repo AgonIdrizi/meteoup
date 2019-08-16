@@ -13,6 +13,7 @@ import Footer from './../../components/MainContent/Footer/Footer'
 import Map from './../../components/MainContent/Map/Map'
 import SevenDaysForecast from './../../components/MainContent/SevenDayForecast/SevenDayForecast'
 import WeatherDataInDetail from './../../components/MainContent/WeatherDataInDetail/WeatherDataInDetail'
+import Contact from './../../components/Contact/Contact'
 import OpenWeatherMap from './../../components/MainContent/OpenWeatherMap/OpenWeatherMap'
 import Slider from '../../components/MainContent/Slider/Slider'
 import VerticalDropDown from '../../components/UI/VerticalDropdown/VerticalDropdown'
@@ -155,6 +156,12 @@ class WeatherBuilder extends Component {
                             </React.Fragment>
         let loginRegisterData = this.state.loginDataSelected   ? <VerticalDropDown /> : null
                                                                  
+        let displayContactPage = <React.Fragment>
+                                   {header}
+                                   <Contact />
+                                   <Footer />
+                                 </React.Fragment>
+
 
         let displayForecastData = this.state.searchInputSelected ? null :
                                                 <React.Fragment>
@@ -185,6 +192,7 @@ class WeatherBuilder extends Component {
                                                               longitudeLatitudeSelected={this.state.longitudeLatitudeSelected} />} 
                     />
                      <Route path="/account" render={() => displayForecastData}/>
+                     <Route path="/contact" exact render={()=> displayContactPage}/>
                      <Route path="/" render={() => displayForecastData}/>
                    </Switch>
                    

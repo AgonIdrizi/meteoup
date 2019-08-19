@@ -135,10 +135,7 @@ class WeatherBuilder extends Component {
       return this.state.loginDataSelected  ? this.setState({loginDataSelected: false}) : null
     }
 
-    handleContactFormSubmit = (event, name, email, message) => {
-      event.preventDefault()
-      database.ref('/contact').push({name, email, message})
-    }
+    
     
     render() {
         const style = this.state.searchInputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}

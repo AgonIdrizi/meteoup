@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../UI/Input/Input'
 import { Button } from 'antd';
+import { database } from '../../config/fire';
 import classes from './Contact.module.scss';
 
 class Contact extends Component {
@@ -53,7 +54,8 @@ class Contact extends Component {
         }
       },
       formIsValid: false,
-      loading: false
+      loading: false,
+      contactFormTitle: 'Send us a Message'
     }
 
     checkValidity (value, rules) {
@@ -105,8 +107,16 @@ class Contact extends Component {
         this.setState({ contactForm:  updatedContactForm, formIsValid: formIsValid})
     }
 
-    buttonClickHandler = (e) => {
-      this.props.handleContactFormSubmit(e,this.state.contactForm.name.value , this.state.contactForm.email.value, this.state.contactForm.message.value)
+    handleContactFormSubmit = (event ) => {
+      const {contactForm}  = {...this.state}
+      event.preventDefault()
+      database.ref('/contact').push({name: contactForm.name.value , email: contactForm.email.value, message: contactForm.message.value})
+      Object.keys(contactForm).forEach(elem => {
+        contactForm[elem].value='';
+        contactForm[elem].touched=false;
+        contactForm[elem].vaid=false;
+      })
+      this.setState({contactFormTitle: "Thank You for contacting us, we'll get back to you", formIsValid: false})
     }
 
     render(){
@@ -130,14 +140,14 @@ class Contact extends Component {
                          changed={(event) => this.inputChangedHandler(event, formElement.id)}
                        />
                    ))}
-                   <Button type="primary" ghost disabled={!this.state.formIsValid} onClick={e => this.buttonClickHandler(e)}>Submit</Button>
+                   <Button type="primary" ghost disabled={!this.state.formIsValid} onClick={e => this.handleContactFormSubmit(e)}>Submit</Button>
                  </form>
       if ( this.state.loading ) {
         form = <p>Loading...</p>;
       }
     return (
         <div className={classes.Contact}>
-            <h3>Send us a Message</h3>
+            <h3>{this.state.contactFormTitle}</h3>
             {form}
         </div>)
     }

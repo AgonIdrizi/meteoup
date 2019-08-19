@@ -176,7 +176,7 @@ class WeatherBuilder extends Component {
                                                   {forecastData}
                                                 </React.Fragment>
         return (
-            <Router>
+            <Router basename="/">>
               <div className={classes.WeatherBuilder}>
                 <SideMenu 
                   inputSelected={this.state.searchInputSelected}

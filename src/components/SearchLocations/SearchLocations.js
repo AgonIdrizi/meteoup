@@ -1,4 +1,5 @@
 import React , { useEffect } from 'react';
+import shortid from 'shortid';
 import Location from './Location/Location'
 import classes from './SearchLocations.module.scss';
 
@@ -22,8 +23,9 @@ const SearchLocations = (props) => {
         </div>
           {props.data.map(elem => 
             <Location 
-              key={elem.latitude} 
+              key={elem.id} 
               place={elem.place}
+              matchingText={elem.matchingText}
               user={props.user}  
               loggedIn={props.loggedIn} 
               longitude={elem.longitude} 

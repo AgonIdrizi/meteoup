@@ -7,7 +7,7 @@ import classes from './SearchAndFavourite.module.scss';
 const SearchAndFavourite = (props) => {
    
   const [favData, setFavData] = useState([])
-
+  
 
   useEffect(() => {
     if(props.loggedIn) {

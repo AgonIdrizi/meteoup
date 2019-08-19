@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import uuid from 'uuid'
 import Location from '../SearchLocations/Location/Location';
 import LoginRegisterData from '../../containers/LoginRegisterData/index';
 import withNewStyle from '../../hoc/withNewStyle';

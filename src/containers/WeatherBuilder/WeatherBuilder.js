@@ -5,7 +5,7 @@ import MainContent from '../../components/MainContent/MainContent';
 
 import withErrorHandling from '../../hoc/withErrorHandling/withErrorHandling'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { getApixuData }  from '../../services/apixuApi'
+import { getMapBoxGeoData }  from '../../services/getMapBoxGeoData';
 import { getApiData } from '../../services/getApiData'
 import { getParsedItemsFromLocalStorage } from '../../config/localstorage'
 import Header from './../../components/MainContent/Header/Header'
@@ -28,7 +28,8 @@ class WeatherBuilder extends Component {
     state = {
         lastVisited:getParsedItemsFromLocalStorage('visitedLocation'),
         searchQuery: [],
-        longitudeLatitudeSelected: [21.43333,41.98333],
+        longitudeLatitudeSelected: [21.43,41.98],
+        locationNameSelected: 'Skopje',
         locationStringFromInput: 'skopje',
         forecastData: null,
         searchInputSelected: false,
@@ -44,8 +45,9 @@ class WeatherBuilder extends Component {
     
     componentDidMount() {
       this.setState({isLoading: true})
-      getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0])
+      getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0], this.state.locationNameSelected)
       .then(([apixuResponse, openWeatherResponse]) => {
+        console.log(apixuResponse.data)
             this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location,hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data), isLoading: false})  
       })
       .catch(error => error)
@@ -53,9 +55,10 @@ class WeatherBuilder extends Component {
 
     
     componentDidUpdate(prevProps, prevState) {
-      if(prevState.longitudeLatitudeSelected != this.state.longitudeLatitudeSelected) {
-        getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0])
+      if(prevState.locationNameSelected != this.state.locationNameSelected) {
+        getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0], this.state.locationNameSelected)
         .then(([apixuResponse, openWeatherResponse]) => {
+          console.log(apixuResponse.data)
           this.setState({current: apixuResponse.data.current,forecast: apixuResponse.data.forecast, location: apixuResponse.data.location, hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data)})  
         })
         .catch(error => error) 
@@ -80,10 +83,11 @@ class WeatherBuilder extends Component {
     }
     onSearchHandler = (value)=>{
       if(value != ''){
-        getApixuData(value)
+        getMapBoxGeoData(value)
           .then(response => {
             let newSearchQuery=response.data.features.map(elem => {
-            return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: elem.center[0], latitude: elem.center[1]}
+              console.log(elem)
+            return {id: elem.id, place: elem.text, place_name: elem.place_name, longitude: parseFloat(elem.center[0].toFixed(2)), latitude: parseFloat(elem.center[1].toFixed(2))}
           })
           this.setState({searchQuery: newSearchQuery, locationStringFromInput: value})
           }).catch(err => console.log( err))
@@ -99,7 +103,7 @@ class WeatherBuilder extends Component {
       if (e.type == 'click'){
         historyProp.push('/')
         this.handleSaveDataToLocalStorage(long, lang, place)
-        return this.setState({longitudeLatitudeSelected: [long, lang], lastVisited: getParsedItemsFromLocalStorage('visitedLocation')  , searchInputSelected: false})
+        return this.setState({longitudeLatitudeSelected: [long, lang], locationNameSelected: place,  lastVisited: getParsedItemsFromLocalStorage('visitedLocation')  , searchInputSelected: false})
       }
       this.setState({longitudeLatitudeSelected: [long, lang]})
     }

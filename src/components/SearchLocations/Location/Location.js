@@ -45,9 +45,9 @@ const Location = (props) => {
         <div  className={classes.Location} >
             <div className={classes.LocationImageInfo}
               // on mouse over we just update the location point in the map
-              onMouseOver={e => props.onSelectLocation(props.longitude, props.latitude,props.place,e, props.history)}
+              onMouseOver={e => props.onSelectLocation(props.longitude, props.latitude, props.place, e, props.history )}
               //here we close the opening sidemenu and update selectedLocation
-              onClick={e => props.onSelectLocation(props.longitude, props.latitude,props.place,e, props.history)}>
+              onClick={e => props.onSelectLocation(props.longitude, props.latitude, props.place, e, props.history )}>
               <img src='https://www.meteoblue.com/website/images/flags/mk.svg' style={{height: '15px', width: '15px'}} />
               <p >{trimLocationName(props.place)}</p>
               <span> {props.longitude.toFixed(2)} N {props.latitude.toFixed(2)} E</span>

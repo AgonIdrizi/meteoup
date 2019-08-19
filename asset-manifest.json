@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/meteoup/static/css/main.bc51da4f.chunk.css",
+    "main.js": "/meteoup/static/js/main.77ead024.chunk.js",
+    "main.js.map": "/meteoup/static/js/main.77ead024.chunk.js.map",
+    "runtime~main.js": "/meteoup/static/js/runtime~main.7a249665.js",
+    "runtime~main.js.map": "/meteoup/static/js/runtime~main.7a249665.js.map",
+    "static/css/2.d887cd30.chunk.css": "/meteoup/static/css/2.d887cd30.chunk.css",
+    "static/js/2.ea7f512a.chunk.js": "/meteoup/static/js/2.ea7f512a.chunk.js",
+    "static/js/2.ea7f512a.chunk.js.map": "/meteoup/static/js/2.ea7f512a.chunk.js.map",
+    "index.html": "/meteoup/index.html",
+    "precache-manifest.97985f09d20d3f6057fa905d5ed92630.js": "/meteoup/precache-manifest.97985f09d20d3f6057fa905d5ed92630.js",
+    "service-worker.js": "/meteoup/service-worker.js",
+    "static/css/2.d887cd30.chunk.css.map": "/meteoup/static/css/2.d887cd30.chunk.css.map",
+    "static/css/main.bc51da4f.chunk.css.map": "/meteoup/static/css/main.bc51da4f.chunk.css.map"
+  }
+}

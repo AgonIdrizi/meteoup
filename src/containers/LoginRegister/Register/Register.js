@@ -83,7 +83,7 @@ class Register extends Component {
         }
 
         if (rules.isPasswordConfirmation) {
-            isValid = value == this.state.registerForm.password.value
+            isValid = value === this.state.registerForm.password.value
         }
 
         return isValid;

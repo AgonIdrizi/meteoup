@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import uuid from 'uuid'
 import Location from '../SearchLocations/Location/Location';
-import LoginRegisterData from '../../containers/LoginRegisterData/index';
+import LoginRegister from '../../containers/LoginRegister/index';
 import withNewStyle from '../../hoc/withNewStyle';
 import { Button } from 'antd';
 import classes from './Favourites.module.scss';
@@ -19,7 +19,7 @@ const Favourites =(props) =>  {
   let loginData = !props.loggedIn ? <Button className={classes.Button} onClick={() => setIsButtonClicked(true)} type="primary" ghost>Login/SignUp</Button> : null
   let loginStatus = props.loggedIn ? null : (<p>Sign up to save favourites</p>)
   if(!props.loggedIn && isButtonClicked) {
-      loginData = <LoginRegisterData />
+      loginData = <LoginRegister />
       loginStatus = null
   }
   

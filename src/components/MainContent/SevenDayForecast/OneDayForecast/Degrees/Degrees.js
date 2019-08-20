@@ -1,7 +1,7 @@
 
 import React from 'react';
 import classes from './Degrees.module.scss';
-import colorTemp from 'color-temperature';
+
 
 function chooseTempColor(celsius){
     
@@ -88,14 +88,12 @@ function chooseTempColor(celsius){
 }
 
 const degrees = (props) => {
-    
-  
-    
-    const style= {width:'100%', backgroundColor: chooseTempColor(props.degree)}
-    return (
-        <div style={{width: '100%'}} className={classes.Degrees}>
-          <div style={style} className={classes.DayTemp}> <span>{`${props.degree} °C`}</span></div>
-        </div>
+
+  const style= {width:'100%', backgroundColor: chooseTempColor(props.degree)}
+  return (
+      <div style={{width: '100%'}} className={classes.Degrees}>
+        <div style={style} className={classes.DayTemp}> <span>{`${props.degree} °C`}</span></div>
+      </div>
     );
 }
 

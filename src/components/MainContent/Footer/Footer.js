@@ -22,18 +22,18 @@ const footer = (props) =>{
           <div className={classes.FooterInfo}>
             <div className={classes.divContent}>
               <h2>Weather Data</h2>
-              <a href="https://openweather.com" target="_blank">Open Weather</a>
-              <a href="https://apixu.com" target="_blank">Apixu</a>
+              <a href="https://openweather.com" rel="noopener noreferrer"  target="_blank">Open Weather</a>
+              <a href="https://apixu.com" rel="noopener noreferrer" target="_blank">Apixu</a>
             </div>
             <div className={classes.divContent}>
               <h2>Maps</h2>
-              <a href="https://openstreetmap.com" target="_blank">Open Street Map</a>
-              <a href="https://mapbox.com" target="_blank">Mapbox</a>
-              <a href="https://leaflet.js" target="_blank">Leaflet</a>
+              <a href="https://openstreetmap.com" rel="noopener noreferrer" target="_blank">Open Street Map</a>
+              <a href="https://mapbox.com" rel="noopener noreferrer" target="_blank">Mapbox</a>
+              <a href="https://leaflet.js" rel="noopener noreferrer" target="_blank">Leaflet</a>
             </div>
             
           </div>
-          Copyright: <FontAwesomeIcon icon={faGithub} /><a href="https://github.com/agonidrizi" target="_blank"> Agon Idrizi</a>
+          Copyright: <FontAwesomeIcon icon={faGithub} /><a href="https://github.com/agonidrizi" rel="noopener noreferrer" target="_blank"> Agon Idrizi</a>
         </div>
         </>
     )

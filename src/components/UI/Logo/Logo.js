@@ -4,7 +4,7 @@ import classes from './Logo.module.scss';
 
 const logo = () => (
     <div className={classes.Logo}>
-      <img src={Logo} />
+      <img src={Logo} alt="MeteoUp Logo" />
     </div>
 )
 

@@ -3,8 +3,6 @@ import ReactMapGL, {Marker,FlyToInterpolator } from 'react-map-gl';
 import classes from './Map.module.scss';
 import Pin from '../../UI/Pin/Pin'
 
-import {fromJS} from 'immutable'
-
 const navStyle = {
   position: 'absolute',
   top: 36,
@@ -13,10 +11,8 @@ const navStyle = {
 };
 
 class Map extends Component  {
-    
     state = {
         viewport: {
-         
           longitude: 21.43333,
           latitude:42,
          center: [this.props.longitudeLatitudeSelected[0], this.props.longitudeLatitudeSelected[1]],
@@ -59,8 +55,6 @@ class Map extends Component  {
         this.setState({viewport: etc, selectedLocation:false}) 
       } 
 
-      
-
       onLocationSelectCenterMap = (viewport) => {
         return {longitude: this.props.longitudeLatitudeSelected[0], latitude: this.props.longitudeLatitudeSelected[1], zoom: 8 }
       }
@@ -74,8 +68,8 @@ class Map extends Component  {
                     </Marker>)
       let displayMarkersOfSearch = this.props.data.map(elem => {
           return <Marker key={elem.id}  longitude={elem.longitude} latitude={elem.latitude}>
-                  <Pin size={20}></Pin>
-                </Marker>
+                   <Pin size={20}></Pin>
+                 </Marker>
       })
       return (
         <div  id='Map' className={classes.Map}>
@@ -95,10 +89,8 @@ class Map extends Component  {
             onClick={e => console.log(e.lngLat)}
             //onViewportChange={this.onViewportChange}
             transitionDuration={100}
-            transitionInterpolator={new FlyToInterpolator(viewstate.longitude, viewstate.latitude)}
-            >
-              
-              {displayMarkersOfSearch}
+            transitionInterpolator={new FlyToInterpolator(viewstate.longitude, viewstate.latitude)}>
+            {displayMarkersOfSearch}
             </ReactMapGL>
         </div>
       );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import OneDayForecast from './OneDayForecast/OneDayForecast';
 import PropTypes from 'prop-types';
 import classes from './SevenDayForecast.module.scss';
@@ -27,7 +27,7 @@ const SevenDayForecast = (props) => {
   }
   const display = props.forecast.forecastday.map((elem,index) => {
     
-    return <OneDayForecast key={elem.date_epoch} id={index} data={elem} style={ props.lastSelectedDay == index ? styleOfSelected :defaultStyle } clicked={props.clicked} />
+    return <OneDayForecast key={elem.date_epoch} id={index} data={elem} style={ props.lastSelectedDay === index ? styleOfSelected :defaultStyle } clicked={props.clicked} />
   })
     return (
         <div data-testid='sevenDayForecast' className={classes.SevenDayForecast}>

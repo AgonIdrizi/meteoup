@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './WeatherDataInDetail.module.scss';
 import moment from 'moment';
 import Degrees from '../SevenDayForecast/OneDayForecast/Degrees/Degrees';
-import PropTypes, { objectOf } from 'prop-types';
+import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faThermometerFull, faHandPaper, faTint, faWind } from '@fortawesome/free-solid-svg-icons';
 

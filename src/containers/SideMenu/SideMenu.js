@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchInput from '../../components/UI/SearchInput/SearchInput'
 import MainMenu  from '../../components/MainMenu/index';
 import Logo from '../../components/UI/Logo/Logo'

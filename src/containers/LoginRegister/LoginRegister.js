@@ -1,32 +1,32 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from './Login/Login'
 import Register from './Register/Register'
 import Logout from './Logout/Logout'
 import Spinner from '../../components/UI/Spinner/Spinner'
-import classes from './LoginRegisterData.module.scss'
+import classes from './LoginRegister.module.scss'
 
 
-const LoginRegisterData = (props) => {
+const LoginRegister = (props) => {
     
   const [selectedComponent, setSelectedCompoent] = useState("Login")
   const  handleComponentSelectionClick = (e, value) => {
     e.preventDefault()
-    if(selectedComponent != value){
+    if(selectedComponent !== value){
         setSelectedCompoent(value)
         props.clearErrorMessageHandler()
     }  
   }
 
   useEffect(() => {
-    return () =>{console.log('LoginRegisterData will unmount')}
+    return () =>{console.log('LoginRegister will unmount')}
   },[])
     
   const loginClasses = props.visible ? classes.slideIn : classes.slideOut
         
-  let selectedComp = selectedComponent == "Login" ? <Login loginHandler={props.loginHandler} />: <Register signUpHandler={props.signUpHandler} />
+  let selectedComp = selectedComponent === "Login" ? <Login loginHandler={props.loginHandler} />: <Register signUpHandler={props.signUpHandler} />
   let clickHandlerDiv = (<div className={classes.SelectComponent}>
-                              <a onClick={e => handleComponentSelectionClick(e,'Login')}><span  classes={classes.Span}>Login</span></a>
-                              <a onClick={ e => handleComponentSelectionClick(e, 'Register')}><span  classes={classes.Span}>Register</span></a>
+                              <a href='#' onClick={e => handleComponentSelectionClick(e,'Login')}><span  classes={classes.Span}>Login</span></a>
+                              <a href='#' onClick={ e => handleComponentSelectionClick(e, 'Register')}><span  classes={classes.Span}>Register</span></a>
                             </div>
                           )
   if(props.loggedIn) {
@@ -48,4 +48,4 @@ const LoginRegisterData = (props) => {
     
 }
 
-export default LoginRegisterData;
+export default LoginRegister;

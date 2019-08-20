@@ -217,7 +217,11 @@ class WeatherBuilder extends Component {
                         </>
           let layout = isMobile ? <MobileLayout 
                                         current={this.state.current} 
-                                        location={this.state.location} /> 
+                                        location={this.state.location}
+                                        lastSelectedDay={this.state.lastSelectedDay}
+                                        clicked={this.clickOneDayForecastHandler}
+                                        forecast={this.state.forecast}
+                                        isMobile /> 
                                 : webLayout
         return (
             <Router basename="/meteoup">

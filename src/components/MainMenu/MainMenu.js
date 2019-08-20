@@ -14,7 +14,7 @@ const  MainMenu = (props)=> {
                 <NavLink 
 	                to="7-days-forecast" 
 	                exact>
-                  <Icon type="home" />7 day forecast
+                  <Icon type="home" /><p>7 day forecast</p>
                 </NavLink>
                 </Menu.Item >
                 <Menu.Item onClick={props.handleForecastLinksSelect}>

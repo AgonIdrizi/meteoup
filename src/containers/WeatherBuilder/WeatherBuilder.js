@@ -17,6 +17,7 @@ import OpenWeatherMap from './../../components/MainContent/OpenWeatherMap/OpenWe
 import Slider from '../../components/MainContent/Slider/Slider'
 import VerticalDropDown from '../../components/UI/VerticalDropdown/VerticalDropdown'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import MobileLayout from '../../components/MobileLayout/MobileLayout';
 import classesm from '../../components/MainContent/MainContent.module.scss'
 import axios from 'axios';
 import {location, current, forecast} from '../../data/apixuForecastData'
@@ -39,11 +40,13 @@ class WeatherBuilder extends Component {
         current: current,
         forecast: forecast,
         hourlyForecastData: hourlyForecastData,
-        isLoading: false
+        isLoading: false,
+        width: window.screen.width,
     }
 
     
     componentDidMount() {
+      window.addEventListener('resize', this.handleWindowSizeChange)
       this.setState({isLoading: true})
       getApiData(this.state.longitudeLatitudeSelected[1], this.state.longitudeLatitudeSelected[0], this.state.locationNameSelected)
       .then(([apixuResponse, openWeatherResponse]) => {
@@ -63,7 +66,15 @@ class WeatherBuilder extends Component {
         .catch(error => error) 
       }
     }
-  
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+    
+
+    handleWindowSizeChange = () => {
+      this.setState({ width: window.screen.width });
+    };
 
     clickOneDayForecastHandler = (e, id) => {
       e.preventDefault()
@@ -137,9 +148,11 @@ class WeatherBuilder extends Component {
     
     
     render() {
-        const style = this.state.searchInputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
+        const { width, searchInputSelected, isLoading, loginDataSelected } = this.state;
+        const isMobile = width <= 500
+        const style = searchInputSelected ? {marginLeft: '400px'} : {marginLeft:'200px'}
         
-        let forecastData = this.state.isLoading ? <Spinner large="large" /> : 
+        let forecastData = isLoading ? <Spinner large="large" /> : 
                                                  <React.Fragment >
                                                     <SevenDaysForecast 
                                                         lastSelectedDay={this.state.lastSelectedDay}
@@ -174,36 +187,42 @@ class WeatherBuilder extends Component {
                                                   {header}
                                                   {forecastData}
                                                 </React.Fragment>
+        let webLayout = <>
+                        <SideMenu 
+                        inputSelected={this.state.searchInputSelected}
+                        searchHandler={this.onSearchHandler}
+                        clicked={this.onOpenMenuHandler}
+                        clickRemoveSearch={this.onRemoveSearchHandler}
+                        lastVisited={this.state.lastVisited}
+                        searchQuery={this.state.searchQuery}
+                        selectLocation={this.onSelectLocation}
+                        handleLoginLogOutClick={this.handleLoginLogOutClick}
+                        handleForecastLinksSelect={this.handleForecastLinksSelect}
+                        deleteLastVisited={this.handleDeleteLastVisitedFromLocalStorage}/>
+                        <main style={style}  className={classesm.MainContent}>
+                        {loginRegisterData}
+                        <Switch>
+                          <Route path="/7-days-forecast"  render={()=> displayForecastData}/>
+                          <Route path="/14-days-forecast" exact render={()=> displayForecastData}/>
+                          <Route path="/air-quality" exact render={()=> displayForecastData}/>
+                          <Route path="/search" render={() => <Map data={this.state.searchQuery}
+                                                              longitudeLatitudeSelected={this.state.longitudeLatitudeSelected} />} 
+                          />
+                          <Route path="/account" render={() => displayForecastData}/>
+                          <Route path="/contact" exact render={()=> displayContactPage}/>
+                          <Route path="/" render={() => displayForecastData}/>
+                        </Switch>
+                   
+                        </main>
+                        </>
+          let layout = isMobile ? <MobileLayout 
+                                        current={this.state.current} 
+                                        location={this.state.location} /> 
+                                : webLayout
         return (
             <Router basename="/meteoup">
               <div className={classes.WeatherBuilder}>
-                <SideMenu 
-                  inputSelected={this.state.searchInputSelected}
-                  searchHandler={this.onSearchHandler}
-                  clicked={this.onOpenMenuHandler}
-                  clickRemoveSearch={this.onRemoveSearchHandler}
-                  lastVisited={this.state.lastVisited}
-                  searchQuery={this.state.searchQuery}
-                  selectLocation={this.onSelectLocation}
-                  handleLoginLogOutClick={this.handleLoginLogOutClick}
-                  handleForecastLinksSelect={this.handleForecastLinksSelect}
-                  deleteLastVisited={this.handleDeleteLastVisitedFromLocalStorage}/>
-                 <main style={style}  className={classesm.MainContent}>
-                   {loginRegisterData}
-                   <Switch>
-                     <Route path="/7-days-forecast"  render={()=> displayForecastData}/>
-                     <Route path="/14-days-forecast" exact render={()=> displayForecastData}/>
-                     <Route path="/air-quality" exact render={()=> displayForecastData}/>
-                     <Route path="/search" render={() => <Map data={this.state.searchQuery}
-                                                              longitudeLatitudeSelected={this.state.longitudeLatitudeSelected} />} 
-                    />
-                     <Route path="/account" render={() => displayForecastData}/>
-                     <Route path="/contact" exact render={()=> displayContactPage}/>
-                     <Route path="/" render={() => displayForecastData}/>
-                   </Switch>
-                   
-                </main>
-                
+                {layout}
               </div>
             </Router>
         );

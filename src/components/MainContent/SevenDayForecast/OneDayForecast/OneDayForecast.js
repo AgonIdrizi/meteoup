@@ -24,15 +24,15 @@ const oneDayForecast = (props) => {
                   <span>{moment(props.data.date).format('M/D')}</span>
               </div>
            </div>
-           <Image condition={props.data.day.condition} />
+           <Image isMobile={props.isMobile} condition={props.data.day.condition} />
            <Degrees degree={props.data.day.maxtemp_c} />
            <Degrees degree={props.data.day.mintemp_c} />
-           <div className="WindRainSunInfo">
-               <div className="Wind">
+           <div className={classes.WindRainSunInfo}>
+               <div className={classes.Wind}>
                    <span><FontAwesomeIcon  icon={faWind} /></span>
                    <span>{props.data.day.maxwind_kph} km/h</span>
                </div>
-               <div className="Rain">
+               <div className={classes.Rain}>
                    <span><FontAwesomeIcon style={{color: '#036f90'}} icon={faCloudRain} /></span>
                    <span>{props.data.day.totalprecip_mm} mm</span>
                </div>

@@ -13,7 +13,8 @@ const mobileLayout = (props) => {
             <SevenDayForecast
                 lastSelectedDay={props.lastSelectedDay}
                 clicked={props.clickOneDayForecastHandler}
-                forecast={props.forecast} />
+                forecast={props.forecast}
+                isMobile />
             <Footer />
             <MainMenu isMobile={props.isMobile} />
         </div>

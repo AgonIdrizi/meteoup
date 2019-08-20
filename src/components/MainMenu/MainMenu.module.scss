@@ -11,6 +11,7 @@
 
 @media only screen and (max-width: 500px) {
   .MainMenu {
+    display: block;
     position: sticky;
     bottom: 0;
   }

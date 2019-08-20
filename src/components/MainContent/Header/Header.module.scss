@@ -45,3 +45,24 @@
     }
 
 }
+
+@media only screen and (max-width: 500px) {
+    .headerInfo {
+        flex-direction: column;
+      h1 {
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+    }
+    .headerImage {
+        margin-left: 20px;
+        div:first-child {
+            display: flex;
+            align-items: center;
+            span{
+              font-size: 1.3rem;
+              font-weight: 600;
+            }
+        }  
+    }
+  }

@@ -1,4 +1,13 @@
 .Image {
-    background-color:'#cadbea';
-    width: '100%'
+  background-color:'#cadbea';
+   width: 100%;
 }
+
+@media only screen and (max-width: 500px) {
+  .Image {
+    width: 50px;
+    border-radius: 40px;
+  }
+}
+
+

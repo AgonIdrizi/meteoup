@@ -11,7 +11,7 @@ const propTypes = {
 
 const image = (props) => {
     return (
-        <div style={{backgroundColor:'#cadbea', width: '100%'}}  className={classes.Image}>
+        <div style={{backgroundColor:'#cadbea'}}  className={classes.Image}>
             <div title={props.condition.text}>
                 <img alt={props.condition.text} src={props.condition.icon} height="50px" />
             </div>

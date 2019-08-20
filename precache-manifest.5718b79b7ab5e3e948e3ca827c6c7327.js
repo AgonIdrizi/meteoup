@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "008a9e603f70060991156d95593d2fdb",
+    "revision": "8bdd857db1acaf3e3e557ed43b6530c2",
     "url": "/meteoup/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meteoup/static/css/2.8e16cf1e.chunk.css"
   },
   {
-    "revision": "9d873558e0748b9e2bb9",
+    "revision": "0820b41efff1fd6118aa",
     "url": "/meteoup/static/css/main.d155ad5c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meteoup/static/js/2.59ea1b06.chunk.js"
   },
   {
-    "revision": "9d873558e0748b9e2bb9",
-    "url": "/meteoup/static/js/main.f9f108e4.chunk.js"
+    "revision": "0820b41efff1fd6118aa",
+    "url": "/meteoup/static/js/main.e235ec42.chunk.js"
   },
   {
     "revision": "12e1880d9f8ba6ecbaa3",

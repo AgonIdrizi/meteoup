@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="Login"
+  >
+    <form
+      title="login-form"
+    >
+      <div
+        class="Input"
+      >
+        <label
+          class="Label"
+        />
+        <input
+          autocomplete="new-password"
+          class="InputElement"
+          for="email-input"
+          placeholder="Your Email"
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        class="Input"
+      >
+        <label
+          class="Label"
+        />
+        <input
+          autocomplete="new-password"
+          class="InputElement"
+          for="password-input"
+          placeholder="Your password"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        class="ant-btn"
+        disabled=""
+        type="button"
+      >
+        <span>
+          Login
+        </span>
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
-import { Input } from 'antd';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import { Input } from "antd";
+import { withRouter } from "react-router-dom";
 
+const Search = props => {
+  const [value, setValue] = useState("");
 
+  const Search = Input.Search;
 
-const Search = (props) => {
-    const [value, setValue] = useState(
-        ''
-      );
-       
-    const Search = Input.Search;
+  const handleSubmit = e => {
+    console.log(value);
+    console.log(props.history);
+    props.searchHandler(value);
+  };
 
-    const handleSubmit = (e) =>{
-        console.log(value)
-        console.log(props.history)
-         props.searchHandler(value)
-         
-     }
+  return (
+    <Search
+      placeholder="Search Location"
+      value={value}
+      onClick={() => props.click(props.history)}
+      onSearch={handleSubmit}
+      onChange={event => setValue(event.target.value)}
+    />
+  );
+};
 
-    return(<Search 
-             placeholder="Search Location"  
-             value={value} 
-             onClick={() => props.click(props.history)} 
-             onSearch={handleSubmit}  
-             onChange={event => setValue(event.target.value)} />
-    )
-}
-
-export default withRouter(Search)
-  
-  
+export default withRouter(Search);

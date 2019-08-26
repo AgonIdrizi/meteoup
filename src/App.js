@@ -1,22 +1,19 @@
-import React,{ Component} from 'react';
-import './App.module.scss';
-import WeatherBuilder from './containers/WeatherBuilder/WeatherBuilder'
-import 'antd/dist/antd.css'
-import fire from './config/fire';
-import { FavouritesProvider } from './contexts/FavouritesContext'
-class App extends Component {
-  
-  
+import React, { Component } from "react";
+import "./App.module.scss";
+import WeatherBuilder from "./containers/WeatherBuilder/WeatherBuilder";
+import "antd/dist/antd.css";
+import fire from "./config/fire";
+import { FavouritesProvider } from "./contexts/FavouritesContext";
 
+class App extends Component {
   componentDidMount() {
-    this.props.authListener()
+    this.props.authListener();
   }
 
-  
-  render (){
+  render() {
     return (
       <div className="App">
-        <WeatherBuilder user={ this.props.user ? true : false}/>
+        <WeatherBuilder user={this.props.user ? true : false} />
       </div>
     );
   }

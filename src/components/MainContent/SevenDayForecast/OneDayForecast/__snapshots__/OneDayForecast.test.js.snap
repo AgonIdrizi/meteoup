@@ -9,7 +9,9 @@ exports[`renders correctly 1`] = `
       class="Date"
     >
       <div>
-        <span>
+        <span
+          class="DayName"
+        >
           Wed
         </span>
       </div>
@@ -21,7 +23,7 @@ exports[`renders correctly 1`] = `
     </div>
     <div
       class="Image"
-      style="background-color: rgb(202, 219, 234); width: 100%;"
+      style="background-color: rgb(202, 219, 234);"
     >
       <div
         title="Patchy rain possible"
@@ -35,21 +37,25 @@ exports[`renders correctly 1`] = `
     </div>
     <div
       class="Degrees"
-      style="width: 100%;"
     >
       <div
         class="DayTemp"
-        style="width: 100%; background-color: rgb(247, 181, 58);"
+        style="background-color: rgb(247, 181, 58);"
       >
          
         <span>
           24.4 °C
         </span>
       </div>
+    </div>
+    <div
+      class="Degrees"
+    >
       <div
-        class="NightTemp"
-        style="width: 100%; background-color: rgb(176, 240, 180);"
+        class="DayTemp"
+        style="background-color: rgb(176, 240, 180);"
       >
+         
         <span>
           14.3 °C
         </span>

@@ -1,1 +1,2 @@
-export const getParsedItemsFromLocalStorage = (key) =>  JSON.parse(localStorage.getItem(key)) || []
+export const getParsedItemsFromLocalStorage = key =>
+  JSON.parse(localStorage.getItem(key)) || [];

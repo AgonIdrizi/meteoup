@@ -1,35 +1,38 @@
-import React from 'react'
+import React from "react";
 import classes from "./Header.module.scss";
-import moment from 'moment'
+import moment from "moment";
 
-const header = (props) => {
-    
-    
-    
-    return(
-     <React.Fragment>
+const header = props => {
+  return (
+    <React.Fragment>
       <header className={classes.mainHeader}>
         <div className={classes.headerInfo}>
-             <div>
-                <h1 data-testid="h1tag" >Weather in {props.location.name} </h1>
-                <span>{`${props.location.region}, ${props.location.country}, `}
-                    <span >{`${props.location.lat} N ${props.location.lon} E`}</span>
-                </span>
+          <div>
+            <h1 data-testid="h1tag">Weather in {props.location.name} </h1>
+            <span>
+              {`${props.location.region}, ${props.location.country}, `}
+              <span>{`${props.location.lat} N ${props.location.lon} E`}</span>
+            </span>
+          </div>
+          <div className={classes.headerImage}>
+            <div title={props.current.condition.text}>
+              <img
+                alt={props.current.condition.text}
+                src={props.current.condition.icon}
+                style={{ height: "54px" }}
+              />
+              <span>{`${props.current.temp_c} °C`}</span>
             </div>
-             <div className={classes.headerImage}>
-                <div title={props.current.condition.text}>
-                    <img alt={props.current.condition.text} src={props.current.condition.icon} style={{height: '54px'}}/>
-                    <span>{`${props.current.temp_c} °C`}</span>
-                </div>
-                <div>
-                    <span>Last Updated {moment(props.current.last_updated).fromNow()}</span>
-                </div>
-                
+            <div>
+              <span>
+                Last Updated {moment(props.current.last_updated).fromNow()}
+              </span>
             </div>
+          </div>
         </div>
       </header>
-      </React.Fragment>
-    )
-}
+    </React.Fragment>
+  );
+};
 
-export default header
+export default header;

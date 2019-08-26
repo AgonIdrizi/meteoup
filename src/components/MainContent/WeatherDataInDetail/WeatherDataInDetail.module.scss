@@ -2,6 +2,12 @@
   display: flex;
   justify-content: flex-start;
 }
+
+@mixin text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .WeatherDataInDetail {
     display: grid;
     grid-template-columns: 20% 10% 10% 10% 10% 10% 10% 10% 10%;
@@ -15,6 +21,9 @@
   @include slider-postion;
   align-items: center;
   font-size: 1.2em;
+  span {
+    @include text-overflow;
+  }
 }
 
 .Images{
@@ -26,12 +35,18 @@
   span {
     margin-right: 5px;
   }
+  h4{
+    @include text-overflow;
+  }
 }
 
 .windDirection{
   @include slider-postion;
   span {
     margin-right: 5px;
+  }
+  h4{
+    @include text-overflow;
   }
 }
 
@@ -40,12 +55,18 @@
   span {
     margin-right: 5px;
   }
+  h4{
+    @include text-overflow;
+  }
 }
 
 .Precipitation{
   @include slider-postion;
   span {
     margin-right: 5px;
+  }
+  h4{
+    @include text-overflow;
   }
 }
 

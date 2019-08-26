@@ -1,6 +1,6 @@
 .Degrees {
     background-color:'#cadbea'; 
-    width: '100%';
+    width: 100%;
     
 }
 
@@ -12,3 +12,9 @@
 .NightTemp {
     
 }
+
+@media only screen and (max-width: 500px) {
+    .Degrees {
+      width: 23%;
+    }
+  }

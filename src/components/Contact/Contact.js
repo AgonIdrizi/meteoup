@@ -121,13 +121,11 @@ class Contact extends Component {
 
     const { contactForm } = { ...this.state };
 
-    database
-      .ref("/contact")
-      .push({
-        name: contactForm.name.value,
-        email: contactForm.email.value,
-        message: contactForm.message.value
-      });
+    database.ref("/contact").push({
+      name: contactForm.name.value,
+      email: contactForm.email.value,
+      message: contactForm.message.value
+    });
 
     Object.keys(contactForm).forEach(elem => {
       contactForm[elem].value = "";

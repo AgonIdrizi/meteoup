@@ -22,6 +22,10 @@ class WeatherDataInDetail extends Component {
     console.log(this.props.hourlyForecastData);
   }
 
+  componentWillUnmount(){
+    console.log('weatherdatainDetail will unmount')
+  }
+
   windDegreesToWords = degree => {
     if (degree >= 348.75 && degree < 11.25) {
       return "N";

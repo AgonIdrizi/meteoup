@@ -17,6 +17,10 @@ class Slider extends Component {
     ))
   };
 
+  componentWillUnmount() {
+    console.log("slider component did unmount");
+  }
+
   onSlideChanged = e => {
     this.props.changeSlide(e.item);
   };
@@ -30,7 +34,6 @@ class Slider extends Component {
         autoPlay={false}
         fadeOutAnimation={false}
         mouseDragEnabled={true}
-        onSlideChange={this.onSlideChange}
         onSlideChanged={this.onSlideChanged}
         buttonsDisabled={true}
         dotsDisabled={true}

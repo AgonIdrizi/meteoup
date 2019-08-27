@@ -94,6 +94,10 @@ const SearchAndFavourite = props => {
         loggedIn={props.loggedIn}
         loginHandler={props.loginHandler}
         isLoading={props.isLoading}
+        logoutHandler={props.logoutHandler}
+        signUpHandler={props.signUpHandler}
+        loginRegisterErrorMessage={props.loginRegisterErrorMessage}
+        clearErrorMessageHandler={props.clearErrorMessageHandler}
       />
     </div>
   );

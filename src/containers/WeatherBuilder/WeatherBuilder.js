@@ -51,6 +51,8 @@ class WeatherBuilder extends Component {
       this.state.locationNameSelected
     )
       .then(([apixuResponse, openWeatherResponse]) => {
+        console.log('apixudata', apixuResponse.data)
+        console.log('openweather', openWeatherResponse.data)
         this.setState({
           current: apixuResponse.data.current,
           forecast: apixuResponse.data.forecast,

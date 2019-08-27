@@ -1,20 +1,18 @@
 .Degrees {
-    background-color:'#cadbea'; 
-    width: 100%;
-    
+  background-color: "#cadbea";
+  width: 100%;
 }
 
 .DayTemp {
-    width:100%;
-    background-color: rgb(252, 172, 5);
+  width: 100%;
+  background-color: rgb(252, 172, 5);
 }
 
 .NightTemp {
-    
 }
 
 @media only screen and (max-width: 500px) {
-    .Degrees {
-      width: 23%;
-    }
+  .Degrees {
+    width: 23%;
   }
+}

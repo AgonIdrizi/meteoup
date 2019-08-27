@@ -1,25 +1,24 @@
 .OneDayForecast {
-    position: relative;
-    display:flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    text-align: center;
-    background-color: #ebebeb;
-    border: 1px solid hsla(0,0%,50.2%,.15);
-    border-left: none;
-    cursor: pointer;
-    
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  background-color: #ebebeb;
+  border: 1px solid hsla(0, 0%, 50.2%, 0.15);
+  border-left: none;
+  cursor: pointer;
 }
 
 .DayName {
-    font-size: 1.4rem;
-    font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 500px) {
-    .OneDayForecast {
-      flex-direction: row;
-      justify-content: space-around;
-    }
+  .OneDayForecast {
+    flex-direction: row;
+    justify-content: space-around;
   }
+}

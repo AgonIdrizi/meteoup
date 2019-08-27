@@ -21,8 +21,6 @@ const LoginRegister = props => {
     };
   }, []);
 
-  const loginClasses = props.visible ? classes.slideIn : classes.slideOut;
-
   let selectedComp =
     selectedComponent === "Login" ? (
       <Login loginHandler={props.loginHandler} />

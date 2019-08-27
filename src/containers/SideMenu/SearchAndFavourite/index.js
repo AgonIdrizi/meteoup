@@ -5,7 +5,7 @@ import { FavouritesContext } from "../../../contexts/FavouritesContext";
 
 export default props => (
   <LoginRegisterContext.Consumer>
-    {({ user, loggedIn, loginHandler, isLoading }) => (
+    {({ user, loggedIn, loginHandler, isLoading, logoutHandler, signUpHandler, loginRegisterErrorMessage, clearErrorMessageHandler }) => (
       <FavouritesContext.Consumer>
         {({ favData }) => (
           <SearchAndFavourite
@@ -14,6 +14,11 @@ export default props => (
             user={user}
             loggedIn={loggedIn}
             loginHandler={loginHandler}
+            isLoading={isLoading}
+            logoutHandler={logoutHandler}
+            signUpHandler={signUpHandler}
+            loginRegisterErrorMessage={loginRegisterErrorMessage}
+            clearErrorMessageHandler={clearErrorMessageHandler}
             isLoading={isLoading}
           />
         )}

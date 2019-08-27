@@ -23,7 +23,7 @@ export const FavouritesProvider = props => {
         }
       });
     }
-  },[props.loggedIn]) 
+  }, [props.loggedIn]);
 
   return (
     <FavouritesContext.Provider

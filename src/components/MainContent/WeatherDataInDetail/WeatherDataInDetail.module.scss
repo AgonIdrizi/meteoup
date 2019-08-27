@@ -9,12 +9,12 @@
   text-overflow: ellipsis;
 }
 .WeatherDataInDetail {
-    display: grid;
-    grid-template-columns: 20% 10% 10% 10% 10% 10% 10% 10% 10%;
-    grid-template-rows: 30px 70px;
-    grid-auto-rows: 40px;
-    font-size: 15px;
-    color: #000;
+  display: grid;
+  grid-template-columns: 20% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: 30px 70px;
+  grid-auto-rows: 40px;
+  font-size: 15px;
+  color: #000;
 }
 
 .SelectedDay {
@@ -26,51 +26,50 @@
   }
 }
 
-.Images{
+.Images {
   @include slider-postion;
 }
 
-.Temperature{
-  @include slider-postion;
-  span {
-    margin-right: 5px;
-  }
-  h4{
-    @include text-overflow;
-  }
-}
-
-.windDirection{
+.Temperature {
   @include slider-postion;
   span {
     margin-right: 5px;
   }
-  h4{
+  h4 {
     @include text-overflow;
   }
 }
 
-.WindSpeed{
+.windDirection {
   @include slider-postion;
   span {
     margin-right: 5px;
   }
-  h4{
+  h4 {
     @include text-overflow;
   }
 }
 
-.Precipitation{
+.WindSpeed {
   @include slider-postion;
   span {
     margin-right: 5px;
   }
-  h4{
+  h4 {
     @include text-overflow;
   }
 }
 
-.WeatherDataIamge{
+.Precipitation {
+  @include slider-postion;
+  span {
+    margin-right: 5px;
+  }
+  h4 {
+    @include text-overflow;
+  }
+}
+
+.WeatherDataIamge {
   background-position: center;
-
 }

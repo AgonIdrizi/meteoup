@@ -29,10 +29,14 @@ const Favourites = props => {
   if (!props.loggedIn && isButtonClicked) {
     loginData = (
       <LoginRegister
-        loginHandler={props.loginHandler}
         loggedIn={props.loggedIn}
-        isLoading={props.isLoading}
         user={props.user}
+        loginHandler={props.loginHandler}
+        logoutHandler={props.logoutHandler}
+        signUpHandler={props.signUpHandler}
+        loginRegisterErrorMessage={props.loginRegisterErrorMessage}
+        clearErrorMessageHandler={props.clearErrorMessageHandler}
+        isLoading={props.isLoading}
       />
     );
     loginStatus = null;

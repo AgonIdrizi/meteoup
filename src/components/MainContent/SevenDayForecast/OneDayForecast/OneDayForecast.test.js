@@ -21,9 +21,7 @@ it("renders correctly", () => {
 });
 
 it("has correct weather data", () => {
-  const { container, getByTestId, rerender } = render(
-    <OneDayForecast data={day1} />
-  );
+  const { container, rerender } = render(<OneDayForecast data={day1} />);
 
   const dateDiv = container.querySelector(".Date");
 

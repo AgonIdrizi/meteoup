@@ -22,8 +22,8 @@ class WeatherDataInDetail extends Component {
     console.log(this.props.hourlyForecastData);
   }
 
-  componentWillUnmount(){
-    console.log('weatherdatainDetail will unmount')
+  componentWillUnmount() {
+    console.log("weatherdatainDetail will unmount");
   }
 
   windDegreesToWords = degree => {

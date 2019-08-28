@@ -12,7 +12,7 @@ it("renders correctly", () => {
   expect(asFragment).toMatchSnapshot();
 });
 
-it("has disabled button for incorect inputs", () => {
+it("has disabled button for incorrect inputs", () => {
   const handleSubmit = jest.fn();
   const { getByText, getByTitle } = render(
     <Register registerHandler={handleSubmit()} />

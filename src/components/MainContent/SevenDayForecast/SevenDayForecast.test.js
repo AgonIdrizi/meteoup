@@ -10,13 +10,12 @@ import {
 import "@testing-library/jest-dom/extend-expect";
 import SevenDayForecast from "./SevenDayForecast";
 import { forecast } from "../../../data/apixuForecastData";
+
 afterEach(cleanup);
 
 let lastSelectedDay = 0;
-const clickOneDayForecastHandler = (e, id) => {
-  e.preventDefault();
-  lastSelectedDay = id;
-};
+
+const clickOneDayForecastHandler = jest.fn()
 
 it("renders succesfully", () => {
   const { asFragment } = render(

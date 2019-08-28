@@ -81,10 +81,10 @@ export class LoginRegisterProvider extends React.Component {
     this.setState({ loginRegisterErrorMessage: null });
   };
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     fire.auth().onAuthStateChanged(user => {
       this.setState({ user: null, loggedIn: false });
-    })
+    });
   }
 
   render() {

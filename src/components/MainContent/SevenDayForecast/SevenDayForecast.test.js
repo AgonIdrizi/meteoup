@@ -15,7 +15,7 @@ afterEach(cleanup);
 
 let lastSelectedDay = 0;
 
-const clickOneDayForecastHandler = jest.fn()
+const clickOneDayForecastHandler = jest.fn();
 
 it("renders succesfully", () => {
   const { asFragment } = render(

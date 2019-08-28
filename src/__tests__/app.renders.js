@@ -28,7 +28,6 @@ const openweatherData = {
 
 it("renders", () => {
   // axiosMock.get.mockResolvedValueOnce([apixuData, openweatherData]);
-
   // const { container, getByTestId } = render(
   //   <LoginRegisterProvider>
   //     <LoginRegisterContext.Consumer>

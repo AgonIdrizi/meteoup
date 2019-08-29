@@ -32,7 +32,7 @@ const SevenDayForecast = props => {
             : defaultStyle
         }
         clicked={props.clicked}
-        isMobile={propTypes.isMobile}
+        isMobile={props.isMobile}
       />
     );
   });

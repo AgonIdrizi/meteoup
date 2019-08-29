@@ -17,6 +17,7 @@ import Slider from "../../components/MainContent/Slider/Slider";
 import VerticalDropDown from "../../components/UI/VerticalDropdown/VerticalDropdown";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import MobileLayout from "../../components/MobileLayout/MobileLayout";
+import HourlyDataMobile from "../../components/MobileLayout/HourlyDataMobile/HourlyDataMobile";
 import classesm from "../../components/MainContent/MainContent.module.scss";
 import axios from "axios";
 import { location, current, forecast } from "../../data/apixuForecastData";
@@ -93,8 +94,11 @@ class WeatherBuilder extends Component {
     this.setState({ width: window.screen.width });
   };
 
-  clickOneDayForecastHandler = (e, id) => {
+  clickOneDayForecastHandler = (e, id, historyProp, isMobile = false) => {
     e.preventDefault();
+    if (this.state.width <= 500) {
+      historyProp.push("/7-days-forecast/1");
+    }
     this.setState({ lastSelectedDay: id });
   };
 
@@ -243,6 +247,9 @@ class WeatherBuilder extends Component {
         {forecastData}
       </React.Fragment>
     );
+
+    
+
     let webLayout = (
       <>
         <SideMenu
@@ -261,6 +268,7 @@ class WeatherBuilder extends Component {
           {loginRegisterData}
           <Switch>
             <Route path="/7-days-forecast" render={() => displayForecastData} />
+
             <Route
               path="/14-days-forecast"
               exact
@@ -282,25 +290,83 @@ class WeatherBuilder extends Component {
                 />
               )}
             />
+
             <Route path="/account" render={() => displayForecastData} />
-            <Route path="/contact" exact render={() => displayContactPage} />
+            <Route path="/contact" render={() => displayContactPage} />
             <Route path="/" render={() => displayForecastData} />
           </Switch>
         </main>
       </>
     );
-    let layout = isMobile ? (
-      <MobileLayout
-        current={this.state.current}
-        location={this.state.location}
-        lastSelectedDay={this.state.lastSelectedDay}
-        clicked={this.clickOneDayForecastHandler}
-        forecast={this.state.forecast}
-        isMobile
-      />
+
+    let hourlyDataMobile = this.state.isLoading ? (
+      <Spinner />
     ) : (
-      webLayout
+      <HourlyDataMobile
+        forecast={this.state.forecast}
+        hourlyForecastData={this.state.hourlyForecastData[this.state.lastSelectedDay]}
+        clicked={this.clickOneDayForecastHandler}
+      />
     );
+
+    let mobileLayout = (
+      <>
+        <Switch>
+          <Route path="/contact" exact render={() => displayContactPage} />
+          <Route
+            path="/7-days-forecast"
+            exact
+            render={() => (
+              <>
+                <Header
+                  current={this.state.current}
+                  location={this.state.location}
+                />
+                <SevenDaysForecast
+                  lastSelectedDay={this.state.lastSelectedDay}
+                  clicked={this.clickOneDayForecastHandler}
+                  forecast={this.state.forecast}
+                  isMobile
+                />
+                <Footer />
+              </>
+            )}
+          />
+          <Route
+            path="/14-days-forecast"
+            exact
+            render={() => (
+              <>
+                <Header
+                  current={this.state.current}
+                  location={this.state.location}
+                />
+                <SevenDaysForecast
+                  lastSelectedDay={this.state.lastSelectedDay}
+                  clicked={this.state.clickOneDayForecastHandler}
+                  forecast={this.state.forecast}
+                  isMobile
+                />
+                <Footer />
+              </>
+            )}
+          />
+          <Route path="/7-days-forecast/:id" exact render={() => hourlyDataMobile} />
+
+          <Route path="/contact" exact render={() => displayContactPage} />
+        </Switch>
+        <MobileLayout
+          current={this.state.current}
+          location={this.state.location}
+          lastSelectedDay={this.state.lastSelectedDay}
+          clicked={this.clickOneDayForecastHandler}
+          forecast={this.state.forecast}
+          isMobile
+        />
+      </>
+    );
+
+    const layout = isMobile ? mobileLayout : webLayout;
     return (
       <Router basename="/meteoup">
         <div className={classes.WeatherBuilder}>{layout}</div>

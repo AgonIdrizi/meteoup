@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "./Image/Image";
 import Degrees from "./Degrees/Degrees";
+import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import moment from "moment";
 import classes from "./OneDayForecast.module.scss";
@@ -13,7 +14,7 @@ const oneDayForecast = props => {
   return (
     <div
       style={props.style}
-      onClick={e => props.clicked(e, props.id)}
+      onClick={e => props.clicked(e, props.id,props.history, props.isMobile)}
       className={classes.OneDayForecast}
     >
       <div className="Date">
@@ -65,4 +66,4 @@ oneDayForecast.propTypes = {
   })
 };
 
-export default oneDayForecast;
+export default withRouter(oneDayForecast);

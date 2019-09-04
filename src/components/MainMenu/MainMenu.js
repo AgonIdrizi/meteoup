@@ -75,7 +75,7 @@ const MainMenu = props => {
         >
           <NavLink
             style={props.isMobile ? { ...liAnchorTagStyle } : null}
-            to="7-days-forecast"
+            to="/7-days-forecast"
             exact
           >
             <Icon
@@ -91,7 +91,7 @@ const MainMenu = props => {
         >
           <NavLink
             style={props.isMobile ? { ...liAnchorTagStyle } : null}
-            to="14-days-forecast"
+            to="/14-days-forecast"
             exact
           >
             <Icon
@@ -107,7 +107,7 @@ const MainMenu = props => {
         >
           <NavLink
             style={props.isMobile ? { ...liAnchorTagStyle } : null}
-            to="air-quality"
+            to="/air-quality"
             exact
           >
             <Icon
@@ -123,7 +123,7 @@ const MainMenu = props => {
         >
           <NavLink
             style={props.isMobile ? { ...liAnchorTagStyle } : null}
-            to="contact"
+            to="/contact"
             exact
           >
             <Icon

@@ -64,15 +64,17 @@ const footer = props => {
             </a>
           </div>
         </div>
-        Copyright: <FontAwesomeIcon icon={faGithub} />
-        <a
-          href="https://github.com/agonidrizi"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {" "}
-          Agon Idrizi
-        </a>
+        <div className={classes.GithubIcon}>
+          Copyright: <FontAwesomeIcon icon={faGithub} />
+          <a
+            href="https://github.com/agonidrizi"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {" "}
+            Agon Idrizi
+          </a>
+        </div>
       </div>
     </>
   );

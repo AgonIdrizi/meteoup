@@ -248,8 +248,6 @@ class WeatherBuilder extends Component {
       </React.Fragment>
     );
 
-    
-
     let webLayout = (
       <>
         <SideMenu
@@ -304,7 +302,9 @@ class WeatherBuilder extends Component {
     ) : (
       <HourlyDataMobile
         forecast={this.state.forecast}
-        hourlyForecastData={this.state.hourlyForecastData[this.state.lastSelectedDay]}
+        hourlyForecastData={
+          this.state.hourlyForecastData[this.state.lastSelectedDay]
+        }
         clicked={this.clickOneDayForecastHandler}
       />
     );
@@ -351,18 +351,14 @@ class WeatherBuilder extends Component {
               </>
             )}
           />
-          <Route path="/7-days-forecast/:id" exact render={() => hourlyDataMobile} />
+          <Route
+            path="/7-days-forecast/:id"
+            exact
+            render={() => hourlyDataMobile}
+          />
 
           <Route path="/contact" exact render={() => displayContactPage} />
         </Switch>
-        <MobileLayout
-          current={this.state.current}
-          location={this.state.location}
-          lastSelectedDay={this.state.lastSelectedDay}
-          clicked={this.clickOneDayForecastHandler}
-          forecast={this.state.forecast}
-          isMobile
-        />
       </>
     );
 
@@ -370,6 +366,7 @@ class WeatherBuilder extends Component {
     return (
       <Router basename="/meteoup">
         <div className={classes.WeatherBuilder}>{layout}</div>
+        {isMobile ? <MobileLayout isMobile /> : null}
       </Router>
     );
   }

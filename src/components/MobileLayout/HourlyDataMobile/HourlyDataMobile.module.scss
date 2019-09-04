@@ -1,25 +1,29 @@
 .WeatherDataInDetail {
-    display: grid;
-    grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%
+  display: grid;
+  grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
 }
 
-.SelectedDay{
-    display: grid;
+.SelectedDay {
+  display: grid;
+  grid-gap: 10px;
 }
 
-
-.Temperature{
-    display: grid;
+.Temperature {
+  display: grid;
+  grid-gap: 10px;
 }
 
 .WindDirection {
-    display: grid;
+  display: grid;
+  grid-gap: 10px;
 }
 
-.WindSpeed{
-    display: grid;
+.WindSpeed {
+  display: grid;
+  grid-gap: 10px;
 }
 
-.Precipitation{
-    display: grid
+.Precipitation {
+  display: grid;
+  grid-gap: 10px;
 }

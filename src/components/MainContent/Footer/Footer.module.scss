@@ -39,3 +39,15 @@
       
     }
 }
+
+
+@media only screen and (max-width: 500px) {
+  .FooterBody{
+    h3{
+      text-align: center;
+    }
+    .GithubIcon{
+      text-align: center;
+    }
+  }
+}

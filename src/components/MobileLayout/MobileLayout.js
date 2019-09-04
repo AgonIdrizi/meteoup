@@ -8,9 +8,9 @@ import classes from "./MobileLayout.module.scss";
 const mobileLayout = props => {
   return (
     <div className={classes.MobileLayout}>
-      
       <MainMenu isMobile={props.isMobile} />
     </div>
+    
   );
 };
 

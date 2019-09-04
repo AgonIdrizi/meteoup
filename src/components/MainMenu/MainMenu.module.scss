@@ -12,7 +12,10 @@
 @media only screen and (max-width: 500px) {
   .MainMenu {
     display: block;
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    width: 100vw;
+    height: 65px;
+    padding-left: 10px;
   }
 }

@@ -27,7 +27,8 @@
     "deploy": "gh-pages -d build",
     "precommit": "pretty-quick staged",
     "test:cypress:dev": "npm-run-all --parallel --race start 'cy:open -- --config baseUrl=http://localhost:3000'",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "analyze": "source-map-explorer build/static/js/main.*"
   },
   "homepage": "https://agonidrizi.github.com/meteoup",
   "eslintConfig": {
@@ -73,6 +74,7 @@
     "react-transition-group": "^4.2.1",
     "serve": "^11.1.0",
     "shortid": "^2.2.14",
+    "source-map-explorer": "^2.0.1",
     "start-server-and-test": "^1.10.0",
     "uuid": "^3.3.2"
   }

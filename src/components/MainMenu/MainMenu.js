@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Item, Icon, Divider } from "antd";
+import { Menu, Icon } from "antd";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWind, faEllipsisH } from "@fortawesome/free-solid-svg-icons";

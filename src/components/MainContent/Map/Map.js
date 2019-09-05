@@ -95,7 +95,6 @@ class Map extends Component {
       <div id="Map" className={classes.Map}>
         <ReactMapGL
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          //style="mapbox://styles/mapbox/streets-v9"
           mapStyle="mapbox://styles/mapbox/streets-v9"
           width="100%"
           height="100%"
@@ -106,8 +105,6 @@ class Map extends Component {
           getCursor={cursor => {
             console.log(cursor.isDragging);
           }}
-          onClick={e => console.log(e.lngLat)}
-          //onViewportChange={this.onViewportChange}
           transitionDuration={100}
           transitionInterpolator={
             new FlyToInterpolator(viewstate.longitude, viewstate.latitude)

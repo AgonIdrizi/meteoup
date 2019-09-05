@@ -1,19 +1,16 @@
 .WeatherBuilder {
-    height: 100%;
-    width: 100%;           
+  height: 100%;
+  width: 100%;
 }
 
 .sideMenu {
-    
 }
 
 .main {
-    
 }
 
 @media only screen and (max-width: 500px) {
-    .WeatherBuilder {
-      
-      margin-bottom: 65px;
-    }
+  .WeatherBuilder {
+    margin-bottom: 65px;
   }
+}

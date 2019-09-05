@@ -1,52 +1,49 @@
 .FooterTop {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(135deg,#103f78,#0f8eb4 );
-    height: 50px;
-    h4 {
-      color: white;
-      margin-right: 10px;
-      margin-bottom: 0px;
-    }
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(135deg, #103f78, #0f8eb4);
+  height: 50px;
+  h4 {
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 0px;
+  }
 }
 
 .FooterBody {
-    height: 200px;
-    background: linear-gradient(135deg,#b3b3b3,#f4f4f4);
-    h3 {
-      font-size: 4 rem;
-      font-weight: 900;
-    }
-    .FooterInfo {
+  height: 200px;
+  background: linear-gradient(135deg, #b3b3b3, #f4f4f4);
+  h3 {
+    font-size: 4 rem;
+    font-weight: 900;
+  }
+  .FooterInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    .divContent {
       display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      .divContent {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        height: 150px;
-        width: 150px;
-        &:hover {
-          border: 1px 1px solid grey;
-          opacity: .7;
-          background-color: lightgrey;
-          box-shadow: 0 0 10px #888888;
-        }
+      flex-direction: column;
+      justify-content: start;
+      height: 150px;
+      width: 150px;
+      &:hover {
+        border: 1px 1px solid grey;
+        opacity: 0.7;
+        background-color: lightgrey;
+        box-shadow: 0 0 10px #888888;
       }
-      
     }
+  }
 }
 
-
 @media only screen and (max-width: 500px) {
-  .FooterBody{
-    h3{
+  .FooterBody {
+    h3 {
       text-align: center;
     }
-    .GithubIcon{
+    .GithubIcon {
       text-align: center;
     }
   }

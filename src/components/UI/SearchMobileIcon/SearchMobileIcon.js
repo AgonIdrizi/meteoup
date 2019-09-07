@@ -1,9 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { withRouter } from "react-router-dom";
 import classes from "./SearchMobileIcon.module.scss";
 
-const searchMobileIcon = () => {
+const searchMobileIcon = props => {
   const iconStyle = {
     color: "white",
     marginTop: "11px",
@@ -12,10 +13,13 @@ const searchMobileIcon = () => {
   };
 
   return (
-    <div onClick={() => console.log('im clicked')} className={classes.SearchMobileIcon}>
+    <div
+      onClick={() => props.history.push("search")}
+      className={classes.SearchMobileIcon}
+    >
       <FontAwesomeIcon style={iconStyle} icon={faSearch} />
     </div>
   );
 };
 
-export default searchMobileIcon;
+export default withRouter(searchMobileIcon);

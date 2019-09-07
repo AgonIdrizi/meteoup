@@ -37,6 +37,7 @@ const Favourites = props => {
         loginRegisterErrorMessage={props.loginRegisterErrorMessage}
         clearErrorMessageHandler={props.clearErrorMessageHandler}
         isLoading={props.isLoading}
+        isMobile={props.isMobile}
       />
     );
     loginStatus = null;

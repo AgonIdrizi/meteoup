@@ -14,7 +14,7 @@ import OpenWeatherMap from "./../../components/MainContent/OpenWeatherMap/OpenWe
 import Slider from "../../components/MainContent/Slider/Slider";
 import LoginRegister from "../LoginRegister/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
-
+import SearchAndFavouriteMobile from "./../../components/MobileLayout/SearchAndFavouriteMobile/SearchAndFavouriteMobile";
 import classesm from "../../components/MainContent/MainContent.module.scss";
 import axios from "axios";
 import { location, current, forecast } from "../../data/apixuForecastData";
@@ -337,7 +337,6 @@ class WeatherBuilder extends Component {
           clicked={this.clickOneDayForecastHandler}
           location={this.state.location.name}
         />
-        
       </Suspense>
     );
 
@@ -371,6 +370,19 @@ class WeatherBuilder extends Component {
               path="/7-days-forecast/:id"
               exact
               render={() => hourlyDataMobile}
+            />
+            <Route
+              path="/search"
+              render={() => (
+                <SearchAndFavouriteMobile
+                  clicked={this.onOpenMenuHandler}
+                  searchHandler={this.onSearchHandler}
+                  lastVisited={this.state.lastVisited}
+                  searchQuery={this.state.searchQuery}
+                  selectLocation={this.onSelectLocation}
+                  isMobile
+                />
+              )}
             />
             <Route path="/contact" exact render={() => displayContactPage} />
             <Route

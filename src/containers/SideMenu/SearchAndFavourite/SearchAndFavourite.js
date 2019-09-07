@@ -8,12 +8,13 @@ const SearchAndFavourite = props => {
   const [favData, setFavData] = useState([]);
 
   useEffect(() => {
-    if (props.loggedIn) {
-      var ref = database
+    console.log('SearchAndFavouriteProps', props)
+    if (props.user && props.user.email !== undefined) {
+      const favouritesRef = database
         .ref("favourites")
         .orderByChild("uid")
         .equalTo(props.user.uid);
-      ref.on("value", snapshot => {
+      favouritesRef.on("value", snapshot => {
         if (snapshot.exists()) {
           let snapdata = snapshot.val();
           let dataWithFirebaseKey = Object.keys(snapdata).map(igkey => {
@@ -25,15 +26,15 @@ const SearchAndFavourite = props => {
     }
 
     return () => {
-      if (props.loggedIn) {
-        var ref = database
+      if (props.user && props.user.email !== undefined) {
+        database
           .ref("favourites")
           .orderByChild("uid")
-          .equalTo(props.user.uid);
-        ref.off();
+          .equalTo(props.user.uid)
+          .off();
       }
     };
-  }, [props.loggedIn, props.user.uid]);
+  }, [props.user]);
 
   const addToFavouritesHandler = (e, place, longitude, latitude) => {
     e.preventDefault();

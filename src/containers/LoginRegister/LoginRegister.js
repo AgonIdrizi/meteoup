@@ -16,6 +16,7 @@ const LoginRegister = props => {
   };
 
   useEffect(() => {
+    console.log('LoginRegisterProps', props)
     return () => {
       console.log("LoginRegister will unmount");
     };

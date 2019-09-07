@@ -12,7 +12,7 @@ import Footer from "./../../components/MainContent/Footer/Footer";
 
 import OpenWeatherMap from "./../../components/MainContent/OpenWeatherMap/OpenWeatherMap";
 import Slider from "../../components/MainContent/Slider/Slider";
-
+import LoginRegister from '../LoginRegister/index';
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 import classesm from "../../components/MainContent/MainContent.module.scss";
@@ -351,7 +351,6 @@ class WeatherBuilder extends Component {
       <>
         <Suspense fallback={<Spinner />}>
           <Switch>
-            <Route path="/contact" exact render={() => displayContactPage} />
             <Route
               path="/7-days-forecast"
               exact
@@ -367,8 +366,8 @@ class WeatherBuilder extends Component {
               exact
               render={() => hourlyDataMobile}
             />
-
             <Route path="/contact" exact render={() => displayContactPage} />
+            <Route path="/account" render={() => <>{header}<LoginRegister isMobile /></>} />
           </Switch>
         </Suspense>
       </>

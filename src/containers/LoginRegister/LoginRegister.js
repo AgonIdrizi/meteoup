@@ -20,7 +20,7 @@ const LoginRegister = props => {
       console.log("LoginRegister will unmount");
     };
   }, []);
-
+  const mobileStyle = props.isMobile ? { height: '350px', width: '100%', backgroundColor: 'white'} : null
   let selectedComp =
     selectedComponent === "Login" ? (
       <Login loginHandler={props.loginHandler} />
@@ -45,7 +45,7 @@ const LoginRegister = props => {
     selectedComp = <Spinner />;
   }
   return (
-    <div className={classes.LoginRegisterData}>
+    <div style={mobileStyle} className={classes.LoginRegisterData}>
       <p className={classes.Error}>{props.loginRegisterErrorMessage}</p>
       {clickHandlerDiv}
       {selectedComp}

@@ -25,6 +25,10 @@ const SevenDaysForecast = React.lazy(() =>
   import("./../../components/MainContent/SevenDayForecast/SevenDayForecast")
 );
 
+const SearchMobileIcon = React.lazy(() =>
+  import("../../components/UI/SearchMobileIcon/SearchMobileIcon")
+);
+
 const VerticalDropDown = React.lazy(() =>
   import("../../components/UI/VerticalDropdown/VerticalDropdown")
 );
@@ -333,6 +337,7 @@ class WeatherBuilder extends Component {
           clicked={this.clickOneDayForecastHandler}
           location={this.state.location.name}
         />
+        
       </Suspense>
     );
 
@@ -388,7 +393,10 @@ class WeatherBuilder extends Component {
         <div className={classes.WeatherBuilder}>{layout}</div>
         {isMobile ? (
           <Suspense fallback={<Spinner />}>
-            <MobileLayout isMobile />
+            <>
+              <SearchMobileIcon />
+              <MobileLayout isMobile />
+            </>
           </Suspense>
         ) : null}
       </Router>

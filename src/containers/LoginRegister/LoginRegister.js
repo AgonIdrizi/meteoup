@@ -21,7 +21,7 @@ const LoginRegister = props => {
     };
   }, []);
   const mobileStyle = props.isMobile
-    ? { height: "350px", width: "100%", backgroundColor: "white" }
+    ? { height: "300px", width: "100%", backgroundColor: "white" }
     : null;
   let selectedComp =
     selectedComponent === "Login" ? (

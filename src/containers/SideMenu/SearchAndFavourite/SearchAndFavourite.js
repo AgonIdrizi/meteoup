@@ -25,15 +25,15 @@ const SearchAndFavourite = props => {
     }
 
     return () => {
-      // if (props.loggedIn) {
-      //   var ref = database
-      //     .ref("favourites")
-      //     .orderByChild("uid")
-      //     .equalTo(props.user.uid);
-      //   ref.off();
-      // }
+      if (props.loggedIn) {
+        var ref = database
+          .ref("favourites")
+          .orderByChild("uid")
+          .equalTo(props.user.uid);
+        ref.off();
+      }
     };
-  }, []);
+  }, [props.loggedIn, props.user.uid]);
 
   const addToFavouritesHandler = (e, place, longitude, latitude) => {
     e.preventDefault();

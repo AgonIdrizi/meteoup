@@ -12,7 +12,7 @@ import Footer from "./../../components/MainContent/Footer/Footer";
 
 import OpenWeatherMap from "./../../components/MainContent/OpenWeatherMap/OpenWeatherMap";
 import Slider from "../../components/MainContent/Slider/Slider";
-import LoginRegister from '../LoginRegister/index';
+import LoginRegister from "../LoginRegister/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 import classesm from "../../components/MainContent/MainContent.module.scss";
@@ -331,6 +331,7 @@ class WeatherBuilder extends Component {
             this.state.hourlyForecastData[this.state.lastSelectedDay]
           }
           clicked={this.clickOneDayForecastHandler}
+          location={this.state.location.name}
         />
       </Suspense>
     );
@@ -367,7 +368,15 @@ class WeatherBuilder extends Component {
               render={() => hourlyDataMobile}
             />
             <Route path="/contact" exact render={() => displayContactPage} />
-            <Route path="/account" render={() => <>{header}<LoginRegister isMobile /></>} />
+            <Route
+              path="/account"
+              render={() => (
+                <>
+                  {header}
+                  <LoginRegister isMobile />
+                </>
+              )}
+            />
           </Switch>
         </Suspense>
       </>

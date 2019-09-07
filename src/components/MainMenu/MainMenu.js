@@ -13,7 +13,8 @@ const MainMenu = props => {
     },
     liStyle: {
       paddingLeft: "3px",
-      paddingRight: "3px"
+      paddingRight: "3px",
+      fontSize: '12px'
     },
     liAnchorTagStyle: {
       display: "flex",

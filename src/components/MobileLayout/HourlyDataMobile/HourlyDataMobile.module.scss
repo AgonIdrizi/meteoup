@@ -27,3 +27,16 @@
   display: grid;
   grid-gap: 10px;
 }
+
+.hourlyDataHeader{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  a{
+    text-align: center;
+    margin: auto;
+  }
+  h2{
+    text-align: center;
+    margin-bottom: 0;
+  }
+}

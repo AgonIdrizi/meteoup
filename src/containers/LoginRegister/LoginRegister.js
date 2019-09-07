@@ -20,7 +20,9 @@ const LoginRegister = props => {
       console.log("LoginRegister will unmount");
     };
   }, []);
-  const mobileStyle = props.isMobile ? { height: '350px', width: '100%', backgroundColor: 'white'} : null
+  const mobileStyle = props.isMobile
+    ? { height: "350px", width: "100%", backgroundColor: "white" }
+    : null;
   let selectedComp =
     selectedComponent === "Login" ? (
       <Login loginHandler={props.loginHandler} />

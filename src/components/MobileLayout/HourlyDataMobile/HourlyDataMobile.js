@@ -8,6 +8,7 @@ import {
   faTint,
   faWind
 } from "@fortawesome/free-solid-svg-icons";
+import { Link, withRouter } from "react-router-dom";
 import moment from "moment";
 import classes from "./HourlyDataMobile.module.scss";
 
@@ -78,9 +79,8 @@ const windDegreesToWords = degree => {
 };
 
 const hourlyDataMobile = props => {
-  //const {hourlyForecastData} = props.hourlyForecastData[0]
-  console.log(props);
   const dayInText = moment(props.hourlyForecastData[0].dt_txt).format("dddd");
+
   const hours = props.hourlyForecastData.map(elem => (
     <div key={elem.dt}> {moment(elem.dt_txt).format("HH-00")}</div>
   ));
@@ -105,11 +105,12 @@ const hourlyDataMobile = props => {
   const windSpeed = props.hourlyForecastData.map(elem => (
     <div key={elem.dt}>{elem.wind.speed}</div>
   ));
-
+  console.log(props.history);
   return (
     <>
-      <header className="hourlyDataHeader">
-        <h2>Tetovo</h2>
+      <header className={classes.hourlyDataHeader}>
+        <Link to="/7-days-forecast">{"<".concat("Back")}</Link>
+        <h2>{props.location}</h2>
       </header>
       <OneDayForecast data={props.forecast.forecastday[0]} id={0} />
       <div className={classes.WeatherDataInDetail}>

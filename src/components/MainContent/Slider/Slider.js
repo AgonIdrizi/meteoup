@@ -17,10 +17,6 @@ class Slider extends Component {
     ))
   };
 
-  componentWillUnmount() {
-    console.log("slider component did unmount");
-  }
-
   onSlideChanged = e => {
     this.props.changeSlide(e.item);
   };

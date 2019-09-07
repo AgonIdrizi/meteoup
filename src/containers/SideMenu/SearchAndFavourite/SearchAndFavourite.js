@@ -1,45 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SearchLocations from "../../../components/SearchLocations/SearchLocations";
 import Favourites from "../../../components/Favourites/Favourites";
 import { database } from "../../../config/fire";
+import useFavourite from "../../../customHooks/useFavourites";
 import classes from "./SearchAndFavourite.module.scss";
 
 const SearchAndFavourite = props => {
-  const [favData, setFavData] = useState([]);
-
-  useEffect(() => {
-    console.log('SearchAndFavouriteProps', props)
-    if (props.user && props.user.email !== undefined) {
-      const favouritesRef = database
-        .ref("favourites")
-        .orderByChild("uid")
-        .equalTo(props.user.uid);
-      favouritesRef.on("value", snapshot => {
-        if (snapshot.exists()) {
-          let snapdata = snapshot.val();
-          let dataWithFirebaseKey = Object.keys(snapdata).map(igkey => {
-            return { favId: igkey, ...snapdata[igkey] };
-          });
-          setFavData(dataWithFirebaseKey);
-        }
-      });
-    }
-
-    return () => {
-      if (props.user && props.user.email !== undefined) {
-        database
-          .ref("favourites")
-          .orderByChild("uid")
-          .equalTo(props.user.uid)
-          .off();
-      }
-    };
-  }, [props.user]);
+  const [favData, setFavData, loginRegisterContext] = useFavourite();
 
   const addToFavouritesHandler = (e, place, longitude, latitude) => {
     e.preventDefault();
 
-    if (props.user != null) {
+    if (loginRegisterContext.user != null) {
       const favouritePlace = {
         locationName: place,
         longitude: longitude,
@@ -67,13 +39,13 @@ const SearchAndFavourite = props => {
       .ref("/favourites")
       .child("/" + key)
       .remove();
-    const newFavData = favData.filter(elem => elem.favId != key);
+    const newFavData = favData.filter(elem => elem.favId !== key);
     setFavData(newFavData);
   };
 
   const data =
-    props.searchQuery.length == 0 ? props.lastVisited : props.searchQuery;
-  const search = props.searchQuery.length == 0 ? "false" : "true";
+    props.searchQuery.length === 0 ? props.lastVisited : props.searchQuery;
+  const search = props.searchQuery.length === 0 ? "false" : "true";
   return (
     <div className={classes.SearchAndFavourite}>
       <SearchLocations
@@ -83,8 +55,8 @@ const SearchAndFavourite = props => {
         onSelectLocation={props.onSelectLocation}
         addToFavouritesHandler={addToFavouritesHandler}
         removeFromFavouritesHandler={removeFromFavouritesHandler}
-        user={props.user}
-        loggedIn={props.loggedIn}
+        user={loginRegisterContext.user}
+        loggedIn={loginRegisterContext.loggedIn}
         deleteLastVisited={props.deleteLastVisited}
       />
       <Favourites
@@ -92,13 +64,15 @@ const SearchAndFavourite = props => {
         favData={favData}
         onSelectLocation={props.onSelectLocation}
         removeFromFavouritesHandler={removeFromFavouritesHandler}
-        loggedIn={props.loggedIn}
-        loginHandler={props.loginHandler}
+        loggedIn={loginRegisterContext.loggedIn}
+        loginHandler={loginRegisterContext.loginHandler}
         isLoading={props.isLoading}
-        logoutHandler={props.logoutHandler}
-        signUpHandler={props.signUpHandler}
-        loginRegisterErrorMessage={props.loginRegisterErrorMessage}
-        clearErrorMessageHandler={props.clearErrorMessageHandler}
+        logoutHandler={loginRegisterContext.logoutHandler}
+        signUpHandler={loginRegisterContext.signUpHandler}
+        loginRegisterErrorMessage={
+          loginRegisterContext.loginRegisterErrorMessage
+        }
+        clearErrorMessageHandler={loginRegisterContext.clearErrorMessageHandler}
       />
     </div>
   );

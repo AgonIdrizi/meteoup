@@ -12,7 +12,7 @@ const Search = props => {
     console.log(props.history);
     props.searchHandler(value);
   };
-  const size = props.isMobile === true ? "large" : 'default';
+  const size = props.isMobile === true ? "large" : "default";
   return (
     <Search
       size={size}

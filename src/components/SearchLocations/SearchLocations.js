@@ -14,7 +14,7 @@ const SearchLocations = props => {
     <React.Fragment>
       <div className={classes.searchLocations}>
         <div className={classes.VisitedLocations}>
-          <h4>{props.search == "true" ? "Search" : "Last Visited"}</h4>
+          <h4>{props.search === "true" ? "Search" : "Last Visited"}</h4>
           <a href="#" src="" onClick={e => props.deleteLastVisited(e)}>
             {props.search === "true" ? "" : "Delete"}
           </a>

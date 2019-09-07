@@ -1,34 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Logout from "./Logout/Logout";
+import { LoginRegisterContext } from "../../contexts/LoginRegisterContext";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./LoginRegister.module.scss";
 
 const LoginRegister = props => {
   const [selectedComponent, setSelectedCompoent] = useState("Login");
+  const loginRegisterContext = useContext(LoginRegisterContext);
   const handleComponentSelectionClick = (e, value) => {
     e.preventDefault();
     if (selectedComponent !== value) {
       setSelectedCompoent(value);
-      props.clearErrorMessageHandler();
+      loginRegisterContext.clearErrorMessageHandler();
     }
   };
 
-  useEffect(() => {
-    console.log('LoginRegisterProps', props)
-    return () => {
-      console.log("LoginRegister will unmount");
-    };
-  }, []);
   const mobileStyle = props.isMobile
     ? { height: "300px", width: "100%", backgroundColor: "white" }
     : null;
   let selectedComp =
     selectedComponent === "Login" ? (
-      <Login loginHandler={props.loginHandler} />
+      <Login loginHandler={loginRegisterContext.loginHandler} />
     ) : (
-      <Register signUpHandler={props.signUpHandler} />
+      <Register signUpHandler={loginRegisterContext.signUpHandler} />
     );
   let clickHandlerDiv = (
     <div className={classes.SelectComponent}>
@@ -40,16 +36,20 @@ const LoginRegister = props => {
       </a>
     </div>
   );
-  if (props.loggedIn) {
-    selectedComp = <Logout logoutHandler={props.logoutHandler} />;
+  if (loginRegisterContext.loggedIn) {
+    selectedComp = (
+      <Logout logoutHandler={loginRegisterContext.logoutHandler} />
+    );
     clickHandlerDiv = null;
   }
-  if (props.isLoading) {
+  if (loginRegisterContext.isLoading) {
     selectedComp = <Spinner />;
   }
   return (
     <div style={mobileStyle} className={classes.LoginRegisterData}>
-      <p className={classes.Error}>{props.loginRegisterErrorMessage}</p>
+      <p className={classes.Error}>
+        {loginRegisterContext.loginRegisterErrorMessage}
+      </p>
       {clickHandlerDiv}
       {selectedComp}
     </div>

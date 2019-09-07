@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import uuid from "uuid";
 import Location from "../SearchLocations/Location/Location";
 import LoginRegister from "../../containers/LoginRegister/LoginRegister";
 import { Button } from "antd";

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./App.module.scss";
 import WeatherBuilder from "./containers/WeatherBuilder/WeatherBuilder";
 import "antd/dist/antd.css";
-import fire from "./config/fire";
-import { FavouritesProvider } from "./contexts/FavouritesContext";
 
 class App extends Component {
   componentDidMount() {

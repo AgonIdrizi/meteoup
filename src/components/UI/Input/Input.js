@@ -20,7 +20,7 @@ const input = props => {
         <input
           className={inputClasses.join(" ")}
           {...props.elementConfig}
-          autocomplete="new-password"
+          autoComplete="new-password"
           value={props.value}
           onChange={props.changed}
         />
@@ -33,7 +33,7 @@ const input = props => {
           rows={4}
           className={inputClasses.join(" ")}
           {...props.elementConfig}
-          autocomplete="new-password"
+          autoComplete="new-password"
           value={props.value}
           onChange={props.changed}
         />

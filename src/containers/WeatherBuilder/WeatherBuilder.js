@@ -12,7 +12,7 @@ import Footer from "./../../components/MainContent/Footer/Footer";
 
 import OpenWeatherMap from "./../../components/MainContent/OpenWeatherMap/OpenWeatherMap";
 import Slider from "../../components/MainContent/Slider/Slider";
-import LoginRegister from "../LoginRegister/index";
+import LoginRegister from "../LoginRegister/LoginRegister";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import SearchAndFavouriteMobile from "./../../components/MobileLayout/SearchAndFavouriteMobile/SearchAndFavouriteMobile";
 import classesm from "../../components/MainContent/MainContent.module.scss";
@@ -69,8 +69,6 @@ class WeatherBuilder extends Component {
       this.state.locationNameSelected
     )
       .then(([apixuResponse, openWeatherResponse]) => {
-        console.log("apixudata", apixuResponse.data);
-        console.log("openweather", openWeatherResponse.data);
         this.setState({
           current: apixuResponse.data.current,
           forecast: apixuResponse.data.forecast,
@@ -246,7 +244,7 @@ class WeatherBuilder extends Component {
         <Header current={this.state.current} location={this.state.location} />
       </React.Fragment>
     );
-    let loginRegisterData = this.state.loginDataSelected ? (
+    let loginRegisterData = loginDataSelected ? (
       <Suspense fallback={<Spinner />}>
         <VerticalDropDown />
       </Suspense>

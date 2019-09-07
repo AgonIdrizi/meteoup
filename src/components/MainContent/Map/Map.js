@@ -3,13 +3,6 @@ import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
 import classes from "./Map.module.scss";
 import Pin from "../../UI/Pin/Pin";
 
-const navStyle = {
-  position: "absolute",
-  top: 36,
-  left: 0,
-  padding: "10px"
-};
-
 class Map extends Component {
   state = {
     viewport: {
@@ -72,14 +65,7 @@ class Map extends Component {
   render() {
     let viewstate = this.onLocationSelectCenterMap();
     let viewport = this.state.viewport;
-    let markerDefault = (
-      <Marker
-        longitude={this.props.longitudeLatitudeSelected[0]}
-        latitude={this.props.longitudeLatitudeSelected[1]}
-      >
-        <Pin size={20}></Pin>
-      </Marker>
-    );
+
     let displayMarkersOfSearch = this.props.data.map(elem => {
       return (
         <Marker

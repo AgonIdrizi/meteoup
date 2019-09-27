@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import classes from "./SearchAndFavouriteMobile.module.scss";
-import SearchInput from "../../UI/SearchInput/SearchInput";
-import SearchLocations from "../../../components/SearchLocations/SearchLocations";
-import Favourites from "../../../components/Favourites/Favourites";
+import SearchInput from "../../../UI/SearchInput/SearchInput";
+import SearchLocations from "../../../SearchLocations/SearchLocations";
+import Favourites from "../../../Favourites/Favourites";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { database } from "../../../config/fire";
-import useFavourite from "../../../customHooks/useFavourites";
+import { database } from "../../../../config/fire";
+import useFavourite from "../../../../customHooks/useFavourites";
+import { withRouter } from "react-router-dom";
+import {
+  LoginRegisterProvider,
+  LoginRegisterContext
+} from "../../../../contexts/LoginRegisterContext";
 
 const SearchAndFavouriteMobile = props => {
   const [clickedIcon, setClickedIcon] = useState("Search");
   const [favData, setFavData, loginRegisterContext] = useFavourite();
+  const user = React.useContext(LoginRegisterProvider);
 
   const addToFavouritesHandler = (e, place, longitude, latitude) => {
     e.preventDefault();
@@ -20,7 +26,7 @@ const SearchAndFavouriteMobile = props => {
         locationName: place,
         longitude: longitude,
         latitude: latitude,
-        uid: props.user.uid
+        uid: loginRegisterContext.user.uid
       };
 
       const refAfavourite = database
@@ -49,7 +55,8 @@ const SearchAndFavouriteMobile = props => {
 
   const iconStyle = {
     height: "30px",
-    width: "30px"
+    width: "30px",
+    color: "#264e73"
   };
   const displayIcon =
     clickedIcon === "Search" ? (
@@ -110,11 +117,15 @@ const SearchAndFavouriteMobile = props => {
           searchHandler={props.searchHandler}
         />
         {displayIcon}
-        <FontAwesomeIcon style={iconStyle} icon={faTimes} />
+        <FontAwesomeIcon
+          style={iconStyle}
+          onClick={() => props.clickRemoveSearch(props.history)}
+          icon={faTimes}
+        />
       </div>
       <div>{displayLocations}</div>
     </>
   );
 };
 
-export default SearchAndFavouriteMobile;
+export default withRouter(SearchAndFavouriteMobile);

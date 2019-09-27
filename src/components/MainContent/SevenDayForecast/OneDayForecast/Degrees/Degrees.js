@@ -61,10 +61,13 @@ function chooseTempColor(celsius) {
 }
 
 const degrees = props => {
-  const style = { backgroundColor: chooseTempColor(props.degree) };
+  const degreesDivStyle = { width: props.isInDetailsPage ? "100%" : "" };
+  const dayTempStyle = {
+    backgroundColor: chooseTempColor(props.degree)
+  };
   return (
-    <div className={classes.Degrees}>
-      <div style={style} className={classes.DayTemp}>
+    <div style={degreesDivStyle} className={classes.Degrees}>
+      <div style={dayTempStyle} className={classes.DayTemp}>
         {" "}
         <span>{`${props.degree} °C`}</span>
       </div>

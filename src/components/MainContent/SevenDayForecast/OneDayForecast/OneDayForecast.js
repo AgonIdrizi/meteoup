@@ -11,10 +11,13 @@ import { faWind, faCloudRain } from "@fortawesome/free-solid-svg-icons";
 const propTypes = {};
 
 const oneDayForecast = props => {
+  const isInDetailPageEvent = props.isInDetailsPage
+    ? null
+    : e => props.dayClicked(e, props.id, props.history, props.isMobile);
   return (
     <div
       style={props.style}
-      onClick={e => props.clicked(e, props.id, props.history, props.isMobile)}
+      onClick={isInDetailPageEvent}
       className={classes.OneDayForecast}
     >
       <div className="Date">
@@ -28,8 +31,16 @@ const oneDayForecast = props => {
         </div>
       </div>
       <Image isMobile={props.isMobile} condition={props.data.day.condition} />
-      <Degrees degree={props.data.day.maxtemp_c} />
-      <Degrees degree={props.data.day.mintemp_c} />
+      <Degrees
+        isMobile={props.isMobile}
+        isInDetailsPage={props.isInDetailsPage || false}
+        degree={props.data.day.maxtemp_c}
+      />
+      <Degrees
+        isMobile={props.isMobile}
+        isInDetailsPage={props.isInDetailsPage || false}
+        degree={props.data.day.mintemp_c}
+      />
       <div className={classes.WindRainSunInfo}>
         <div className={classes.Wind}>
           <span>

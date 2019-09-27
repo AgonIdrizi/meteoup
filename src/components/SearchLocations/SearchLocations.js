@@ -6,7 +6,7 @@ const SearchLocations = props => {
   const checkIfFavourite = place => {
     const data = props.favData.find(favData => favData.locationName === place);
     const id = data ? data.favId : null;
-    console.log("checkIfFavourite is rendering", place, data);
+    //console.log("checkIfFavourite is rendering", place, data);
     return { isFavourite: data !== undefined ? true : false, id: id };
   };
 

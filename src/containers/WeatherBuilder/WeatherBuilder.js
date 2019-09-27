@@ -1,44 +1,23 @@
 import React, { Component, Suspense } from "react";
 import classes from "./WeatherBuilder.module.scss";
-import SideMenu from "../SideMenu/SideMenu";
 
 import withErrorHandling from "../../hoc/withErrorHandling/withErrorHandling";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getMapBoxGeoData } from "../../services/getMapBoxGeoData";
 import { getApiData } from "../../services/getApiData";
 import { getParsedItemsFromLocalStorage } from "../../config/localstorage";
-import Header from "./../../components/MainContent/Header/Header";
-import Footer from "./../../components/MainContent/Footer/Footer";
-
-import OpenWeatherMap from "./../../components/MainContent/OpenWeatherMap/OpenWeatherMap";
-import Slider from "../../components/MainContent/Slider/Slider";
-import LoginRegister from "../LoginRegister/LoginRegister";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import SearchAndFavouriteMobile from "./../../components/MobileLayout/SearchAndFavouriteMobile/SearchAndFavouriteMobile";
-import classesm from "../../components/MainContent/MainContent.module.scss";
+import WebLayout from "../../components/Layout/WebLayout/WebLayout";
 import axios from "axios";
 import { location, current, forecast } from "../../data/apixuForecastData";
 import { hourlyForecastData } from "../../data/openWeatherData";
 import { formatOpenWeatherData } from "../../services/formatOpenWeatherData";
 
-const SevenDaysForecast = React.lazy(() =>
-  import("./../../components/MainContent/SevenDayForecast/SevenDayForecast")
+const MobileNavMenu = React.lazy(() =>
+  import("../../components/Layout/MobileLayout/MobileNavMenu/MobileNavMenu")
 );
-
-const SearchMobileIcon = React.lazy(() =>
-  import("../../components/UI/SearchMobileIcon/SearchMobileIcon")
-);
-
-const VerticalDropDown = React.lazy(() =>
-  import("../../components/UI/VerticalDropdown/VerticalDropdown")
-);
-const HourlyDataMobile = React.lazy(() =>
-  import("../../components/MobileLayout/HourlyDataMobile/HourlyDataMobile")
-);
-const Map = React.lazy(() => import("./../../components/MainContent/Map/Map"));
-const Contact = React.lazy(() => import("./../../components/Contact/Contact"));
 const MobileLayout = React.lazy(() =>
-  import("../../components/MobileLayout/MobileLayout")
+  import("../../components/Layout/MobileLayout/MobileLayout")
 );
 
 class WeatherBuilder extends Component {
@@ -194,7 +173,7 @@ class WeatherBuilder extends Component {
     this.setState({ lastVisited: [] });
   };
 
-  handleLoginLogOutClick = (long, lat, place) => {
+  handleLoginLogOutClick = () => {
     this.setState({ loginDataSelected: !this.state.loginDataSelected });
   };
 
@@ -216,60 +195,9 @@ class WeatherBuilder extends Component {
       ? { marginLeft: "400px" }
       : { marginLeft: "200px" };
 
-    let forecastData = isLoading ? (
-      <Spinner large="large" />
-    ) : (
-      <React.Fragment>
-        <SevenDaysForecast
-          lastSelectedDay={this.state.lastSelectedDay}
-          clicked={this.clickOneDayForecastHandler}
-          forecast={this.state.forecast}
-        />
-
-        <Slider
-          changeSlide={this.changeSlideHandler}
-          selectedDay={this.state.lastSelectedDay}
-          hourlyForecastData={this.state.hourlyForecastData}
-        />
-
-        <OpenWeatherMap
-          data={this.state.searchQuery}
-          longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
-        />
-        <Footer />
-      </React.Fragment>
-    );
-    let header = (
-      <React.Fragment>
-        <Header current={this.state.current} location={this.state.location} />
-      </React.Fragment>
-    );
-    let loginRegisterData = loginDataSelected ? (
+    const layout = isMobile ? (
       <Suspense fallback={<Spinner />}>
-        <VerticalDropDown />
-      </Suspense>
-    ) : null;
-
-    let displayContactPage = (
-      <React.Fragment>
-        {header}
-        <Suspense fallback={<Spinner />}>
-          <Contact handleContactFormSubmit={this.handleContactFormSubmit} />
-        </Suspense>
-        <Footer />
-      </React.Fragment>
-    );
-
-    let displayForecastData = this.state.searchInputSelected ? null : (
-      <React.Fragment>
-        {header}
-        {forecastData}
-      </React.Fragment>
-    );
-
-    let webLayout = (
-      <>
-        <SideMenu
+        <MobileLayout
           inputSelected={this.state.searchInputSelected}
           searchHandler={this.onSearchHandler}
           clicked={this.onOpenMenuHandler}
@@ -280,133 +208,56 @@ class WeatherBuilder extends Component {
           handleLoginLogOutClick={this.handleLoginLogOutClick}
           handleForecastLinksSelect={this.handleForecastLinksSelect}
           deleteLastVisited={this.handleDeleteLastVisitedFromLocalStorage}
-        />
-        <main style={style} className={classesm.MainContent}>
-          {loginRegisterData}
-          <Suspense fallback={<Spinner />}>
-            <Switch>
-              <Route
-                path="/7-days-forecast"
-                render={() => displayForecastData}
-              />
-
-              <Route
-                path="/14-days-forecast"
-                exact
-                render={() => displayForecastData}
-              />
-              <Route
-                path="/air-quality"
-                exact
-                render={() => displayForecastData}
-              />
-              <Route
-                path="/search"
-                render={() => (
-                  <Suspense fallback={<Spinner />}>
-                    <Map
-                      data={this.state.searchQuery}
-                      longitudeLatitudeSelected={
-                        this.state.longitudeLatitudeSelected
-                      }
-                    />
-                  </Suspense>
-                )}
-              />
-
-              <Route path="/account" render={() => displayForecastData} />
-              <Route path="/contact" render={() => displayContactPage} />
-              <Route path="/" render={() => displayForecastData} />
-            </Switch>
-          </Suspense>
-        </main>
-      </>
-    );
-
-    let hourlyDataMobile = this.state.isLoading ? (
-      <Spinner />
-    ) : (
-      <Suspense fallback={<Spinner />}>
-        <HourlyDataMobile
-          forecast={this.state.forecast}
-          hourlyForecastData={
-            this.state.hourlyForecastData[this.state.lastSelectedDay]
-          }
-          clicked={this.clickOneDayForecastHandler}
-          location={this.state.location.name}
-        />
-      </Suspense>
-    );
-
-    let sevenDaysMobile = (
-      <>
-        {header}
-        <SevenDaysForecast
           lastSelectedDay={this.state.lastSelectedDay}
-          clicked={this.clickOneDayForecastHandler}
+          longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
+          dayClicked={this.clickOneDayForecastHandler}
           forecast={this.state.forecast}
+          current={this.state.current}
+          location={this.state.location}
+          changeSlide={this.changeSlideHandler}
+          selectedDay={this.state.lastSelectedDay}
+          hourlyForecastData={this.state.hourlyForecastData}
+          width={width}
+          style={style}
+          isLoading={isLoading}
+          loginDataSelected={loginDataSelected}
           isMobile
         />
-        <Footer />
-      </>
+      </Suspense>
+    ) : (
+      <WebLayout
+        inputSelected={this.state.searchInputSelected}
+        searchHandler={this.onSearchHandler}
+        clicked={this.onOpenMenuHandler}
+        clickRemoveSearch={this.onRemoveSearchHandler}
+        lastVisited={this.state.lastVisited}
+        searchQuery={this.state.searchQuery}
+        selectLocation={this.onSelectLocation}
+        handleLoginLogOutClick={this.handleLoginLogOutClick}
+        handleForecastLinksSelect={this.handleForecastLinksSelect}
+        deleteLastVisited={this.handleDeleteLastVisitedFromLocalStorage}
+        lastSelectedDay={this.state.lastSelectedDay}
+        longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
+        dayClicked={this.clickOneDayForecastHandler}
+        forecast={this.state.forecast}
+        current={this.state.current}
+        location={this.state.location}
+        changeSlide={this.changeSlideHandler}
+        selectedDay={this.state.lastSelectedDay}
+        hourlyForecastData={this.state.hourlyForecastData}
+        width={width}
+        style={style}
+        isLoading={isLoading}
+        loginDataSelected={loginDataSelected}
+        isMobile
+      />
     );
-    let mobileLayout = (
-      <>
-        <Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route
-              path="/7-days-forecast"
-              exact
-              render={() => sevenDaysMobile}
-            />
-            <Route
-              path="/14-days-forecast"
-              exact
-              render={() => sevenDaysMobile}
-            />
-            <Route
-              path="/7-days-forecast/:id"
-              exact
-              render={() => hourlyDataMobile}
-            />
-            <Route
-              path="/search"
-              render={() => (
-                <SearchAndFavouriteMobile
-                  clicked={this.onOpenMenuHandler}
-                  searchHandler={this.onSearchHandler}
-                  lastVisited={this.state.lastVisited}
-                  searchQuery={this.state.searchQuery}
-                  selectLocation={this.onSelectLocation}
-                  isMobile
-                />
-              )}
-            />
-            <Route path="/contact" exact render={() => displayContactPage} />
-            <Route
-              path="/account"
-              render={() => (
-                <>
-                  {header}
-                  <LoginRegister isMobile />
-                </>
-              )}
-            />
-          </Switch>
-        </Suspense>
-      </>
-    );
-
-    const layout = isMobile ? mobileLayout : webLayout;
     return (
       <Router basename="/meteoup">
         <div className={classes.WeatherBuilder}>{layout}</div>
         {isMobile ? (
           <Suspense fallback={<Spinner />}>
-            <>
-              <SearchMobileIcon />
-              <MobileLayout isMobile />
-            </>
+            <MobileNavMenu isMobile />
           </Suspense>
         ) : null}
       </Router>

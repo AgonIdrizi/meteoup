@@ -31,7 +31,7 @@ const SevenDayForecast = props => {
             ? styleOfSelected
             : defaultStyle
         }
-        clicked={props.clicked}
+        dayClicked={props.dayClicked}
         isMobile={props.isMobile}
       />
     );

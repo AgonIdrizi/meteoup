@@ -1,6 +1,6 @@
 import React from "react";
-import OneDayForecast from "../../MainContent/SevenDayForecast/OneDayForecast/OneDayForecast";
-import Degrees from "../../MainContent/SevenDayForecast/OneDayForecast/Degrees/Degrees";
+import OneDayForecast from "../../../MainContent/SevenDayForecast/OneDayForecast/OneDayForecast";
+import Degrees from "../../../MainContent/SevenDayForecast/OneDayForecast/Degrees/Degrees";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThermometerFull,
@@ -83,10 +83,10 @@ const hourlyDataMobile = props => {
     <div key={elem.dt}> {moment(elem.dt_txt).format("HH-00")}</div>
   ));
   const temp = props.hourlyForecastData.map(elem => (
-    <Degrees key={elem.dt} degree={elem.main.temp_max} />
+    <Degrees key={elem.dt} isInDetailsPage degree={elem.main.temp_max} />
   ));
   const feltTemp = props.hourlyForecastData.map(elem => (
-    <Degrees key={elem.dt} degree={elem.main.temp_min} />
+    <Degrees key={elem.dt} isInDetailsPage degree={elem.main.temp_min} />
   ));
   const windDirection = props.hourlyForecastData.map(elem => (
     <div key={elem.dt}>{windDegreesToWords(parseFloat(elem.wind.deg))}</div>
@@ -98,13 +98,17 @@ const hourlyDataMobile = props => {
   return (
     <>
       <header className={classes.hourlyDataHeader}>
-        <Link to="/7-days-forecast">{"<".concat("Back")}</Link>
-        <h2>{props.location}</h2>
+        <Link to="/7-days-forecast">{"< Back"}</Link>
+        <h2>{props.location.name}</h2>
       </header>
-      <OneDayForecast data={props.forecast.forecastday[0]} id={0} />
+      <OneDayForecast
+        isInDetailsPage={false}
+        data={props.forecast.forecastday[props.lastSelectedDay]}
+        id={props.lastSelectedDay}
+      />
       <div className={classes.WeatherDataInDetail}>
         <div className={classes.SelectedDay}>
-          <span>cl</span>
+          <span>hours</span>
           {hours}
         </div>
         <div className={classes.Temperature}>

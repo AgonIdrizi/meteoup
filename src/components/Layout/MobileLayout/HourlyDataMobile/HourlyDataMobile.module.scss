@@ -5,27 +5,32 @@
 
 .SelectedDay {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 40px;
+  text-align: center;
 }
 
 .Temperature {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 40px;
+  text-align: center;
 }
 
 .WindDirection {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 40px;
+  text-align: center;
 }
 
 .WindSpeed {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 40px;
+  text-align: center;
 }
 
 .Precipitation {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 40px;
+  text-align: center;
 }
 
 .hourlyDataHeader {

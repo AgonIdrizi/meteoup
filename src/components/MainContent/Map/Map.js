@@ -63,6 +63,7 @@ class Map extends Component {
   };
 
   render() {
+    console.log("maps rendered");
     let viewstate = this.onLocationSelectCenterMap();
     let viewport = this.state.viewport;
 
@@ -88,9 +89,6 @@ class Map extends Component {
           latitude={this.props.longitudeLatitudeSelected[1]}
           {...viewport}
           {...viewstate}
-          getCursor={cursor => {
-            console.log(cursor.isDragging);
-          }}
           transitionDuration={100}
           transitionInterpolator={
             new FlyToInterpolator(viewstate.longitude, viewstate.latitude)

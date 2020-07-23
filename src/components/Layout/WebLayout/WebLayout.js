@@ -8,7 +8,7 @@ import Slider from "../../MainContent/Slider/Slider";
 import Spinner from "../../UI/Spinner/Spinner";
 import classesm from "../../MainContent/MainContent.module.scss";
 import VerticalDropDown from "../../UI/VerticalDropdown/VerticalDropdown";
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const SevenDaysForecast = React.lazy(() =>
   import("../../MainContent/SevenDayForecast/SevenDayForecast")
@@ -85,48 +85,52 @@ const webLayout = props => {
         {loginRegisterData}
         {header}
         <Suspense fallback={<Spinner />}>
-          <Route render={({location}) => (
+          <Route
+            render={({ location }) => (
+              <TransitionGroup className="transition-group">
+                <CSSTransition
+                  key={location.key}
+                  timeout={{ enter: 1000, exit: 0 }}
+                  classNames="fade"
+                >
+                  <Switch location={props.location}>
+                    <Route
+                      path="/7-days-forecast"
+                      render={() => displayForecastData}
+                    />
 
-          
-            <TransitionGroup className="transition-group">
-              <CSSTransition
-                key={location.key}
-                timeout={ {enter:1000, exit:0}}
-                classNames="fade"
-              >
-            <Switch location={props.location}>
-            <Route path="/7-days-forecast" render={() => displayForecastData} />
+                    <Route
+                      path="/14-days-forecast"
+                      exact
+                      render={() => displayForecastData}
+                    />
+                    <Route
+                      path="/air-quality"
+                      exact
+                      render={() => displayForecastData}
+                    />
+                    <Route
+                      path="/search"
+                      render={() => (
+                        <Suspense fallback={<Spinner />}>
+                          <Map
+                            data={props.searchQuery}
+                            longitudeLatitudeSelected={
+                              props.longitudeLatitudeSelected
+                            }
+                          />
+                        </Suspense>
+                      )}
+                    />
 
-            <Route
-              path="/14-days-forecast"
-              exact
-              render={() => displayForecastData}
-            />
-            <Route
-              path="/air-quality"
-              exact
-              render={() => displayForecastData}
-            />
-            <Route
-              path="/search"
-              render={() => (
-                <Suspense fallback={<Spinner />}>
-                  <Map
-                    data={props.searchQuery}
-                    longitudeLatitudeSelected={props.longitudeLatitudeSelected}
-                  />
-                </Suspense>
-              )}
-            />
-
-            <Route path="/account" render={() => displayForecastData} />
-            <Route path="/contact" render={() => displayContactPage} />
-            <Route path="/" render={() => displayForecastData} />
-          </Switch>
-          </CSSTransition>
-          </TransitionGroup>
-        )} />  
-          
+                    <Route path="/account" render={() => displayForecastData} />
+                    <Route path="/contact" render={() => displayContactPage} />
+                    <Route path="/" render={() => displayForecastData} />
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+            )}
+          />
         </Suspense>
         <Footer isLoading={props.isLoading} />
       </main>

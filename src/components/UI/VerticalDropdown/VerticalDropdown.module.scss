@@ -1,15 +1,14 @@
 .VerticalDropDown {
-    display: flex;
-    flex-direction: column-reverse;
-    height: 100%;
-    position: fixed;
-    top: 0; 
-    z-index: 2; 
-    width:200;
-    background-color: #eef0f1;;
-    box-shadow: 0 0 10px rgba(35,31,32,.15);
-    
-    box-sizing: border-box;
-    margin-bottom: 30px;
-    
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 200;
+  background-color: #eef0f1;
+  box-shadow: 0 0 10px rgba(35, 31, 32, 0.15);
+
+  box-sizing: border-box;
+  margin-bottom: 30px;
 }

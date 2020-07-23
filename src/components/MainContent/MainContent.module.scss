@@ -1,33 +1,29 @@
-@import '../../variables.module.scss';
+@import "../../variables.module.scss";
 .MainContent {
-
-    margin-left: $side-menu-width;
-    text-align: center;
-    
+  margin-left: $side-menu-width;
+  text-align: center;
 }
 
-
-
 section {
-    height: 400px;
-    background-color: blue;
-    position: absolute;
+  height: 400px;
+  background-color: blue;
+  position: absolute;
 }
 
 .fade-enter {
-    opacity: 0.01;
-  }
-  
-  .fade-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-  }
-  
-  .fade-leave {
-    opacity: 1;
-  }
-  
-  .fade-leave-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

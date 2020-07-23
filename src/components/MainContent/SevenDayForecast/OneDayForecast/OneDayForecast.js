@@ -30,16 +30,19 @@ const oneDayForecast = props => {
           <span>{moment(props.data.night).format("M/D")}</span>
         </div>
       </div>
-      <Image isMobile={props.isMobile} condition={props.data.weather[0].description} />
-      <Degrees
+      <Image
         isMobile={props.isMobile}
-        isInDetailsPage={props.isInDetailsPage || false}
-        degree={props.data.max}
+        condition={props.data.weather[0]}
       />
       <Degrees
         isMobile={props.isMobile}
         isInDetailsPage={props.isInDetailsPage || false}
-        degree={props.data.min}
+        degree={props.data.temp.max}
+      />
+      <Degrees
+        isMobile={props.isMobile}
+        isInDetailsPage={props.isInDetailsPage || false}
+        degree={props.data.temp.min}
       />
       <div className={classes.WindRainSunInfo}>
         <div className={classes.Wind}>

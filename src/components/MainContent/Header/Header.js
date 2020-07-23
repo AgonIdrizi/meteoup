@@ -4,7 +4,7 @@ import moment from "moment";
 
 const header = props => {
   if (props.isLoading) return null;
-  console.log('props', JSON.stringify(props))
+  console.log("props", JSON.stringify(props));
   return (
     <React.Fragment>
       <header className={classes.mainHeader}>
@@ -17,17 +17,23 @@ const header = props => {
             </span>
           </div>
           <div className={classes.headerImage}>
-            <div title={props.isLoading ? props.current.weather[0].description : ''}>
+            <div
+              title={
+                props.isLoading ? props.current.weather[0].description : ""
+              }
+            >
               <img
-                alt={ props.isLoading ? props.current.weather[0].description : '' }
-                src={ props.isLoading ? props.current.weather[0].icon : ''}
+                alt={
+                  props.isLoading ? props.current.weather[0].description : ""
+                }
+                src={props.isLoading ? props.current.weather[0].icon : ""}
                 style={{ height: "54px" }}
               />
               <span>{`${props.current.temp} °C`}</span>
             </div>
             <div>
               <span>
-                Last Updated {'moment(props.current.last_updated).fromNow()'}
+                Last Updated {"moment(props.current.last_updated).fromNow()"}
               </span>
             </div>
           </div>

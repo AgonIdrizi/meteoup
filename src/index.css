@@ -1,13 +1,14 @@
-html,body, #root{
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
-  font-family:   "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
-    color: #000;
+  color: #000;
 }
 
 #root {
@@ -20,20 +21,17 @@ div.transition-group {
 }
 
 code {
-  font-family: "Roboto", "Courier New",
-    monospace;
+  font-family: "Roboto", "Courier New", monospace;
 }
-
 
 .mapboxgl-canvas {
   position: relative;
-  left:0;
+  left: 0;
 }
-
 
 :global(.example-enter, .example-appear) {
   opacity: 0;
-  z-index:1
+  z-index: 1;
 }
 
 :global(.example-enter-active, .example-appear-active) {
@@ -47,7 +45,7 @@ code {
 
 :global(.example-exit-active) {
   opacity: 0;
-  transition: opacity 300ms linear ;
+  transition: opacity 300ms linear;
 }
 
 .fade-enter {

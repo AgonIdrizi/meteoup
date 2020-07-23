@@ -1,16 +1,15 @@
 .LoginRegisterData {
-  
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 0; 
-    z-Index:2; 
-    height: 300px;
-    width: 200px; 
-    background-color: #eef0f1;;
-    transition: inherit;
-    box-sizing: border-box;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+  z-index: 2;
+  height: 300px;
+  width: 200px;
+  background-color: #eef0f1;
+  transition: inherit;
+  box-sizing: border-box;
+  margin-bottom: 30px;
 }
 
 :global(.example-enter) {
@@ -30,21 +29,16 @@
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
-  
 
 .SelectComponent {
- display: flex;
- flex-direction: row;
- justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-
 .SelectComponent {
-
-    
-   
 }
 
 .Error {
-  color: red
+  color: red;
 }

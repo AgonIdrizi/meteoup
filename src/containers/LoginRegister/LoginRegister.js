@@ -3,7 +3,7 @@ import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Logout from "./Logout/Logout";
 import { LoginRegisterContext } from "../../contexts/LoginRegisterContext";
-import { LoginRegisterPose} from '../../services/posedTransitions';
+import { LoginRegisterPose } from "../../services/posedTransitions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./LoginRegister.module.scss";
 
@@ -47,7 +47,11 @@ const LoginRegister = props => {
     selectedComp = <Spinner />;
   }
   return (
-    <LoginRegisterPose style={mobileStyle} className={[classes.LoginRegisterData, "loginregisterpose"].join(' ')} pose={ props.isOpen ? 'visible' : 'hidden'} >
+    <LoginRegisterPose
+      style={mobileStyle}
+      className={[classes.LoginRegisterData, "loginregisterpose"].join(" ")}
+      pose={props.isOpen ? "visible" : "hidden"}
+    >
       <p className={classes.Error}>
         {loginRegisterContext.loginRegisterErrorMessage}
       </p>

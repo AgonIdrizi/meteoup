@@ -51,7 +51,7 @@ class WeatherBuilder extends Component {
         this.setState({
           current: apixuResponse.data.current,
           forecast: apixuResponse.data.daily,
-          location: 'Agon',
+          location: "Agon",
           hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data),
           isLoading: false
         });
@@ -71,7 +71,7 @@ class WeatherBuilder extends Component {
           this.setState({
             current: apixuResponse.data.current,
             forecast: apixuResponse.data.daily,
-            location: 'Agon',
+            location: "Agon",
             hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data),
             isLoading: false
           });
@@ -90,12 +90,14 @@ class WeatherBuilder extends Component {
 
   clickOneDayForecastHandler = (e, id, historyProp, isMobile = false) => {
     e.preventDefault();
-    if (this.state.loginDataSelected) this.setState({loginDataSelected: false});
+    if (this.state.loginDataSelected)
+      this.setState({ loginDataSelected: false });
     this.setState({ lastSelectedDay: id });
   };
 
   changeSlideHandler = (index, historyProp) => {
-    if (this.state.loginDataSelected) this.setState({loginDataSelected: false});
+    if (this.state.loginDataSelected)
+      this.setState({ loginDataSelected: false });
     this.setState({ lastSelectedDay: index });
   };
 

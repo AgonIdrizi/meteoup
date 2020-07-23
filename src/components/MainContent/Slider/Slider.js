@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import WeatherDataInDetail from "../WeatherDataInDetail/WeatherDataInDetail";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import classes from "./Slider.module.scss";
 
 class Slider extends Component {

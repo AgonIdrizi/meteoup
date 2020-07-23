@@ -3,7 +3,6 @@ import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
 import classes from "./Map.module.scss";
 import Pin from "../../UI/Pin/Pin";
 
-
 class Map extends Component {
   state = {
     viewport: {

@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{318:function(n,e,a){n.exports={VerticalDropDown:"VerticalDropdown_VerticalDropDown__1cCIJ"}},332:function(n,e,a){"use strict";a.r(e);var o=a(0),r=a.n(o),t=a(318),c=a.n(t),i=a(87);e.default=function(n){return r.a.createElement("div",{className:c.a.VerticalDropDown},r.a.createElement(i.a,null))}}}]);
-//# sourceMappingURL=10.c0c716b4.chunk.js.map

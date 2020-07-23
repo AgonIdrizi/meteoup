@@ -1,1 +1,0 @@
-{"version":3,"sources":["/home/agon/html-css-javascript/odin-javascript/meteoup/src/containers/SideMenu/SearchAndFavourite/SearchAndFavourite.module.scss"],"names":[],"mappings":"AAAA,8CACI,YAAa,CACb,mCAAqC,CACrC,eAAe","file":"11.e1c31f61.chunk.css","sourcesContent":[".SearchAndFavourite {\n    display: grid;\n    grid-template-columns: repeat(2, 1fr);\n    margin-top:10px;\n}"]}

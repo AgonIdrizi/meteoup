@@ -5,9 +5,10 @@
     position: relative;
     top: 0; 
     z-Index:2; 
+    height: 300px;
     width: 200px; 
     background-color: #eef0f1;;
-    
+    transition: inherit;
     box-sizing: border-box;
     margin-bottom: 30px;
 }

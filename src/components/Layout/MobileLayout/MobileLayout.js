@@ -96,7 +96,7 @@ const MobileLayout = props => {
             render={() => (
               <>
                 {header}
-                <LoginRegister isMobile={props.isMobile} />
+                <LoginRegister isOpen isMobile={props.isMobile} />
               </>
             )}
           />

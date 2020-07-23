@@ -3,6 +3,7 @@ import OneDayForecast from "./OneDayForecast/OneDayForecast";
 import PropTypes from "prop-types";
 import classes from "./SevenDayForecast.module.scss";
 
+
 const propTypes = {};
 
 const SevenDayForecast = props => {
@@ -20,10 +21,11 @@ const SevenDayForecast = props => {
     zIndex: 0,
     width: "100%"
   };
-  const display = props.forecast.forecastday.map((elem, index) => {
+  console.log('forecastday', JSON.stringify(props.forecast))
+  const display = props.forecast.map((elem, index) => {
     return (
       <OneDayForecast
-        key={elem.date_epoch}
+        key={elem.dt}
         id={index}
         data={elem}
         style={

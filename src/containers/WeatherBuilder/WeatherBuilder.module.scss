@@ -1,12 +1,14 @@
 .WeatherBuilder {
   height: 100%;
   width: 100%;
+  position: absolute;
 }
 
 .sideMenu {
 }
 
 .main {
+  position: absolute;
 }
 
 @media only screen and (max-width: 500px) {

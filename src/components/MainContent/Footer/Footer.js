@@ -11,6 +11,7 @@ const footer = props => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     props.history.push("/contact");
   };
+  if (props.isLoading) return null;
   return (
     <>
       <div className={classes.FooterTop}>

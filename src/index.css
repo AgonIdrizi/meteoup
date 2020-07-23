@@ -10,6 +10,14 @@ html,body, #root{
     color: #000;
 }
 
+#root {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+div.transition-group {
+  position: relative;
+}
 
 code {
   font-family: "Roboto", "Courier New",
@@ -23,20 +31,39 @@ code {
 }
 
 
-:global(.example-enter) {
+:global(.example-enter, .example-appear) {
+  opacity: 0;
+  z-index:1
+}
+
+:global(.example-enter-active, .example-appear-active) {
+  opacity: 1;
+  transition: opacity 300ms linear 150ms;
+}
+
+:global(.example-exit) {
+  opacity: 1;
+}
+
+:global(.example-exit-active) {
+  opacity: 0;
+  transition: opacity 300ms linear ;
+}
+
+.fade-enter {
   opacity: 0.01;
 }
 
-:global(.example-enter-active) {
+.fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 300ms ease-in;
 }
 
-:global(.example-leave) {
+.fade-exit {
   opacity: 1;
 }
 
-:global(.example-leave-active) {
+.fade-exit.fade-exit-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }

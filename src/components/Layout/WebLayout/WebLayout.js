@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Header from "../../MainContent/Header/Header";
 import Footer from "../../MainContent/Footer/Footer";
 import SideMenu from "../../../containers/SideMenu/SideMenu";
@@ -8,6 +8,7 @@ import Slider from "../../MainContent/Slider/Slider";
 import Spinner from "../../UI/Spinner/Spinner";
 import classesm from "../../MainContent/MainContent.module.scss";
 import VerticalDropDown from "../../UI/VerticalDropdown/VerticalDropdown";
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const SevenDaysForecast = React.lazy(() =>
   import("../../MainContent/SevenDayForecast/SevenDayForecast")
@@ -37,35 +38,33 @@ const webLayout = props => {
         data={props.searchQuery}
         longitudeLatitudeSelected={props.longitudeLatitudeSelected}
       />
-      <Footer />
     </React.Fragment>
   );
   let header = (
     <React.Fragment>
-      <Header current={props.current} location={props.location} />
+      <Header
+        current={props.current}
+        isLoading={props.isLoading}
+        location={props.locationInfo}
+      />
     </React.Fragment>
   );
-  let loginRegisterData = props.loginDataSelected ? (
+  let loginRegisterData = (
     <Suspense fallback={<Spinner />}>
-      <VerticalDropDown />
+      <VerticalDropDown isOpen={props.loginDataSelected} />
     </Suspense>
-  ) : null;
+  );
 
   let displayContactPage = (
     <React.Fragment>
-      {header}
       <Suspense fallback={<Spinner />}>
         <Contact handleContactFormSubmit={props.handleContactFormSubmit} />
       </Suspense>
-      <Footer />
     </React.Fragment>
   );
 
   let displayForecastData = props.searchInputSelected ? null : (
-    <React.Fragment>
-      {header}
-      {forecastData}
-    </React.Fragment>
+    <React.Fragment>{forecastData}</React.Fragment>
   );
 
   let webLayout = (
@@ -84,8 +83,18 @@ const webLayout = props => {
       />
       <main style={props.style} className={classesm.MainContent}>
         {loginRegisterData}
+        {header}
         <Suspense fallback={<Spinner />}>
-          <Switch>
+          <Route render={({location}) => (
+
+          
+            <TransitionGroup className="transition-group">
+              <CSSTransition
+                key={location.key}
+                timeout={ {enter:1000, exit:0}}
+                classNames="fade"
+              >
+            <Switch location={props.location}>
             <Route path="/7-days-forecast" render={() => displayForecastData} />
 
             <Route
@@ -114,86 +123,17 @@ const webLayout = props => {
             <Route path="/contact" render={() => displayContactPage} />
             <Route path="/" render={() => displayForecastData} />
           </Switch>
+          </CSSTransition>
+          </TransitionGroup>
+        )} />  
+          
         </Suspense>
+        <Footer isLoading={props.isLoading} />
       </main>
     </>
   );
 
-  //   let hourlyDataMobile = props.isLoading ? (
-  //     <Spinner />
-  //   ) : (
-  //     <Suspense fallback={<Spinner />}>
-  //       <HourlyDataMobile
-  //         forecast={props.forecast}
-  //         hourlyForecastData={
-  //           props.hourlyForecastData[props.lastSelectedDay]
-  //         }
-  //         dayClicked={props.clickOneDayForecastHandler}
-  //         location={props.location}
-  //       />
-  //     </Suspense>
-  //   );
-
-  //   let sevenDaysMobile = (
-  //     <>
-  //       {header}
-  //       <SevenDaysForecast
-  //         lastSelectedDay={props.lastSelectedDay}
-  //         dayClicked={props.clickOneDayForecastHandler}
-  //         forecast={props.forecast}
-  //         isMobile={props.isMobile}
-  //       />
-  //       <Footer />
-  //     </>
-  //   );
-  //   let mobileLayout = (
-  //     <>
-  //       <Suspense fallback={<Spinner />}>
-  //         <Switch>
-  //           <Route path="/7-days-forecast" exact render={() => sevenDaysMobile} />
-  //           <Route
-  //             path="/14-days-forecast"
-  //             exact
-  //             render={() => sevenDaysMobile}
-  //           />
-  //           <Route
-  //             path="/7-days-forecast/:id"
-  //             exact
-  //             render={() => hourlyDataMobile}
-  //           />
-  //           <Route
-  //             path="/search"
-  //             render={() => (
-  //               <SearchAndFavouriteMobile
-  //                 clicked={props.onOpenMenuHandler}
-  //                 searchHandler={props.onSearchHandler}
-  //                 onSelectLocation={props.onSelectLocation}
-  //                 lastVisited={props.lastVisited}
-  //                 searchQuery={props.searchQuery}
-  //                 selectLocation={props.onSelectLocation}
-  //                 deleteLastVisited={props.handleDeleteLastVisitedFromLocalStorage}
-  //                 isMobile={props.isMobile}
-  //               />
-  //             )}
-  //           />
-  //           <Route path="/contact" exact render={() => displayContactPage} />
-  //           <Route
-  //             path="/account"
-  //             render={() => (
-  //               <>
-  //                 {header}
-  //                 <LoginRegister isMobile={props.isMobile} />
-  //               </>
-  //             )}
-  //           />
-  //         </Switch>
-  //       </Suspense>
-  //     </>
-  //   );
-
-  //const layout = props.isMobile ? mobileLayout : webLayout;
-
   return webLayout;
 };
 
-export default webLayout;
+export default withRouter(webLayout);

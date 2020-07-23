@@ -37,6 +37,7 @@ const Favourites = props => {
         clearErrorMessageHandler={props.clearErrorMessageHandler}
         isLoading={props.isLoading}
         isMobile={props.isMobile}
+        isOpen={isButtonClicked}
       />
     );
     loginStatus = null;

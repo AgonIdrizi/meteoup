@@ -50,8 +50,8 @@ class WeatherBuilder extends Component {
       .then(([apixuResponse, openWeatherResponse]) => {
         this.setState({
           current: apixuResponse.data.current,
-          forecast: apixuResponse.data.forecast,
-          location: apixuResponse.data.location,
+          forecast: apixuResponse.data.daily,
+          location: 'Agon',
           hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data),
           isLoading: false
         });
@@ -70,8 +70,8 @@ class WeatherBuilder extends Component {
         .then(([apixuResponse, openWeatherResponse]) => {
           this.setState({
             current: apixuResponse.data.current,
-            forecast: apixuResponse.data.forecast,
-            location: apixuResponse.data.location,
+            forecast: apixuResponse.data.daily,
+            location: 'Agon',
             hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data),
             isLoading: false
           });
@@ -90,13 +90,12 @@ class WeatherBuilder extends Component {
 
   clickOneDayForecastHandler = (e, id, historyProp, isMobile = false) => {
     e.preventDefault();
-    if (this.state.width <= 500) {
-      historyProp.push("/7-days-forecast/1");
-    }
+    if (this.state.loginDataSelected) this.setState({loginDataSelected: false});
     this.setState({ lastSelectedDay: id });
   };
 
-  changeSlideHandler = index => {
+  changeSlideHandler = (index, historyProp) => {
+    if (this.state.loginDataSelected) this.setState({loginDataSelected: false});
     this.setState({ lastSelectedDay: index });
   };
 
@@ -109,7 +108,6 @@ class WeatherBuilder extends Component {
       getMapBoxGeoData(value)
         .then(response => {
           let newSearchQuery = response.data.features.map(elem => {
-            console.log(elem);
             return {
               id: elem.id,
               place: elem.text,
@@ -241,7 +239,7 @@ class WeatherBuilder extends Component {
         dayClicked={this.clickOneDayForecastHandler}
         forecast={this.state.forecast}
         current={this.state.current}
-        location={this.state.location}
+        locationInfo={this.state.location}
         changeSlide={this.changeSlideHandler}
         selectedDay={this.state.lastSelectedDay}
         hourlyForecastData={this.state.hourlyForecastData}

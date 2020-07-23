@@ -3,6 +3,7 @@
 
     margin-left: $side-menu-width;
     text-align: center;
+    
 }
 
 
@@ -10,6 +11,7 @@
 section {
     height: 400px;
     background-color: blue;
+    position: absolute;
 }
 
 .fade-enter {

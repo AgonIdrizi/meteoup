@@ -23,36 +23,36 @@ const oneDayForecast = props => {
       <div className="Date">
         <div>
           <span className={classes.DayName}>
-            {moment(props.data.date).format("ddd")}
+            {moment(props.data.day).format("ddd")}
           </span>
         </div>
         <div>
-          <span>{moment(props.data.date).format("M/D")}</span>
+          <span>{moment(props.data.night).format("M/D")}</span>
         </div>
       </div>
-      <Image isMobile={props.isMobile} condition={props.data.day.condition} />
+      <Image isMobile={props.isMobile} condition={props.data.weather[0].description} />
       <Degrees
         isMobile={props.isMobile}
         isInDetailsPage={props.isInDetailsPage || false}
-        degree={props.data.day.maxtemp_c}
+        degree={props.data.max}
       />
       <Degrees
         isMobile={props.isMobile}
         isInDetailsPage={props.isInDetailsPage || false}
-        degree={props.data.day.mintemp_c}
+        degree={props.data.min}
       />
       <div className={classes.WindRainSunInfo}>
         <div className={classes.Wind}>
           <span>
             <FontAwesomeIcon icon={faWind} />
           </span>
-          <span>{props.data.day.maxwind_kph} km/h</span>
+          <span>{props.data.wind_speed} km/h</span>
         </div>
         <div className={classes.Rain}>
           <span>
             <FontAwesomeIcon style={{ color: "#036f90" }} icon={faCloudRain} />
           </span>
-          <span>{props.data.day.totalprecip_mm} mm</span>
+          <span>{props.data.rain} mm</span>
         </div>
         <div>
           <span>..</span>

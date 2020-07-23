@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import WeatherDataInDetail from "../WeatherDataInDetail/WeatherDataInDetail";
+import {withRouter} from 'react-router-dom';
 import classes from "./Slider.module.scss";
 
 class Slider extends Component {
@@ -18,7 +19,7 @@ class Slider extends Component {
   };
 
   onSlideChanged = e => {
-    this.props.changeSlide(e.item);
+    this.props.changeSlide(e.item, this.props.history);
   };
 
   render() {
@@ -39,4 +40,4 @@ class Slider extends Component {
   }
 }
 
-export default Slider;
+export default withRouter(Slider);

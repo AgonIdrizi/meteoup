@@ -14,7 +14,7 @@ const searchMobileIcon = props => {
 
   return (
     <div
-      onClick={() => props.history.push("search")}
+      onClick={() => props.history.push("/search")}
       className={classes.SearchMobileIcon}
     >
       <FontAwesomeIcon style={iconStyle} icon={faSearch} />

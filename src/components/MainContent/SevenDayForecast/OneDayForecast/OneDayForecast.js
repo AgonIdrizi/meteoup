@@ -14,6 +14,7 @@ const oneDayForecast = props => {
   const isInDetailPageEvent = props.isInDetailsPage
     ? null
     : e => props.dayClicked(e, props.id, props.history, props.isMobile);
+    console.log("onedayforecast-props", props)
   return (
     <div
       style={props.style}
@@ -23,17 +24,14 @@ const oneDayForecast = props => {
       <div className="Date">
         <div>
           <span className={classes.DayName}>
-            {moment(props.data.day).format("ddd")}
+            {moment.unix(props.data.dt).format("ddd")}
           </span>
         </div>
         <div>
-          <span>{moment(props.data.night).format("M/D")}</span>
+          <span>{moment.unix(props.data.dt).format("M/D")}</span>
         </div>
       </div>
-      <Image
-        isMobile={props.isMobile}
-        condition={props.data.weather[0]}
-      />
+      <Image isMobile={props.isMobile} condition={props.data.weather[0]} />
       <Degrees
         isMobile={props.isMobile}
         isInDetailsPage={props.isInDetailsPage || false}

@@ -50,7 +50,7 @@ class WeatherBuilder extends Component {
       .then(([apixuResponse, openWeatherResponse]) => {
         this.setState({
           current: apixuResponse.data.current,
-          forecast: apixuResponse.data.daily,
+          forecast: apixuResponse.data.daily.slice(0, -1), // remove last element, because we get 8-day forecast-data, but we need only 7
           location: "Agon",
           hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data),
           isLoading: false
@@ -70,7 +70,7 @@ class WeatherBuilder extends Component {
         .then(([apixuResponse, openWeatherResponse]) => {
           this.setState({
             current: apixuResponse.data.current,
-            forecast: apixuResponse.data.daily,
+            forecast: apixuResponse.data.daily.slice(0, -1), // remove last element, because we get 8-day forecast-data, but we need only 7
             location: "Agon",
             hourlyForecastData: formatOpenWeatherData(openWeatherResponse.data),
             isLoading: false

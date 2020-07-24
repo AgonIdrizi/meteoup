@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Image.module.scss";
-import { weatherIconUrl } from '../../../../../utils/weatherIconUrl'
+import { weatherIconUrl } from "../../../../../utils/weatherIconUrl";
 
 import PropTypes from "prop-types";
 

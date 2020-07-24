@@ -86,14 +86,14 @@ class WeatherDataInDetail extends Component {
       return "NW";
     }
   };
-
   render() {
     if (this.state.isLoading) {
       return <p>Loading..</p>;
     }
-    const dayInText = moment(
-      this.props.hourlyForecastData[this.props.dayId].dt_txt
-    ).format("dddd");
+   // const dayInText = moment(
+    //  this.props.hourlyForecastData[this.props.dayId].dt_txt
+   // ).format("dddd");
+   const dayInText = moment.unix(this.props.hourlyForecastData[0].dt).format("dddd")
     const hours = this.props.hourlyForecastData.map(elem => (
       <div key={elem.dt}> {moment(elem.dt_txt).format("HH-00")}</div>
     ));

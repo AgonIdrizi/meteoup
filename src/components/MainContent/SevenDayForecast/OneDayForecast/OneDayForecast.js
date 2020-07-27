@@ -14,7 +14,7 @@ const oneDayForecast = props => {
   const isInDetailPageEvent = props.isInDetailsPage
     ? null
     : e => props.dayClicked(e, props.id, props.history, props.isMobile);
-    console.log("onedayforecast-props", props)
+  console.log("onedayforecast-props", props);
   return (
     <div
       style={props.style}

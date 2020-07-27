@@ -44,8 +44,9 @@ const webLayout = props => {
     <React.Fragment>
       <Header
         current={props.current}
+        locationNameSelected={props.locationNameSelected}
         isLoading={props.isLoading}
-        location={props.locationInfo}
+        longitudeLatitudeSelected={props.longitudeLatitudeSelected}
       />
     </React.Fragment>
   );

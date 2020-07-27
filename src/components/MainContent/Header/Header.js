@@ -10,10 +10,10 @@ const header = props => {
       <header className={classes.mainHeader}>
         <div className={classes.headerInfo}>
           <div>
-            <h1 data-testid="h1tag">Weather in {props.location.name} </h1>
+            <h1 data-testid="h1tag">Weather in </h1>
             <span>
-              {`${props.location.region}, ${props.location.country}, `}
-              <span>{`${props.location.lat} N ${props.location.lon} E`}</span>
+              {props.locationNameSelected}
+              <span>   {`${props.longitudeLatitudeSelected[0]} N ${props.longitudeLatitudeSelected[1]} E`}</span>
             </span>
           </div>
           <div className={classes.headerImage}>
@@ -32,9 +32,6 @@ const header = props => {
               <span>{`${props.current.temp} °C`}</span>
             </div>
             <div>
-              <span>
-                Last Updated {"moment(props.current.last_updated).fromNow()"}
-              </span>
             </div>
           </div>
         </div>

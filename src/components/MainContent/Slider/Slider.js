@@ -18,6 +18,16 @@ class Slider extends Component {
     ))
   };
 
+  componentDidMount() {
+  
+  }
+
+  componentDidUpdate () {
+    if (this.props.hourlyForecastData.length > 8) {
+      
+    }
+  }
+
   onSlideChanged = e => {
     this.props.changeSlide(e.item, this.props.history);
   };

@@ -1,7 +1,10 @@
 @import "../../variables.module.scss";
 .MainContent {
+  display: flex;
+  flex-direction: column;
   margin-left: $side-menu-width;
   text-align: center;
+  height: 100%;
 }
 
 section {

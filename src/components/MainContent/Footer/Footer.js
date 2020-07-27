@@ -13,7 +13,7 @@ const footer = props => {
   };
   if (props.isLoading) return null;
   return (
-    <>
+    <div className={classes.Footer}>
       <div className={classes.FooterTop}>
         <h4>Questions or comments?</h4>
         <Button onClick={handleButtonClick} ghost>
@@ -77,7 +77,7 @@ const footer = props => {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

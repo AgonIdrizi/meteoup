@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "631f17166a8ec76eb713dd86fb0e16fb",
+    "revision": "c956d7e031ef0626f906cb1f8c11717c",
     "url": "/meteoup/index.html"
   },
   {
-    "revision": "c78a23d2d9c4c3792ffb",
+    "revision": "291a51787c6b2051374f",
     "url": "/meteoup/static/css/0.39b9c7a7.chunk.css"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meteoup/static/css/6.b4407134.chunk.css"
   },
   {
-    "revision": "741c3fe1541103434340",
+    "revision": "7a96bbc7c59db1fc7d6c",
     "url": "/meteoup/static/css/8.e1395323.chunk.css"
   },
   {
@@ -36,12 +36,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meteoup/static/css/9.deba541d.chunk.css"
   },
   {
-    "revision": "2835b547ac5fe6488fe2",
-    "url": "/meteoup/static/css/main.4b4613d5.chunk.css"
+    "revision": "0cffefdd0fb871e531a5",
+    "url": "/meteoup/static/css/main.c8049f1d.chunk.css"
   },
   {
-    "revision": "c78a23d2d9c4c3792ffb",
-    "url": "/meteoup/static/js/0.e1f5603a.chunk.js"
+    "revision": "291a51787c6b2051374f",
+    "url": "/meteoup/static/js/0.72a06237.chunk.js"
   },
   {
     "revision": "c6cbe690305995ee414f",
@@ -68,19 +68,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/meteoup/static/js/7.ff53c4dc.chunk.js"
   },
   {
-    "revision": "741c3fe1541103434340",
-    "url": "/meteoup/static/js/8.6ccf83c3.chunk.js"
+    "revision": "7a96bbc7c59db1fc7d6c",
+    "url": "/meteoup/static/js/8.e20cb68c.chunk.js"
   },
   {
     "revision": "351c3962fd8ebd85b6c3",
     "url": "/meteoup/static/js/9.6b3ace9f.chunk.js"
   },
   {
-    "revision": "2835b547ac5fe6488fe2",
-    "url": "/meteoup/static/js/main.0ad7c706.chunk.js"
+    "revision": "0cffefdd0fb871e531a5",
+    "url": "/meteoup/static/js/main.207c1d15.chunk.js"
   },
   {
-    "revision": "9afc1e89840778fcfb61",
-    "url": "/meteoup/static/js/runtime~main.4d556d15.js"
+    "revision": "6617aa87e28bd839bb5a",
+    "url": "/meteoup/static/js/runtime~main.c19a7fa0.js"
   }
 ]);

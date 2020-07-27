@@ -210,6 +210,7 @@ class WeatherBuilder extends Component {
           deleteLastVisited={this.handleDeleteLastVisitedFromLocalStorage}
           lastSelectedDay={this.state.lastSelectedDay}
           longitudeLatitudeSelected={this.state.longitudeLatitudeSelected}
+          locationNameSelected={this.state.locationNameSelected}
           dayClicked={this.clickOneDayForecastHandler}
           forecast={this.state.forecast}
           current={this.state.current}

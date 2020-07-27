@@ -19,7 +19,10 @@ const Contact = React.lazy(() => import("../../Contact/Contact"));
 const MobileLayout = props => {
   let header = (
     <React.Fragment>
-      <Header current={props.current} location={props.location} />
+      <Header 
+        current={props.current} 
+        locationNameSelected={props.locationNameSelected}
+        longitudeLatitudeSelected={props.longitudeLatitudeSelected} />
     </React.Fragment>
   );
 

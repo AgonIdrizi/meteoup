@@ -13,7 +13,12 @@ const header = props => {
             <h1 data-testid="h1tag">Weather in </h1>
             <span>
               {props.locationNameSelected}
-              <span>   {`${props.longitudeLatitudeSelected[0]} N ${props.longitudeLatitudeSelected[1]} E`}</span>
+              <span>
+                {" "}
+                {`${props.longitudeLatitudeSelected[0]} N ${
+                  props.longitudeLatitudeSelected[1]
+                } E`}
+              </span>
             </span>
           </div>
           <div className={classes.headerImage}>
@@ -31,8 +36,7 @@ const header = props => {
               />
               <span>{`${props.current.temp} °C`}</span>
             </div>
-            <div>
-            </div>
+            <div></div>
           </div>
         </div>
       </header>

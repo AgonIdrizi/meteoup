@@ -48,7 +48,6 @@ class WeatherBuilder extends Component {
       this.state.locationNameSelected
     )
       .then(([apixuResponse, openWeatherResponse]) => {
-        console.log("openWeatherResponse", openWeatherResponse.data)
         this.setState({
           current: apixuResponse.data.current,
           forecast: apixuResponse.data.daily.slice(0, -1), // remove last element, because we get 8-day forecast-data, but we need only 7
